@@ -37,40 +37,60 @@ under `/workspace` goes straight to the host. There is no undo boundary, so
 
 ## How a run is put together
 
-There is one definition of a run, in `docker-compose.yml`: the image, the two
-mounts, the environment. `bin/pi` only supplies what compose cannot know — the
-directory you named, the uid, whether to allocate a terminal — and execs
-`docker compose run --rm pi`, building the image first if it is absent.
+`docker-compose.yml` is the only definition of a run: image, two mounts,
+environment. `bin/pi` adds what compose cannot know and hands off.
 
+```yaml
+flow:
+  - bin/pi: resolve DIR (default .); export PROJECT_DIR, AGENT_DIR, PI_IMAGE
+  - bin/pi: --user only on rootful Docker; -T only when stdin or stdout is not a tty
+  - build: docker compose build pi — runs only if the image is absent or --build was passed
+  - run: docker compose run --rm pi — mode is pi or bash, leftover args go to the agent
+  - entrypoint: HOME fallback; git config --global --add safe.directory $PI_WORKSPACE
+  - entrypoint: stderr banner — workspace, agent dir, effective HOME, /login hint
+  - exec: pi | bash
 ```
-bin/pi                       the launcher
-Dockerfile                   sandbox image
-docker-compose.yml           the run definition: image, mounts, environment
-docker-entrypoint.sh         container entrypoint
-prune-platform-packages.js   build stage only: drops node_modules for other platforms
-Makefile
-agent/                       the agent's configuration directory (mounted)
+
+```yaml
+bin/pi: launcher, POSIX sh, honours PI_IMAGE (default pi-agent:latest)
+Dockerfile: sandbox image; ARG PI_VERSION=1.0.0 pins the agent
+docker-compose.yml: the run definition — image, mounts, environment
+docker-entrypoint.sh: container entrypoint, execs the agent or the shell
+prune-platform-packages.js: build stage only, absent from the runtime image
+Makefile: help, build, install, clean
+agent/: agent configuration; mounted at run time, never baked into the image
 ```
 
-| Path         | Contents                                   |
-| ------------ | ------------------------------------------ |
-| `/workspace` | the project, read-write                    |
-| `/pi/agent`  | the agent directory (`PI_CODING_AGENT_DIR`) |
+```yaml
+workdir: /workspace
+uid: host uid:gid on rootful Docker, root on rootless (see "File ownership")
+home: $HOME when writable, else /tmp/pi-home — rootful Docker only, git and npm
+      need it because the host uid usually has no passwd entry
+mounts:
+  /workspace:
+    source: ${PROJECT_DIR:-.}
+    access: read-write        # writes land on the host, no undo boundary
+  /pi/agent:
+    source: ${AGENT_DIR:-./agent}
+    access: read-write        # PI_CODING_AGENT_DIR; set by the image, not the host
+```
 
-The image ships `bash`, `git`, `ripgrep` (`rg`), `fd`, `jq`, `curl`, `less`,
-`file`, `procps`, `python3` and `openssh-client`. There is no compiler toolchain;
-`agent/AGENTS.md` tells the agent so it does not assume otherwise. The
-entrypoint prints the workspace, agent directory and effective `HOME` to stderr
-on every start, then execs the agent or the shell.
+```yaml
+tools: [bash, git, rg, fd, jq, curl, less, file, procps, python3, openssh-client]
+from base image: [node, npm]
+absent:
+  - "no compiler toolchain: no gcc, make or build-essential"
+  - "`fd` is a symlink to Debian's `fdfind`, not a binary of that name"
+notes:
+  - "agent/AGENTS.md states the missing toolchain so the agent does not assume otherwise"
+```
 
-The `Dockerfile` has two stages. The build stage installs Pi and discards what
-cannot run on this machine, and the runtime stage copies in the result, so none of
-the build-only layers ship. `pi-coding-agent` publishes an `npm-shrinkwrap.json`,
-and npm installs a shrinkwrap verbatim instead of filtering optional dependencies
-by `os` and `cpu` — so esbuild's binary for all twenty-six platforms it supports
-is installed, 273 MB of which one is usable. `prune-platform-packages.js` removes
-the rest by that same rule, and the npm cache is dropped with them. This takes
-the image from 1373 MB to 715 MB.
+The `Dockerfile` has two stages, so no build-only layer ships. `pi-coding-agent`
+publishes an `npm-shrinkwrap.json`, and npm installs a shrinkwrap verbatim rather
+than filtering optional dependencies by `os` and `cpu` — so esbuild's binary for
+all twenty-six platforms it supports is installed, 273 MB of which one is usable.
+`prune-platform-packages.js` removes the rest by that same rule and drops the npm
+cache. That is the whole difference between 1373 MB and 715 MB.
 
 ## Configuration versus state
 
