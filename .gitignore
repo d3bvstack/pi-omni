@@ -1,8 +1,22 @@
 # Agent state: generated, machine-specific, and not part of the shared config.
+#
+# Grouped by what Pi derives from its agent directory (PI_CODING_AGENT_DIR):
+#   credentials  auth.json, mcp-auth.json
+#   history      sessions/
+#   binaries     bin/, plus tools/ which Pi migrates into bin/ on startup
+#   caches       models-store.json
+#   logs         mcp.log
+#
+# Committed instead, because it is setup worth sharing: settings.json,
+# keybindings.json, mcp.json, models.json, AGENTS.md, SYSTEM.md,
+# APPEND_SYSTEM.md, and the extensions/, skills/, prompts/, themes/ directories.
 agent/auth.json
+agent/mcp-auth.json
 agent/sessions/
 agent/bin/
+agent/tools/
 agent/models-store.json
+agent/mcp.log
 
 # Local environment. Nothing here should ever be committed.
 .env

@@ -67,8 +67,9 @@ on every start, then execs the agent or the shell.
 Committed, because it is the setup worth sharing: `agent/settings.json`,
 `agent/AGENTS.md`, `agent/models.json`, and the `agent/skills/`,
 `agent/prompts/` and `agent/extensions/` directories. Gitignored, because it is
-machine-specific: `agent/auth.json`, `agent/sessions/`, `agent/bin/` and
-`agent/models-store.json`.
+machine-specific or generated: `agent/auth.json`, `agent/mcp-auth.json`,
+`agent/sessions/`, `agent/bin/`, `agent/tools/`, `agent/models-store.json` and
+`agent/mcp.log`.
 
 Pi re-reads the committed files on every start. After editing them by hand, run
 `/reload` inside the agent. `agent/` is excluded from the Docker build context,
@@ -79,9 +80,13 @@ so no credential can reach an image layer.
 Two options, and they compose.
 
 1. Export a provider key in your host shell. The `environment:` list in
-   `docker-compose.yml` forwards the variables Pi documents, and only when they
-   are actually set, so nothing is stored in this repository. The list is kept
-   in sync with `pi --help`; it was taken from Pi 1.0.0.
+   `docker-compose.yml` forwards all 43 provider variables Pi documents, plus
+   its `PI_OFFLINE` and `PI_TELEMETRY` toggles, and only when they are actually
+   set, so nothing is stored in this repository. Four variables Pi also
+   documents are deliberately not forwarded: `PI_CODING_AGENT_DIR`, which the
+   image sets itself, and `PI_CODING_AGENT_SESSION_DIR`, `PI_PACKAGE_DIR` and
+   `PI_SHARE_VIEWER_URL`, which have no use here. The list is kept in sync with
+   `pi --help`; it was taken from Pi 1.0.0.
 
    ```bash
    export ANTHROPIC_API_KEY=...   # or OPENROUTER_API_KEY, GEMINI_API_KEY, ...
@@ -157,12 +162,12 @@ honors `PI_IMAGE`.
 
 ## Troubleshooting
 
-A native `pi` (`npm install -g @earendil-works/pi-coding-agent`) prints its own
-version and has no `--version` flag at this level, so `pi --version` tells the
-two apart. A native install lands in `~/.nvm/versions/node/*/bin`, normally
-*earlier* on `PATH` than `~/.local/bin`, and therefore wins in scripts, `ssh`
-sessions and `make` recipes. Remove it, or put this repository's `bin` earlier
-on `PATH`.
+A native `pi` (`npm install -g @earendil-works/pi-coding-agent`) also accepts
+`--version`, but prints only its version number, so `pi --version` tells the two
+apart: the launcher names itself and the image it will use. A native install
+lands in `~/.nvm/versions/node/*/bin`, normally *earlier* on `PATH` than
+`~/.local/bin`, and therefore wins in scripts, `ssh` sessions and `make`
+recipes. Remove it, or put this repository's `bin` earlier on `PATH`.
 
 - **`pi: cannot reach the Docker daemon`.** Docker is not running, or your user
   is not in the `docker` group.

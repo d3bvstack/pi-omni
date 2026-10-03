@@ -1,68 +1,79 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # Host launcher for the Pi agent container.
 #
-#   pi [DIR] [-- ARGS...]   mount DIR (default .) read-write and start the agent
-#   pi [DIR] --build        rebuild the image first
-#   pi [DIR] --shell        start a shell instead of the agent
-set -euo pipefail
+#   pi [DIR] [--build]        mount DIR (default .) read-write and start the agent
+#   pi [DIR] --shell          start a shell instead of the agent
+#   pi [DIR] [-- ARGS...]     forward ARGS to the agent
+#
+# POSIX sh, deliberately. The launcher runs on whatever /bin/sh is, which is not
+# bash 5 on every system, so it uses no arrays and no bash-only builtins.
+set -eu
 
 usage() {
     printf 'usage: pi [--build] [--shell] [DIR] [-- AGENT_ARGS...]\n'
 }
 
 # Resolve through the symlink `make install` puts on PATH, otherwise the
-# repository root cannot be found.
-repo_root="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
-image="${PI_IMAGE:-pi-agent:latest}"
-
-build=0
-dir=""
-mode=(pi)
-agent_args=()
-
-while [ "$#" -gt 0 ]; do
-    case "$1" in
-        -h | --help)
-            usage
-            exit 0
-            ;;
-        -V | --version)
-            printf 'pi-agent-hub launcher\n  launcher %s\n  repo     %s\n  image    %s\n' \
-                "$repo_root/bin/pi" "$repo_root" "$image"
-            exit 0
-            ;;
-        --build)
-            build=1
-            shift
-            ;;
-        --shell)
-            mode=(bash)
-            shift
-            ;;
-        --)
-            shift
-            agent_args=("$@")
-            break
-            ;;
-        -*)
-            printf 'pi: unknown option: %s\n' "$1" >&2
-            usage >&2
-            exit 2
-            ;;
-        *)
-            if [ -n "$dir" ]; then
-                printf 'pi: unexpected argument: %s\n' "$1" >&2
-                usage >&2
-                exit 2
-            fi
-            dir="$1"
-            shift
-            ;;
+# repository root cannot be found. Unrolled by hand because `readlink -f` is not
+# available everywhere; plain readlink and test -h are.
+self=$0
+while [ -h "$self" ]; do
+    link=$(readlink "$self")
+    case $link in
+    /*) self=$link ;;
+    *) self=$(dirname "$self")/$link ;;
     esac
 done
+repo_root=$(cd "$(dirname "$self")/.." && pwd -P)
+image=${PI_IMAGE:-pi-agent:latest}
 
-target="${dir:-.}"
-if ! dir="$(cd "$target" 2>/dev/null && pwd -P)"; then
+build=0
+dir=
+mode=pi
+
+while [ "$#" -gt 0 ]; do
+    case $1 in
+    -h | --help)
+        usage
+        exit 0
+        ;;
+    -V | --version)
+        printf 'pi-agent-hub launcher\n  launcher %s\n  repo     %s\n  image    %s\n' \
+            "$repo_root/bin/pi" "$repo_root" "$image"
+        exit 0
+        ;;
+    --build)
+        build=1
+        shift
+        ;;
+    --shell)
+        mode=bash
+        shift
+        ;;
+    --)
+        shift
+        break
+        ;;
+    -*)
+        printf 'pi: unknown option: %s\n' "$1" >&2
+        usage >&2
+        exit 2
+        ;;
+    *)
+        if [ -n "$dir" ]; then
+            printf 'pi: unexpected argument: %s\n' "$1" >&2
+            usage >&2
+            exit 2
+        fi
+        dir=$1
+        shift
+        ;;
+    esac
+done
+# Whatever is left in "$@" belongs to the agent, or to the shell under --shell.
+
+target=${dir:-.}
+if ! dir=$(cd "$target" 2>/dev/null && pwd -P); then
     printf 'pi: %s is not a directory to mount at /workspace\n' "$target" >&2
     usage >&2
     exit 2
@@ -72,14 +83,14 @@ fi
 # uid there would only make files appear on the host owned by a subordinate uid.
 # Rootful Docker leaves container root as real root, which is what we avoid by
 # running as the host user's own uid instead.
-security_options="$(docker info --format '{{.SecurityOptions}}' 2>/dev/null)" || {
+security_options=$(docker info --format '{{.SecurityOptions}}' 2>/dev/null) || {
     echo "pi: cannot reach the Docker daemon" >&2
     exit 1
 }
-run_user=()
-case "$security_options" in
-    *rootless*) ;;
-    *) run_user=(--user "$(id -u):$(id -g)") ;;
+user=
+case $security_options in
+*rootless*) ;;
+*) user=$(id -u):$(id -g) ;;
 esac
 
 # `compose run` reports nothing after --rm, so check the image name directly.
@@ -89,12 +100,16 @@ fi
 
 # `compose run` allocates a terminal unless told not to, and refuses a piped
 # stdin without -T.
-tty=()
+tty=
 if [ ! -t 0 ] || [ ! -t 1 ]; then
-    tty=(-T)
+    tty=-T
 fi
 
 export PROJECT_DIR="$dir" AGENT_DIR="$repo_root/agent" PI_IMAGE="$image"
 
+# tty, user and mode each hold at most one controlled word, so leaving them
+# unquoted drops the argument entirely when empty and cannot split. "$@" carries
+# the agent arguments through with their own word boundaries intact.
+# shellcheck disable=SC2086  # unquoted on purpose: an empty value must vanish
 exec docker compose -f "$repo_root/docker-compose.yml" run --rm \
-    "${tty[@]}" "${run_user[@]}" pi "${mode[@]}" "${agent_args[@]}"
+    $tty $user pi $mode "$@"
