@@ -1,0 +1,59 @@
+# Runs the Pi coding agent. bin/pi exports PROJECT_DIR, AGENT_DIR and PI_IMAGE,
+# adds the uid, and runs `docker compose run --rm pi`. The defaults exist so
+# `docker compose config`, `build` and `up` also work from this directory alone.
+#
+# Adding a second service later needs nothing here but the shared network, which
+# Compose creates with the first service, and the PROJECT_DIR variable. A
+# `profiles:` entry keeps it out of `docker compose up` until you ask for it by
+# name:
+#
+#   ollama:
+#     image: ollama/ollama
+#     profiles: [tools]
+#     ports: ["11434:11434"]
+#     volumes: [ollama:/root/.ollama]
+#
+# A service added that way is reachable from the agent by name, so a local model
+# server becomes `baseUrl: http://ollama:11434/v1` in agent/models.json.
+name: pi-agent
+
+services:
+  pi:
+    image: ${PI_IMAGE:-pi-agent:latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # No tty/stdin_open here: `compose run` allocates a terminal unless bin/pi
+    # passes -T, and no USER because bin/pi picks the uid per run.
+    init: true
+    volumes:
+      # The project the agent works on, read-write.
+      - type: bind
+        source: ${PROJECT_DIR:-.}
+        target: /workspace
+      # The agent's configuration directory, mounted on every launch.
+      - type: bind
+        source: ${AGENT_DIR:-./agent}
+        target: /pi/agent
+    # Provider keys, forwarded only when they are set in the launching shell, so
+    # no credential is ever stored in this repository. These are the variables
+    # `pi --help` documents; re-check that list after an upgrade. Running /login
+    # inside the container instead writes the gitignored agent/auth.json and needs
+    # nothing here.
+    environment: [
+      PI_OFFLINE, PI_TELEMETRY,        # Pi's own toggles
+      AI_GATEWAY_API_KEY, ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN,
+      ANTHROPIC_OAUTH_TOKEN, ANT_LING_API_KEY, AWS_ACCESS_KEY_ID,
+      AWS_BEARER_TOKEN_BEDROCK, AWS_PROFILE, AWS_REGION, AWS_SECRET_ACCESS_KEY,
+      AZURE_OPENAI_API_KEY, AZURE_OPENAI_API_VERSION, AZURE_OPENAI_BASE_URL,
+      AZURE_OPENAI_DEPLOYMENT_NAME_MAP, AZURE_OPENAI_RESOURCE_NAME,
+      BASETEN_API_KEY, CEREBRAS_API_KEY, CLOUDFLARE_ACCOUNT_ID,
+      CLOUDFLARE_API_KEY, CLOUDFLARE_GATEWAY_ID, DEEPSEEK_API_KEY,
+      FIREWORKS_API_KEY, GEMINI_API_KEY, GROQ_API_KEY, KIMI_API_KEY,
+      META_API_KEY, MINIMAX_API_KEY, MISTRAL_API_KEY, MOONSHOT_API_KEY,
+      NVIDIA_API_KEY, OPENAI_API_KEY, OPENCODE_API_KEY, OPENROUTER_API_KEY,
+      QWEN_TOKEN_PLAN_API_KEY, QWEN_TOKEN_PLAN_CN_API_KEY, TOGETHER_API_KEY,
+      XAI_API_KEY, XIAOMI_API_KEY, XIAOMI_TOKEN_PLAN_AMS_API_KEY,
+      XIAOMI_TOKEN_PLAN_CN_API_KEY, XIAOMI_TOKEN_PLAN_SGP_API_KEY, ZAI_API_KEY,
+      ZAI_CODING_CN_API_KEY,
+    ]

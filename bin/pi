@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+# Host launcher for the Pi agent container.
+#
+#   pi [DIR] [-- ARGS...]   mount DIR (default .) read-write and start the agent
+#   pi [DIR] --build        rebuild the image first
+#   pi [DIR] --shell        start a shell instead of the agent
+set -euo pipefail
+
+usage() {
+    printf 'usage: pi [--build] [--shell] [DIR] [-- AGENT_ARGS...]\n'
+}
+
+# Resolve through the symlink `make install` puts on PATH, otherwise the
+# repository root cannot be found.
+repo_root="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
+image="${PI_IMAGE:-pi-agent:latest}"
+
+build=0
+dir=""
+mode=(pi)
+agent_args=()
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        -h | --help)
+            usage
+            exit 0
+            ;;
+        -V | --version)
+            printf 'pi-agent-hub launcher\n  launcher %s\n  repo     %s\n  image    %s\n' \
+                "$repo_root/bin/pi" "$repo_root" "$image"
+            exit 0
+            ;;
+        --build)
+            build=1
+            shift
+            ;;
+        --shell)
+            mode=(bash)
+            shift
+            ;;
+        --)
+            shift
+            agent_args=("$@")
+            break
+            ;;
+        -*)
+            printf 'pi: unknown option: %s\n' "$1" >&2
+            usage >&2
+            exit 2
+            ;;
+        *)
+            if [ -n "$dir" ]; then
+                printf 'pi: unexpected argument: %s\n' "$1" >&2
+                usage >&2
+                exit 2
+            fi
+            dir="$1"
+            shift
+            ;;
+    esac
+done
+
+target="${dir:-.}"
+if ! dir="$(cd "$target" 2>/dev/null && pwd -P)"; then
+    printf 'pi: %s is not a directory to mount at /workspace\n' "$target" >&2
+    usage >&2
+    exit 2
+fi
+
+# Rootless Docker already maps container root onto the host user, so passing a
+# uid there would only make files appear on the host owned by a subordinate uid.
+# Rootful Docker leaves container root as real root, which is what we avoid by
+# running as the host user's own uid instead.
+security_options="$(docker info --format '{{.SecurityOptions}}' 2>/dev/null)" || {
+    echo "pi: cannot reach the Docker daemon" >&2
+    exit 1
+}
+run_user=()
+case "$security_options" in
+    *rootless*) ;;
+    *) run_user=(--user "$(id -u):$(id -g)") ;;
+esac
+
+# `compose run` reports nothing after --rm, so check the image name directly.
+if [ "$build" -eq 1 ] || ! docker image inspect "$image" >/dev/null 2>&1; then
+    docker compose -f "$repo_root/docker-compose.yml" build pi
+fi
+
+# `compose run` allocates a terminal unless told not to, and refuses a piped
+# stdin without -T.
+tty=()
+if [ ! -t 0 ] || [ ! -t 1 ]; then
+    tty=(-T)
+fi
+
+export PROJECT_DIR="$dir" AGENT_DIR="$repo_root/agent" PI_IMAGE="$image"
+
+exec docker compose -f "$repo_root/docker-compose.yml" run --rm \
+    "${tty[@]}" "${run_user[@]}" pi "${mode[@]}" "${agent_args[@]}"

@@ -1,0 +1,12 @@
+{
+  "defaultTools": [
+    "read",
+    "bash",
+    "edit",
+    "write",
+    "grep",
+    "find",
+    "ls"
+  ],
+  "lastChangelogVersion": "1.0.0"
+}

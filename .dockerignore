@@ -1,0 +1,5 @@
+# The image needs exactly one file from this repository. An allowlist keeps the
+# build context tiny and makes it structurally impossible for a credential, a
+# session transcript or any other future file to reach an image layer.
+*
+!docker-entrypoint.sh

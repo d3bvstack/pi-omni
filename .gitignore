@@ -1,0 +1,10 @@
+# Agent state: generated, machine-specific, and not part of the shared config.
+agent/auth.json
+agent/sessions/
+agent/bin/
+agent/models-store.json
+
+# Local environment. Nothing here should ever be committed.
+.env
+.env.*
+!.env.example
