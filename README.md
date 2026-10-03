@@ -43,12 +43,13 @@ directory you named, the uid, whether to allocate a terminal — and execs
 `docker compose run --rm pi`, building the image first if it is absent.
 
 ```
-bin/pi                  the launcher
-Dockerfile              sandbox image
-docker-compose.yml      the run definition: image, mounts, environment
-docker-entrypoint.sh    container entrypoint
+bin/pi                       the launcher
+Dockerfile                   sandbox image
+docker-compose.yml           the run definition: image, mounts, environment
+docker-entrypoint.sh         container entrypoint
+prune-platform-packages.js   build stage only: drops node_modules for other platforms
 Makefile
-agent/                  the agent's configuration directory (mounted)
+agent/                       the agent's configuration directory (mounted)
 ```
 
 | Path         | Contents                                   |
@@ -61,6 +62,15 @@ The image ships `bash`, `git`, `ripgrep` (`rg`), `fd`, `jq`, `curl`, `less`,
 `agent/AGENTS.md` tells the agent so it does not assume otherwise. The
 entrypoint prints the workspace, agent directory and effective `HOME` to stderr
 on every start, then execs the agent or the shell.
+
+The `Dockerfile` has two stages. The build stage installs Pi and discards what
+cannot run on this machine, and the runtime stage copies in the result, so none of
+the build-only layers ship. `pi-coding-agent` publishes an `npm-shrinkwrap.json`,
+and npm installs a shrinkwrap verbatim instead of filtering optional dependencies
+by `os` and `cpu` — so esbuild's binary for all twenty-six platforms it supports
+is installed, 273 MB of which one is usable. `prune-platform-packages.js` removes
+the rest by that same rule, and the npm cache is dropped with them. This takes
+the image from 1373 MB to 715 MB.
 
 ## Configuration versus state
 
