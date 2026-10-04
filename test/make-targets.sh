@@ -33,10 +33,11 @@ image=pi-agent:latest # the Makefile default, baked into the `docker` stub
 # slow at best and would leak local state into the assertions at worst.
 mkdir -p "$work" "$work/test" "$stubs"
 for f in Makefile Dockerfile docker-compose.yml docker-entrypoint.sh \
-         prune-platform-packages.js README.md; do
+         README.md; do
     [ -e "$root/$f" ] && cp -p "$root/$f" "$work/$f"
 done
 cp -rp "$root/bin" "$work/bin"
+cp -rp "$root/scripts" "$work/scripts"
 cp -p "${BASH_SOURCE[0]}" "$work/test/make-targets.sh"
 
 # `docker` records its arguments and succeeds, except for `image rm`, which

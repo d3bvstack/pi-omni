@@ -21,7 +21,7 @@ RUN npm install -g --ignore-scripts "@earendil-works/pi-coding-agent@${PI_VERSIO
 # system esbuild supports, and the npm cache is another 143 MB. Neither is worth
 # carrying, and neither is copied below, so both go here instead. npm's `pi` link
 # is staged on its own, because COPY resolves a symlink given as its own source.
-COPY prune-platform-packages.js /tmp/
+COPY scripts/prune-platform-packages.js /tmp/
 RUN set -eux; \
     node /tmp/prune-platform-packages.js /usr/local/lib/node_modules; \
     mkdir -p /out/bin; \
@@ -37,7 +37,7 @@ FROM node:24-bookworm-slim
 RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
-        bash ca-certificates curl fd-find file git jq less openssh-client \
+        bash ca-certificates curl fd-find file git jq less make openssh-client \
         procps python3 ripgrep; \
     ln -sf /usr/bin/fdfind /usr/local/bin/fd; \
     rm -rf /var/lib/apt/lists/*

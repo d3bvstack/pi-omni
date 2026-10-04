@@ -3,4 +3,7 @@
 # transcript or any other future file to reach an image layer.
 *
 !docker-entrypoint.sh
-!prune-platform-packages.js
+# The parent has to be un-excluded as well: a file below a directory that `*`
+# matched stays out of the context otherwise.
+!scripts/
+!scripts/prune-platform-packages.js

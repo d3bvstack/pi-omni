@@ -56,8 +56,9 @@ bin/pi: launcher, POSIX sh, honours PI_IMAGE (default pi-agent:latest)
 Dockerfile: sandbox image; ARG PI_VERSION=1.0.0 pins the agent
 docker-compose.yml: the run definition — image, mounts, environment
 docker-entrypoint.sh: container entrypoint, execs the agent or the shell
-prune-platform-packages.js: build stage only, absent from the runtime image
 Makefile: help, build, install, uninstall, update, pin, clean, test
+scripts/: build-time helpers only, copied in for the build stage and absent from the runtime image
+  prune-platform-packages.js: drops the node_modules this platform cannot run
 test/make-targets.sh: hermetic suite for the Makefile targets
 agent/: agent configuration; mounted at run time, never baked into the image
 ```
@@ -77,10 +78,12 @@ mounts:
 ```
 
 ```yaml
-tools: [bash, git, rg, fd, jq, curl, less, file, procps, python3, openssh-client]
+tools: [bash, git, rg, fd, jq, curl, less, file, procps, python3, openssh-client,
+        make]
 from base image: [node, npm]
 absent:
-  - "no compiler toolchain: no gcc, make or build-essential"
+  - "no compiler toolchain: no gcc and no build-essential. `make` is present, but
+     only for driving build recipes -- there is nothing for it to compile"
   - "`fd` is a symlink to Debian's `fdfind`, not a binary of that name"
 notes:
   - "agent/AGENTS.md states the missing toolchain so the agent does not assume otherwise"
@@ -90,7 +93,8 @@ The `Dockerfile` has two stages, so no build-only layer ships. `pi-coding-agent`
 publishes an `npm-shrinkwrap.json`, and npm installs a shrinkwrap verbatim rather
 than filtering optional dependencies by `os` and `cpu` — so esbuild's binary for
 all twenty-six platforms it supports is installed, 273 MB of which one is usable.
-`prune-platform-packages.js` removes the rest by that same rule and drops the npm
+`scripts/prune-platform-packages.js` removes the rest by that same rule and drops
+the npm
 cache. That is the whole difference between 1373 MB and 715 MB.
 
 ## Configuration versus state

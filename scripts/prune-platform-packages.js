@@ -10,7 +10,7 @@
 // every transitive dependency to a fresh `^` range on each build, so the tree is
 // kept as pinned and pruned afterwards by the rule npm would have applied.
 //
-//   node prune-platform-packages.js [DIR]      default: the current directory
+//   node scripts/prune-platform-packages.js [DIR]   default: the current directory
 //
 // Prints one line per removed package and a total. Exits non-zero if DIR does not
 // exist, so a wrong argument fails the build instead of pruning nothing.
