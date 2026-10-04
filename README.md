@@ -57,7 +57,8 @@ Dockerfile: sandbox image; ARG PI_VERSION=1.0.0 pins the agent
 docker-compose.yml: the run definition — image, mounts, environment
 docker-entrypoint.sh: container entrypoint, execs the agent or the shell
 prune-platform-packages.js: build stage only, absent from the runtime image
-Makefile: help, build, install, clean
+Makefile: help, build, install, uninstall, update, pin, clean, test
+test/make-targets.sh: hermetic suite for the Makefile targets
 agent/: agent configuration; mounted at run time, never baked into the image
 ```
 
@@ -184,11 +185,27 @@ Either way, files the agent writes into `/workspace` belong to you.
 
 ## Make targets
 
-`make help` lists them. `make build` builds the image, `make install` symlinks
-`pi`, `make clean` removes the image, the project network and any stopped
-containers, keeping `agent/`. Override the image with `make build image=my-pi:dev`
-and the install directory with `make install install_dir=~/bin`; `bin/pi` also
-honors `PI_IMAGE`.
+`make help` lists the targets and the variables they read. `make build` builds
+the image, `make install` symlinks `pi` and `make uninstall` removes that
+symlink, `make update` pins the latest published agent version in the
+`Dockerfile` (`make pin version=x.y.z` for a specific one), and `make clean`
+removes the image, the project network and any stopped containers, keeping
+`agent/`. Override the image with `make build image=my-pi:dev` and the install
+directory with `make install install_dir=~/bin`; `bin/pi` also honors
+`PI_IMAGE`.
+
+## Tests
+
+`make test` runs `test/make-targets.sh`, which executes every target in a
+throwaway copy of the repository with recording stubs for `docker` and `npm` on
+`PATH`. No daemon, no network, and the repository itself is never modified. It
+reports each check in TAP style, then a per-target verdict, and exits non-zero
+if any check fails or if a target exists without a case:
+
+```
+make test              # everything
+make test filter=pin   # only the cases whose name contains "pin"
+```
 
 ## Troubleshooting
 
@@ -206,7 +223,8 @@ recipes. Remove it, or put this repository's `bin` earlier on `PATH`.
 - **A change to `agent/` is ignored.** Run `/reload`, or start a new session.
 - **`permission denied` on a mounted path.** The host directory is not readable
   by the uid the container runs as, which on rootful Docker is your own uid.
-- **Changing the Pi version.** Edit `ARG PI_VERSION` in the `Dockerfile`, then
+- **Changing the Pi version.** `make update` pins the latest published version in
+  `ARG PI_VERSION` in the `Dockerfile`, or edit that line by hand, then
   `make build`. The version is pinned deliberately, so rebuilds are
   reproducible.
 

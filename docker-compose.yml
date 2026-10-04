@@ -1,3 +1,4 @@
+---
 # Runs the Pi coding agent. bin/pi exports PROJECT_DIR, AGENT_DIR and PI_IMAGE,
 # adds the uid, and runs `docker compose run --rm pi`. The defaults exist so
 # `docker compose config`, `build` and `up` also work from this directory alone.
@@ -38,8 +39,8 @@ services:
     # Provider keys, forwarded only when they are set in the launching shell, so
     # no credential is ever stored in this repository. These are the variables
     # `pi --help` documents; re-check that list after an upgrade. Running /login
-    # inside the container instead writes the gitignored agent/auth.json and needs
-    # nothing here.
+    # inside the container instead writes the gitignored agent/auth.json and
+    # needs nothing here.
     environment: [
       PI_OFFLINE, PI_TELEMETRY,        # Pi's own toggles
       AI_GATEWAY_API_KEY, ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN,
@@ -54,6 +55,6 @@ services:
       NVIDIA_API_KEY, OPENAI_API_KEY, OPENCODE_API_KEY, OPENROUTER_API_KEY,
       QWEN_TOKEN_PLAN_API_KEY, QWEN_TOKEN_PLAN_CN_API_KEY, TOGETHER_API_KEY,
       XAI_API_KEY, XIAOMI_API_KEY, XIAOMI_TOKEN_PLAN_AMS_API_KEY,
-      XIAOMI_TOKEN_PLAN_CN_API_KEY, XIAOMI_TOKEN_PLAN_SGP_API_KEY, ZAI_API_KEY,
-      ZAI_CODING_CN_API_KEY,
+      XIAOMI_TOKEN_PLAN_CN_API_KEY, XIAOMI_TOKEN_PLAN_SGP_API_KEY,
+      ZAI_API_KEY, ZAI_CODING_CN_API_KEY,
     ]
