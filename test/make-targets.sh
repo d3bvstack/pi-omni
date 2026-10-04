@@ -169,7 +169,7 @@ help_list() {
     assert_ok "help/runs" "help succeeds"
     assert_contains "help/usage" "$out" "Usage: make" "help prints a usage line"
     local t
-    for t in build install uninstall update pin clean test; do
+    for t in build install uninstall update pin clean test test-memory; do
         assert_contains "help/lists-$t" "$out" "$t" "help lists $t"
     done
     local v
@@ -249,6 +249,19 @@ pi_is_a_placeholder() {
 
 case_add "pi/is-a-placeholder" "a service word is not treated as a missing target" \
     pi_is_a_placeholder
+
+# Every word in the Makefile's SERVICES gets a no-op rule so it can be named on the
+# command line, and a no-op rule is a goal as far as the coverage check below is
+# concerned. The second service therefore needs a case of its own, exactly as the
+# first one has.
+supermemory_is_a_placeholder() {
+    run_make supermemory
+    assert_ok "supermemory/succeeds" "a bare service word is not an error"
+    assert_eq "supermemory/silent" "" "$out" "and the placeholder target does nothing"
+}
+
+case_add "supermemory/is-a-placeholder" \
+    "the second service word is a placeholder too" supermemory_is_a_placeholder
 
 # --- install ----------------------------------------------------------------
 
@@ -493,6 +506,69 @@ test_filter_can_match_nothing() {
 
 case_add "test/filter-empty" "a filter matching nothing is a no-op" \
     test_filter_can_match_nothing
+
+# --- test-memory -------------------------------------------------------------
+#
+# The memory suite reads files from the repository, and this harness deliberately
+# copies only the Makefile's own inputs into its throwaway tree -- the memory
+# Dockerfile, .dockerignore and agent/AGENTS.md are not among them. So these cases
+# check what the Makefile does with the target, by dry run, and leave running the
+# suite itself to `make test-memory`.
+
+test_memory_target_runs_the_suite() {
+    run_make -n test-memory
+    assert_ok "test-memory/target-exists" "make has a test-memory target"
+    assert_contains "test-memory/dry-run" "$out" "test/supermemory.sh" \
+        "the test-memory target runs the memory suite"
+}
+
+case_add "test-memory/target-runs-the-suite" "make test-memory runs the memory suite" \
+    test_memory_target_runs_the_suite
+
+test_memory_filter_reaches_the_suite() {
+    # The two suites read different filter variables, so the wiring is the thing
+    # to check: a filter that arrived under the other suite's name would silently
+    # run everything.
+    run_make -n test-memory filter=compose
+    assert_ok "test-memory/filter-succeeds" "a filtered run succeeds"
+    assert_contains "test-memory/filter-variable" "$out" "MEMORY_TEST_FILTER='compose'" \
+        "filter= reaches the memory suite as MEMORY_TEST_FILTER"
+    run_make -n test filter=pin
+    assert_contains "test-memory/filter-variables-differ" "$out" "MAKE_TEST_FILTER='pin'" \
+        "and the Makefile suite still reads its own"
+}
+
+case_add "test-memory/filter-reaches-the-suite" "filter= is passed to the right suite" \
+    test_memory_filter_reaches_the_suite
+
+test_memory_service_word_is_not_a_target() {
+    # supermemory is a compose service, not a Makefile target, so it gets the same
+    # no-op rule as pi and has to survive the target filter to reach the recipe.
+    run_make -n build supermemory
+    assert_ok "test-memory/service-word-succeeds" "a service word is not an error"
+    assert_contains "test-memory/service-word-builds" "$out" "build supermemory" \
+        "a service word reaches compose as the service to build"
+    assert_not_contains "test-memory/service-word-no-default" "$out" "build pi" \
+        "and does not fall back to the default service"
+    # The other direction: with no service word, the default still applies.
+    run_make -n build
+    assert_contains "test-memory/default-service" "$out" "build pi" \
+        "a bare build still builds the default service"
+}
+
+case_add "test-memory/service-word-is-not-a-target" \
+    "supermemory is a service name, not a target" test_memory_service_word_is_not_a_target
+
+test_both_suites_run_together() {
+    run_make -n test test-memory
+    assert_contains "test/both/make-suite" "$out" "test/make-targets.sh" \
+        "asking for both targets runs the Makefile suite"
+    assert_contains "test/both/memory-suite" "$out" "test/supermemory.sh" \
+        "and the memory suite"
+}
+
+case_add "test/both-suites-run-together" "make test test-memory runs both suites" \
+    test_both_suites_run_together
 
 # ----------------------------------------------------------------- run them
 

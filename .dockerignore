@@ -1,8 +1,14 @@
-# The image needs two files from this repository. An allowlist keeps the build
-# context tiny and makes it structurally impossible for a credential, a session
-# transcript or any other future file to reach an image layer.
+# The images need three files from this repository, and one is each Dockerfile.
+# An allowlist keeps the build context tiny and makes it structurally impossible
+# for a credential, a session transcript or any other future file to reach an
+# image layer.
 *
 !docker-entrypoint.sh
+# Dockerfile.supermemory is named by `build.dockerfile` in docker-compose.yml, so
+# it has to be in the context like any other build input. Without this line the
+# supermemory build fails on a missing Dockerfile. Nothing else from the
+# repository reaches that image -- it fetches its binary from the release.
+!Dockerfile.supermemory
 # The parent has to be un-excluded as well: a file below a directory that `*`
 # matched stays out of the context otherwise.
 !scripts/

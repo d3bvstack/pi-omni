@@ -1,12 +1,16 @@
 ---
-# Runs the Pi coding agent. bin/pi exports PROJECT_DIR, AGENT_DIR and PI_IMAGE,
-# adds the uid, and runs `docker compose run --rm pi`. The defaults exist so
-# `docker compose config`, `build` and `up` also work from this directory alone.
+# Runs the Pi coding agent, plus the self-hosted Supermemory server it uses for
+# long-term memory. bin/pi exports PROJECT_DIR, AGENT_DIR, PI_IMAGE and
+# SUPERMEMORY_IMAGE, adds the uid, and runs `docker compose run --rm pi`. The
+# defaults exist so `docker compose config`, `build` and `up` also work from this
+# directory alone.
 #
-# Adding a second service later needs nothing here but the shared network, which
-# Compose creates with the first service, and the PROJECT_DIR variable. A
-# `profiles:` entry keeps it out of `docker compose up` until you ask for it by
-# name:
+# There are two services now, and the second one shows the pattern the rest
+# follow. It is reachable from the agent by name over the shared network Compose
+# creates with the first service -- no `ports:`, which is what `http://supermemory:6767`
+# in agent/AGENTS.md relies on. A tool the agent should reach but that does not
+# need to exist on every launch goes behind a profile instead, so `compose run pi`
+# leaves it out until you name it:
 #
 #   ollama:
 #     image: ollama/ollama
@@ -14,8 +18,11 @@
 #     ports: ["11434:11434"]
 #     volumes: [ollama:/root/.ollama]
 #
-# A service added that way is reachable from the agent by name, so a local model
-# server becomes `baseUrl: http://ollama:11434/v1` in agent/models.json.
+# Note the difference: a profiled service is reachable only once something
+# starts it, so anything that `depends_on` it must name it unconditionally. A
+# local model server on this network becomes `baseUrl: http://ollama:11434/v1` in
+# agent/models.json, and a Supermemory service pointed at it becomes
+# OPENAI_BASE_URL: http://ollama:11434/v1.
 name: pi-agent
 
 services:
@@ -27,6 +34,14 @@ services:
     # No tty/stdin_open here: `compose run` allocates a terminal unless bin/pi
     # passes -T, and no USER because bin/pi picks the uid per run.
     init: true
+    # `service_started`, not `service_healthy`, on purpose. The first boot after
+    # a fresh volume downloads the local embedding model, and making every `pi`
+    # launch wait on that would be a poor trade for a memory engine the agent
+    # only reaches when it chooses to. AGENTS.md tells the agent that a memory
+    # call can fail while the engine warms up and must not be retried in a loop.
+    depends_on:
+      supermemory:
+        condition: service_started
     volumes:
       # The project the agent works on, read-write.
       - type: bind
@@ -57,4 +72,65 @@ services:
       XAI_API_KEY, XIAOMI_API_KEY, XIAOMI_TOKEN_PLAN_AMS_API_KEY,
       XIAOMI_TOKEN_PLAN_CN_API_KEY, XIAOMI_TOKEN_PLAN_SGP_API_KEY,
       ZAI_API_KEY, ZAI_CODING_CN_API_KEY,
+      # The memory engine's bearer token, printed by supermemory's first boot.
+      # The endpoint itself is not a variable: it is the service name on this
+      # network, fixed at http://supermemory:6767 and written down in
+      # agent/AGENTS.md, so there is nothing to keep in sync.
+      SUPERMEMORY_API_KEY,
     ]
+
+  supermemory:
+    # The long-term memory engine. Two images, and the version lives only in
+    # Dockerfile.supermemory's ARG, the same way PI_VERSION lives only in the
+    # agent Dockerfile -- this `image:` names the built result, it does not
+    # version it.
+    image: ${SUPERMEMORY_IMAGE:-supermemory-server:local}
+    build:
+      context: .
+      dockerfile: Dockerfile.supermemory
+    # No `profiles:` entry. A profiled service is left out of `compose run pi`,
+    # and then the agent's lookup of "supermemory" fails outright rather than
+    # degrading. This one is needed on every launch.
+    #
+    # No `ports:` either, and that is load-bearing rather than incidental. The
+    # pinned release (0.0.8) binds every interface and its implicit local
+    # authentication is unsafe on an untrusted network -- Supermemory's own
+    # self-hosting docs say so in as many words. This project's network is the
+    # isolation. A later release binds loopback and enforces the key it prints;
+    # only then is a published port defensible, and it would want TLS and access
+    # control in front of it.
+    environment:
+      # One LLM provider, required for summaries, contextual chunking and memory
+      # extraction. There is no wizard without a TTY, so this cannot be
+      # interactive. OpenRouter is not a provider the server knows; it is
+      # OpenAI-compatible, so it arrives through the OPENAI_* pair.
+      OPENAI_BASE_URL: https://openrouter.ai/api/v1
+      OPENAI_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENAI_MODEL: ${SUPERMEMORY_MODEL:-thinkingmachines/inkling-small:free}
+      SUPERMEMORY_DATA_DIR: /var/lib/supermemory
+      SUPERMEMORY_DISABLE_TELEMETRY: "1"
+      # Local embeddings (Xenova/bge-base-en-v1.5, 768d) are the default and
+      # need no key. Set SUPERMEMORY_EMBEDDING_PROVIDER and friends in .env to
+      # move them off the machine; the dimension is then locked to whatever the
+      # stored vectors already are, so changing it means starting a new volume.
+    volumes:
+      - supermemory:/var/lib/supermemory
+    healthcheck:
+      # The docs publish no health endpoint. `/` is the server's browser welcome
+      # page, so a 200 means the engine is answering. Revisit this if a real
+      # health path is ever documented.
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:6767/"]
+      interval: 10s
+      timeout: 5s
+      # Long, because a fresh volume's first boot downloads the embedding model.
+      start_period: 180s
+      retries: 5
+    # The engine holds the only copy of the memory graph and the embedding
+    # cache, so it stays up across restarts. `make clean` does not remove the
+    # volume either; see the README for how to discard it deliberately.
+    restart: unless-stopped
+
+volumes:
+  # Graph engine data, the auth secret and the embedding model cache. Named, so
+  # it is not a bind into the repository and `make clean` leaves it alone.
+  supermemory:

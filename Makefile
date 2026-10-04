@@ -33,24 +33,30 @@ export PI_IMAGE := $(strip $(image))
 # MAKECMDGOALS holds every word after "make". Make consumes the ones naming a
 # target; the rest are service names. Naming the targets in one place keeps the
 # filter below honest, so a new target only has to be listed here once.
-TARGETS  := help build shell install uninstall update pin clean test
-SERVICES := pi
+TARGETS  := help build shell install uninstall update pin clean test test-memory
+SERVICES := pi supermemory
 
 # A service word is not a target, so without this `make shell pi` would fail on
-# a missing rule before the recipe ever ran.
+# a missing rule before the recipe ever ran. Every word in SERVICES gets that
+# rule, which is why a second service costs one word here and nowhere else.
 .PHONY: $(SERVICES)
 $(SERVICES):
 	@:
 
 # Drop the target words; what is left is the service the user asked for. Empty
-# means the one service this project ships, so `make build` and `make build pi`
-# do the same thing. A word that is neither goes to the recipe unchanged and
-# fails at the no-op rule above, rather than silently building something else.
-SERVICE := $(or $(filter-out $(TARGETS) $(SERVICES),$(MAKECMDGOALS)),pi)
+# means the default service, so `make build` and `make build pi` do the same
+# thing. Only the target words are filtered out -- a service word has to survive
+# this to reach the recipe, so SERVICES is deliberately absent from the list.
+# Filtering it out as well would look harmless while SERVICES held only `pi`,
+# because the default happens to be `pi` anyway, and would silently redirect
+# `make build supermemory` to pi once a second service existed.
+# A word that is neither a target nor a known service fails on the no-op rule
+# above, rather than reaching compose as a service that does not exist.
+SERVICE := $(or $(filter-out $(TARGETS),$(MAKECMDGOALS)),$(firstword $(SERVICES)))
 
 # No target here produces a file, so none of them can go stale. Split in two
 # rather than continued, so that one `sed` can read the whole list.
-.PHONY: help build shell install uninstall update pin clean test
+.PHONY: help build shell install uninstall update pin clean test test-memory
 
 help: ## Show the available targets and variables
 	@printf 'Usage: make <target> [service...] [var=value ...]\n\nTargets:\n'
@@ -112,8 +118,16 @@ pin: ## Pin a specific pi version in the Dockerfile (version=x.y.z)
 	mv "$$tmp" "$$file" && \
 	echo "pinned PI_VERSION=$$ver in $$file"
 
+# Two suites, one per target, because they are hermetic in different ways: this
+# one stubs `docker` and `npm` and never reaches a daemon, while the memory suite
+# only reads files. Ask for both in one command to run both --
+# `make test test-memory` -- which works because MAKECMDGOALS holds them both and
+# only `build` and `shell` need a service name.
 test: ## Run the Makefile test suite (filter=substring to narrow it down)
 	@MAKE_TEST_FILTER='$(strip $(filter))' test/make-targets.sh
+
+test-memory: ## Run the memory wiring test suite (filter=substring to narrow it down)
+	@MEMORY_TEST_FILTER='$(strip $(filter))' test/supermemory.sh
 
 clean: ## Remove the image, the project network and stopped containers
 	-$(strip $(compose)) down --remove-orphans

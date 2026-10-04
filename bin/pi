@@ -26,6 +26,9 @@ while [ -h "$self" ]; do
 done
 repo_root=$(cd "$(dirname "$self")/.." && pwd -P)
 image=${PI_IMAGE:-pi-agent:latest}
+# The memory engine is a second image, built by the same launcher. Both names are
+# overridable so a build can be tagged without editing either Dockerfile.
+memory_image=${SUPERMEMORY_IMAGE:-supermemory-server:local}
 
 build=0
 dir=
@@ -38,8 +41,8 @@ while [ "$#" -gt 0 ]; do
         exit 0
         ;;
     -V | --version)
-        printf 'pi-agent-hub launcher\n  launcher %s\n  repo     %s\n  image    %s\n' \
-            "$repo_root/bin/pi" "$repo_root" "$image"
+        printf 'pi-agent-hub launcher\n  launcher %s\n  repo     %s\n  image    %s\n  memory   %s\n' \
+            "$repo_root/bin/pi" "$repo_root" "$image" "$memory_image"
         exit 0
         ;;
     --build)
@@ -93,9 +96,14 @@ case $security_options in
 *) user=$(id -u):$(id -g) ;;
 esac
 
-# `compose run` reports nothing after --rm, so check the image name directly.
-if [ "$build" -eq 1 ] || ! docker image inspect "$image" >/dev/null 2>&1; then
-    docker compose -f "$repo_root/docker-compose.yml" build pi
+# `compose run` reports nothing after --rm, so check the image names directly.
+# Both services are built when either is missing: on a fresh clone the memory
+# engine is absent, and `compose run` would fail on `depends_on` without ever
+# giving the agent a session.
+if [ "$build" -eq 1 ] \
+    || ! docker image inspect "$image" >/dev/null 2>&1 \
+    || ! docker image inspect "$memory_image" >/dev/null 2>&1; then
+    docker compose -f "$repo_root/docker-compose.yml" build pi supermemory
 fi
 
 # `compose run` allocates a terminal unless told not to, and refuses a piped
@@ -105,7 +113,8 @@ if [ ! -t 0 ] || [ ! -t 1 ]; then
     tty=-T
 fi
 
-export PROJECT_DIR="$dir" AGENT_DIR="$repo_root/agent" PI_IMAGE="$image"
+export PROJECT_DIR="$dir" AGENT_DIR="$repo_root/agent" PI_IMAGE="$image" \
+    SUPERMEMORY_IMAGE="$memory_image"
 
 # tty, user and mode each hold at most one controlled word, so leaving them
 # unquoted drops the argument entirely when empty and cannot split. "$@" carries

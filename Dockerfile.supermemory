@@ -1,0 +1,88 @@
+# Self-hosted Supermemory: the long-term memory the agent reads and writes over
+# HTTP at http://supermemory:6767.
+#
+# A separate image from the agent's, deliberately. The agent image spends a
+# documented effort on size (see the README) and Supermemory's engine, its local
+# embedding model and its graph database have no business inside the sandbox the
+# model itself runs in. Keeping them apart also means a Supermemory version bump
+# rebuilds one image and leaves the other's layer cache alone.
+#
+# This image needs nothing from the repository, so .dockerignore keeps its
+# allowlist closed -- the Dockerfile is un-excluded there and that is all.
+#
+# The binary is not open source. The public repository holds the SDKs and the
+# components; the server release artefact is built from a separate, non-public
+# codebase. So the version is pinned and the sha256 is checked against the
+# checksum in the release manifest. Be clear about what that buys: it catches a
+# truncated, corrupted or CDN-swapped download. It does not make an
+# unreviewable binary reviewable. Read a version bump before you make one.
+
+FROM debian:bookworm-slim
+
+# Pinned so that rebuilding is reproducible. Bump deliberately.
+# 0.0.8 is the release the self-hosting docs describe, including the warning
+# that it binds every interface and that its implicit local authentication is
+# unsafe on an untrusted network. That is why docker-compose.yml publishes no
+# ports for it.
+ARG SUPERMEMORY_VERSION=0.0.8
+
+RUN set -eux; \
+    apt-get update; \
+    apt-get install -y --no-install-recommends ca-certificates curl jq; \
+    rm -rf /var/lib/apt/lists/*
+
+# The upstream installer is `curl -fsSL https://supermemory.ai/install | bash`.
+# This does the same two downloads explicitly instead, so the build states what
+# it fetched, checks it, and fails here rather than at the first `pi`. The asset
+# name and the manifest shape are the installer's, not a guess:
+#   supermemory-server-linux-{x64,arm64} and manifest.json under
+#   https://github.com/supermemoryai/supermemory/releases/download/server-v$VERSION
+#
+# The architecture comes from dpkg rather than buildx's TARGETARCH so that a
+# plain `docker build` without BuildKit resolves the same platform the runtime
+# stage will actually execute on.
+RUN set -eux; \
+    arch=$(dpkg --print-architecture); \
+    case "$arch" in \
+        amd64) platform=linux-x64 ;; \
+        arm64) platform=linux-arm64 ;; \
+        *) echo "no supermemory release for architecture: $arch" >&2; exit 1 ;; \
+    esac; \
+    base="https://github.com/supermemoryai/supermemory/releases/download/server-v${SUPERMEMORY_VERSION}"; \
+    curl -fsSL "$base/manifest.json" -o /tmp/manifest.json; \
+    checksum=$(jq -r --arg p "$platform" '.platforms[$p].checksum // empty' /tmp/manifest.json); \
+    printf '%s' "$checksum" | grep -Eq '^[0-9a-f]{64}$' || { \
+        echo "release manifest has no sha256 for $platform" >&2; exit 1; }; \
+    curl -fsSL "$base/supermemory-server-$platform" -o /usr/local/bin/supermemory-server; \
+    echo "$checksum  /usr/local/bin/supermemory-server" | sha256sum -c -; \
+    chmod 0755 /usr/local/bin/supermemory-server; \
+    rm -f /tmp/manifest.json
+
+# Same check the agent image makes on its own entry point: the package resolved
+# to something runnable, so a bad download fails the build instead of the first
+# run.
+RUN test -x /usr/local/bin/supermemory-server
+
+# curl stays in the image on purpose: the compose healthcheck uses it, and the
+# server's welcome page and API are otherwise reachable only from the network.
+
+ENV SUPERMEMORY_DATA_DIR=/var/lib/supermemory \
+    SUPERMEMORY_DISABLE_TELEMETRY=1 \
+    PORT=6767
+
+# The graph engine's data, the auth secret and the local embedding model cache
+# all live here. Created in the image so the named volume mounts onto a
+# directory that already exists, rather than being created root-owned by Docker
+# over nothing.
+RUN mkdir -p "$SUPERMEMORY_DATA_DIR"
+
+# No USER directive, for the same reason the agent image omits one: this is a
+# service the compose network isolates rather than a sandbox whose uid is
+# negotiated per run, and the data directory is a root-owned named volume. If
+# you publish a port, fix this first -- see the warning in the Dockerfile header
+# and in docker-compose.yml.
+
+# Deliberately no EXPOSE. It publishes nothing, but the port belongs in exactly
+# two places -- the healthcheck and the compose service name -- and naming it
+# once in each keeps it obvious that nothing is listening on the host.
+ENTRYPOINT ["/usr/local/bin/supermemory-server"]
