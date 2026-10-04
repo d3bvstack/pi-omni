@@ -6,8 +6,10 @@ name: ci
 on:
   push:
     branches: [main, master]
+    paths: [Makefile]
   pull_request:
     branches: [main, master]
+    paths: [Makefile]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
