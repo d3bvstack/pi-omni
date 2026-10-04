@@ -13,7 +13,7 @@
 FROM node:24-bookworm-slim AS build
 
 # Pinned so that rebuilding is reproducible. Bump deliberately.
-ARG PI_VERSION=1.0.0
+ARG PI_VERSION=1.0.2
 
 RUN npm install -g --ignore-scripts "@earendil-works/pi-coding-agent@${PI_VERSION}"
 

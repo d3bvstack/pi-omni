@@ -223,6 +223,32 @@ build_honours_image() {
 
 case_add "build/image-override" "build accepts image=" build_honours_image
 
+# --- shell ------------------------------------------------------------------
+
+shell_takes_a_service_argument() {
+    : >"$log"
+    run_make shell pi
+    assert_ok "shell/succeeds" "make shell pi succeeds instead of failing on a missing rule"
+    assert_contains "shell/named-service" "$(cat "$log")" "docker compose exec pi sh" \
+        "the service argument reaches compose"
+    : >"$log"
+    run_make shell
+    assert_contains "shell/default-service" "$(cat "$log")" "docker compose exec pi sh" \
+        "a bare shell picks the same service"
+}
+
+case_add "shell/takes-a-service" "shell accepts a service as a plain argument" \
+    shell_takes_a_service_argument
+
+pi_is_a_placeholder() {
+    run_make pi
+    assert_ok "pi/succeeds" "a bare service word is not an error"
+    assert_eq "pi/silent" "" "$out" "and the placeholder target does nothing"
+}
+
+case_add "pi/is-a-placeholder" "a service word is not treated as a missing target" \
+    pi_is_a_placeholder
+
 # --- install ----------------------------------------------------------------
 
 install_links() {

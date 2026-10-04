@@ -2,6 +2,10 @@
 #
 # Every target is phony: none of them writes a file worth declaring, they just
 # wrap the tools they call. `make help` lists the targets and the variables.
+#
+# Words that are not targets are service names for the compose commands, so
+# `make build pi` and `make shell pi` read the same way as `make build` and
+# `make shell`. Everything that needs a value still takes it as `name=value`.
 
 SHELL := /bin/bash
 # Fail fast on errors, unset variables and a failing stage of a pipeline.
@@ -24,12 +28,32 @@ filter ?=                                    ## Substring selecting test cases f
 # every target consistent without repeating it on each command line.
 export PI_IMAGE := $(strip $(image))
 
+# ------------------------------------------------------------- arguments
+
+# MAKECMDGOALS holds every word after "make". Make consumes the ones naming a
+# target; the rest are service names. Naming the targets in one place keeps the
+# filter below honest, so a new target only has to be listed here once.
+TARGETS  := help build shell install uninstall update pin clean test
+SERVICES := pi
+
+# A service word is not a target, so without this `make shell pi` would fail on
+# a missing rule before the recipe ever ran.
+.PHONY: $(SERVICES)
+$(SERVICES):
+	@:
+
+# Drop the target words; what is left is the service the user asked for. Empty
+# means the one service this project ships, so `make build` and `make build pi`
+# do the same thing. A word that is neither goes to the recipe unchanged and
+# fails at the no-op rule above, rather than silently building something else.
+SERVICE := $(or $(filter-out $(TARGETS) $(SERVICES),$(MAKECMDGOALS)),pi)
+
 # No target here produces a file, so none of them can go stale. Split in two
 # rather than continued, so that one `sed` can read the whole list.
-.PHONY: help build install uninstall update pin clean test
+.PHONY: help build shell install uninstall update pin clean test
 
 help: ## Show the available targets and variables
-	@printf 'Usage: make [target] [var=value ...]\n\nTargets:\n'
+	@printf 'Usage: make <target> [service...] [var=value ...]\n\nTargets:\n'
 	@awk 'BEGIN {FS = ":.*?## "} \
 		/^[a-z][a-z0-9-]*:.*?## / {printf "  %-10s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 	@printf '\nVariables:\n'
@@ -41,8 +65,11 @@ help: ## Show the available targets and variables
 			printf "  %-10s %s (now: %s)\n", name, $$2, \
 				now == "" ? "<empty>" : now }' $(MAKEFILE_LIST)
 
-build: ## Build the container image
-	$(strip $(compose)) build pi
+build: ## Build the container image (service defaults to pi)
+	$(strip $(compose)) build $(SERVICE)
+
+shell: ## Attach to sh inside a container (service defaults to pi)
+	$(strip $(compose)) exec $(SERVICE) sh
 
 install: ## Symlink pi into install_dir (override with install_dir=)
 	@link=$(strip $(install_dir))/pi; src='$(CURDIR)/bin/pi'; \

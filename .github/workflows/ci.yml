@@ -9,9 +9,13 @@ on:
   pull_request:
     branches: [main, master]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  make-targets:
-    name: Make Targets
+  makefile-test:
+    name: Make Targets Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
