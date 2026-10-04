@@ -127,11 +127,14 @@ jobs:
         env:
           OPENWIKI_PROVIDER: openrouter
           OPENWIKI_MODEL_ID: ${{ vars.OPENWIKI_MODEL_ID || 'thinkingmachines/inkling:free' }}
-          # Optional: trace the run. Drop the block to stop uploading prompts and
-          # completions to LangSmith.
-          LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
-          LANGCHAIN_PROJECT: openwiki
-          LANGCHAIN_TRACING_V2: "true"
+          # LangSmith tracing is deliberately off. It is off by default upstream,
+          # this repository has no reason to hold a tracing key, and a rejected
+          # key makes the SDK retry a failing multipart upload until the run ends
+          # in a wall of "Failed to send multipart request ... 403". Uncomment to
+          # turn it on with a key that is valid for the project named below.
+          #   LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+          #   LANGCHAIN_PROJECT: openwiki
+          #   LANGCHAIN_TRACING_V2: "true"
 
       - name: Remove transient OpenWiki run state
         if: ${{ !cancelled() && steps.able.outputs.writable == 'true' }}
@@ -213,9 +216,7 @@ jobs:
         env:
           OPENWIKI_PROVIDER: openrouter
           OPENWIKI_MODEL_ID: ${{ vars.OPENWIKI_MODEL_ID || 'thinkingmachines/inkling:free' }}
-          LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
-          LANGCHAIN_PROJECT: openwiki
-          LANGCHAIN_TRACING_V2: "true"
+          # Tracing off here for the same reason as in `propose`.
 
       - name: Remove transient OpenWiki run state
         if: ${{ !cancelled() && steps.key.outputs.present == 'true' }}
