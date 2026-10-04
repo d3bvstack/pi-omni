@@ -6,7 +6,8 @@
     "write",
     "grep",
     "find",
-    "ls"
+    "ls",
+    "+codemode"
   ],
   "lastChangelogVersion": "1.0.2",
   "theme": "system"
