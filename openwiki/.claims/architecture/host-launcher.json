@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e0866d2163291a37dba7aa69092809930f47a32d7a42dfb2fa0c3cccf4f184e9",
+  "claims": [
+    {
+      "id": "claim_0519db6c8eb44ffdbae8780805e4b1c3",
+      "statement": "bin/pi is the only host-side code in the repository and is written in POSIX sh without arrays or bash-only builtins, which is why it hand-rolls a symlink walk instead of using readlink -f to find the repository root through the make install symlink.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L1-L9",
+          "version": "repo-lines-v1:sha256:19de761c64eb82685449a917e238ae095fbcd18bc9c8103f8e86bb842c5881bc:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTgwNzZkM2QyOGQyMWUwMjAxMmIyMGVhZjdkYmY3NTQwOWE2Mjc3MTM0NDM5MDI1ZjI4MmUzNjhlMzMwNWFiZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzQ1YzAxMDk1Mjc3NTc4YTQ1ZTFkZjJkNGMzMzhjNTc4MzkxMTk0OWIyOGQ3NzQ3OTNjODlmZmU1MWJmZjlhNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjgxNTRhYmVmZWU4M2Y0NTg5YjVlODgwMWExYWNlZmNmYmZjMWZlZTJhMmFhOTE0ZjMwYTA1ZDVkY2RkNDNjYyJ9"
+        },
+        {
+          "resource": "repo://bin/pi#L19-L27",
+          "version": "repo-lines-v1:sha256:bb7169c70277e857f02ee3b40e8c5da737dd2684c71070b87dfb0867ec2e55b6:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjkxMGI2OGU4YzU1MzljZjBkYTg0MjE1ZWNlMzdhYWViODg2ZmMyNmYyMmYyM2QxODRjZjdmNTJhNDNjYWQ3YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWMyNjA5OWFiNjgxYWY5MjEyYTlmZjlhNmU5ZmQ4MTFiYzA4ZDcyMTVmZDM5MWMzMzYzNDQ0YzZhYmQ5NWJlZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjJiOTNkM2IyNmRiNmM3Y2ZkYTVhZTRmN2MxYWI5YzU5NTk3OTNjYzk1MTFiNDI3M2NjZDk3MTQ4ZjhiNDEzMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTU1M2NjYzY3YmYxZWMwNWZjOWRlNTAzM2Q4NmUyYTU0ODE0ODg5OTQ1NWY1ZjdmZTIwMjMyNTM1NTE2NTMxNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0dd9ec736634434d8741f32b808b2569",
+      "statement": "The launcher resolves both image names from the environment (PI_IMAGE defaulting to pi-agent:latest, SUPERMEMORY_IMAGE to supermemory-server:local) and re-exports them so Compose resolves the same names the launcher inspected.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L116-L117",
+          "version": "repo-lines-v1:sha256:011459e67f4fb8791325d3a2258cb633021d6c200035496b72875369dd23cee4:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzgwM2JjNDU5NGQ0NTAwODRiNTNkNDYyMjhjZGY3YmExZTc3ZjFkM2IxNWMyOTc5NzAxYjczNmZjOTdjMjlkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWIyY2E5NTJlNWEyMzIwN2JlZmQwNDY0ZDUyZWQ2ZGM2YjU5MGEyNjJiMDFhZWRmZGU2YzgxMDliNGNkYTc3YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGM1OTk5YjJhZWY0YjIyYzE5OThkNjQ3Njk2ZDU2MjE1NWU2NGNhNDlkMWFjZGYzZTk5ZDk5NDkxOGVmM2NiOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTllMzY5OWI4N2ZkN2U1YjZlNDBjMTM0ZTBmNjU1OTI3MjZjMWJhYTlkNmIyMWRiZDExYWRmYjc4NDdmOTMzNCJ9"
+        },
+        {
+          "resource": "repo://bin/pi#L28-L31",
+          "version": "repo-lines-v1:sha256:8fd5b032944dac820f356d24900ac7039925f4a1b29f8a428814f128d7e21242:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmI3MjdhNzY1NDNmNzI4NTA0N2Y0YjNhMDhkOThjMGJmZjZjYmFmOTNmNTU4MTUyMTYzNDdhM2FmNTk0Nzk1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTk0NDA3ZWEwNDEzY2Q4OTY0NjMyNzlkN2I4ZTYxOTUxNzY0MGIxZDRhYjgwYjg2NWU4YzJkOTA2ZmE3MzVhYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2RiZTU4N2UwNmIxZGZlMTU1YzYzM2Q3YWExZGI1MWQ3NmFiZDAyMTNlZTczODk5MmUyZjk3ZWUwZGE4OWE1NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmE3MGNmYzEyZWJhMTgyYWI1YTU4NWUzNDk4NDNkZmEwYTRmNmQ1N2QzMzIwNzllMDJkMDMyMWU5Njk0ZDI0NyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0ff64df489244819a4d5063703051f37",
+      "statement": "The launcher accepts -h/--help, -V/--version, --build, --shell, a -- separator and at most one positional directory, and --version prints the repository root and both image names so a user can distinguish it from a native pi install.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L37-L76",
+          "version": "repo-lines-v1:sha256:49ed4e3020162b015f84150aa5dcb85c0c64e5b519a839257adaa378a8067b24:eyJzZWxlY3RlZExpbmVDb3VudCI6NDAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQxNzZlYzBkYWI0Y2Y5MzcwMTI3YmFiN2EyNzRiNTJhYmRjNDA2NzA5NTRlNzNkYjZlYTg5YWIwMWJiZGIyZDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0OTVjMzMwMjE0Zjc1NDRkMTJjOWM5Zjg4YzY1MWNmZDkzMmZiNzE5MmJhMGIzZGY3NzNiNDg3OGU4NjYwOWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhMzFjOTNhNThiMmNjNjZlNTZjYTlkYThhMTE5ZWNhYjVmZTZlYWI2YzE3MWVkNGRkNWViNWE1MmMyYmJkNzYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImVkNTZhOTJkOGNlMzgxZmEzMGFhZWY4ZWExYjkzNDU0NGVmODRmN2RjNDJkYjQ1YmE1NGNiMjJkYzJjNjI4NWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eebcfa69e6524926988d462763ee0ec4",
+      "statement": "An unknown option, a second positional argument and a target that is not a directory all exit 2, while an unreachable Docker daemon exits 1, separating usage errors from environment failures.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L60-L74",
+          "version": "repo-lines-v1:sha256:5acf7032df2173415b71e88579cac04012298cf9282098bd06239c579e51c850:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2MjY5Zjg1Mjc3YWE1ODNhZWQ5MGM0MTJmMjdhNjg3ZjBlNTZkN2M4ZWU3ZmYxZWIxZWFjMzVhZTAzNDlkNzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQyZDVkZTI3MWU1ODNjNjVkNzcxYzk3MTZkYjJjOWY2YjdjNmY5NjNhMDU0MTQwOGRmMjJjMTQ1Y2Q5ODA2ZTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImRlZTYyZDBjNDhjYmQ5NTYwZDQzZTJmYTAyNjQ0MGMzODZlYzMxNWE0MWE0YTM4NjBlYmRiYjE1NjUxZDBkMjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI3YjgwMDFjYTgwNzM3MDE0ZWFjYTEwZWE0Njg1ODBkMzhjNzU1YTFlZDYyM2IwMTc2ZDNmNmUzMmU3OWZjN2QifQ"
+        },
+        {
+          "resource": "repo://bin/pi#L78-L83",
+          "version": "repo-lines-v1:sha256:9d6623c0ff05afd140b6032312539f39862bc7147fef718d8ffbff4b511aaa1b:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODJlNzhiYmFmZTI0ODUxMDNjNTg4ZmRmMzBjMGY4Y2ViZmE2NjI4N2Q0MTQwZDNiOTA3MTBiNWJkOWU1OTFiMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjdiODAwMWNhODA3MzcwMTRlYWNhMTBlYTQ2ODU4MGQzOGM3NTVhMWVkNjIzYjAxNzZkM2Y2ZTMyZTc5ZmM3ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Y2YWE1ZWQzMzE5ZThlNTc5ODQ1N2JmODI1MWI4ZGE1Yjc1ZWRkNDgxODFkODQyY2Q2Yjc4NjAzMDExYWY5YiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_38dda2bad4394b3a8e5e05e66a72bac8",
+      "statement": "The uid decision is taken from the daemon's own SecurityOptions: rootless Docker gets no --user because container root already maps to the host user, rootful Docker gets --user $(id -u):$(id -g) so files written into the workspace belong to the host user.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L89-L97",
+          "version": "repo-lines-v1:sha256:202c981e13cb758e24ea339ea5b48bbaea2218df5fe596f26e47a68ce272cdc1:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWMzMzdiMGU4NGE3MmU4MDVmN2VlNjUwNWI2YTY4MmY0MWYxYWRjN2NmZTcxZTcxNDcwZWQyM2RiNzg1OTZlYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzRhMmJlY2ZmOGFmYjM0ZGIyNjBkYWJjOTY5MTVmZmVjZmRlODQ4OTI5NTQxYzYxOTNkZTZkMTY0YzIxZThkYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDc1YWZkNWMzYTc5NjhjZGI1ZDNlY2ExMGNkNDVjMDE4MGY5NGUyNjFmNGZiZjM2MWUwNDRiMjgyZGMzMWM5YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjNiNDY4NmU5MTE0OTUxZWU1Y2M2YTVmNmIxMTY5MzQzNWM5NjJjODQ4YjhkNWI5ZWM2MzcyNjdjYzM4MTFhOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e384a5e445d14c27a620f60f33275b4a",
+      "statement": "Images are built when --build was passed or when either image is missing according to docker image inspect, and both services are built together so a fresh clone cannot fail on depends_on before the agent gets a session.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L100-L107",
+          "version": "repo-lines-v1:sha256:9eb23303d47a8b590fcb4dbe5acf64d1e00333ee8aa666790b3a2a7df6978194:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzU1YTFlYTYyMDM1MGNlOWJlZThjZjdiYWRmNDQ3ZWM5ZTYzNjJjODU1MjZkYWFkMTAxZWU2MDQ5ZDJlZmVjMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTBhNzlmZjc5NDgyYmU1NDlkMTZmOTllNmM2YmE4OGU4ODkyZjE5NTZjZjE5MTlkNWE5ZTUwNDhlNTNmYzU1OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDg4YjQwNDU2ZTNkOWE3OWYwMTU3OGZhNTAyNjUxZjU5NDg5MjJkNDAyMDczZjFmMjRkMGFiNzEzMTAyNzQ3ZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_36945c2b92b94988924d981e973fe1d4",
+      "statement": "The launcher passes -T when stdin or stdout is not a terminal, because Compose run would otherwise refuse a piped stdin.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L111-L114",
+          "version": "repo-lines-v1:sha256:17e27462e9a8720ccdb4f30878e55d2cb5d757e1b43ef826312da50fa898ccbc:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGZlOWNmYjVjYTYyMjBjOTdmMGRlMjg0NWMzMzlmYTczMTBkZTkwZWI1NmVlYzhiYjI0YjQ0YzU1NzY1MmUzNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDg4YjQwNDU2ZTNkOWE3OWYwMTU3OGZhNTAyNjUxZjU5NDg5MjJkNDAyMDczZjFmMjRkMGFiNzEzMTAyNzQ3ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYTFiOWM1ZDdkNDExMDA1NzFhNzMzZGI1YmEzMjUzMGVkNTg2YWEzY2Q2YjYzYzI2MTFmZDQ5NmI3MDg0NGQ3NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_35af2b5fbda0411492f4c10edac81d1b",
+      "statement": "The launcher ends by exporting PROJECT_DIR, AGENT_DIR, PI_IMAGE and SUPERMEMORY_IMAGE and execing docker compose run --rm with the mode and leftover agent arguments, leaving tty and user unquoted so an empty value vanishes as an argument.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L116-L124",
+          "version": "repo-lines-v1:sha256:d99ff30cb0ee5bf685908728a7e42cb8092994377acd359b99338aa0ac9ecce4:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzgwM2JjNDU5NGQ0NTAwODRiNTNkNDYyMjhjZGY3YmExZTc3ZjFkM2IxNWMyOTc5NzAxYjczNmZjOTdjMjlkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU5MmM0YjAwNjJmNmM0ZDQyYzdmNTBmOWZiZmY2MzFkMjhkMjFkNzI4ZDYzYjQ1OTk5MTZkOTkxZDIwYWIxMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGM1OTk5YjJhZWY0YjIyYzE5OThkNjQ3Njk2ZDU2MjE1NWU2NGNhNDlkMWFjZGYzZTk5ZDk5NDkxOGVmM2NiOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

@@ -1,0 +1,263 @@
+name: OpenWiki Update
+
+# Two ways in, one rule: OpenWiki never writes to a branch directly.
+#
+#   pull_request -> `propose`: the wiki is regenerated on the pull request's own
+#                   branch and committed there, so the documentation diff is in
+#                   the Files changed tab, next to the code it describes. This
+#                   needs `contents: write`, and it only works for pull requests
+#                   whose head branch lives in this repository; a fork's branch is
+#                   not writable by this token, and those runs say so and stop.
+#   push to main -> `update`:  the safety net for the cases the first job cannot
+#                   cover — a fork's pull request, and a merge that bypassed the
+#                   branch commit. It opens its own pull request; it never pushes
+#                   to main.
+#
+# The bot commit touches only openwiki/ and AGENTS.md, and neither is in the
+# path filters below. That is what stops the loop: pushing the documentation to
+# a pull request branch raises a `synchronize` event, the paths filter rejects it,
+# and the workflow does not run again.
+#
+# The provider is OpenRouter rather than OpenAI because that is the key this
+# project already documents in .env.example; set the repository secret
+# OPENROUTER_API_KEY and, optionally, the repository variable
+# OPENWIKI_MODEL_ID to change the model.
+on:
+  pull_request:
+    branches: [main, master]
+    # Anything the wiki documents. openwiki/ is excluded so a documentation
+    # change cannot re-trigger the workflow that proposed it.
+    paths:
+      - "agent/**"
+      - "bin/**"
+      - "scripts/**"
+      - "test/**"
+      - ".github/workflows/openwiki-update.yml"
+      - ".dockerignore"
+      - ".env.example"
+      - ".gitignore"
+      - "Dockerfile"
+      - "Dockerfile.supermemory"
+      - "Makefile"
+      - "README.md"
+      - "docker-compose.yml"
+      - "docker-entrypoint.sh"
+  push:
+    branches: [main, master]
+    # The same paths, and still excluding openwiki/ so that merging the
+    # documentation pull request does not start another run.
+    paths:
+      - "agent/**"
+      - "bin/**"
+      - "scripts/**"
+      - "test/**"
+      - ".github/workflows/openwiki-update.yml"
+      - ".dockerignore"
+      - ".env.example"
+      - ".gitignore"
+      - "Dockerfile"
+      - "Dockerfile.supermemory"
+      - "Makefile"
+      - "README.md"
+      - "docker-compose.yml"
+      - "docker-entrypoint.sh"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  # A step cannot test a secret directly, so the key arrives as an ordinary
+  # variable and its presence is decided in a shell step below. Pull requests
+  # from forks get an empty value, and those runs say so instead of failing.
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+
+jobs:
+  # Updates the wiki on the pull request's own branch.
+  propose:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pull request branch
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          # The head repository and ref, not the merge ref: the commit has to land
+          # on the branch the author is pushing, not on a throwaway merge.
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          # Full history so `openwiki code --update` can diff HEAD against the
+          # commit it last documented; a shallow clone hides that commit and the
+          # update runs against an empty change summary.
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+
+      - name: Install OpenWiki
+        # mermaid + jsdom are optional; they add high-fidelity validation of
+        # Mermaid diagrams. Remove if your wiki has none.
+        run: npm install --global openwiki@0.7.0 mermaid@11.16.0 jsdom@29.1.1
+
+      - name: Check this run can write to the branch
+        id: able
+        run: |
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "writable=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=OpenWiki::This pull request comes from a fork, so its branch           cannot be written by this repository's token. The wiki is updated after the merge           instead, by the other job in this workflow."
+          elif [ -z "${OPENROUTER_API_KEY}" ]; then
+            echo "writable=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=OpenWiki::No OPENROUTER_API_KEY secret on this repository, so           the wiki was not updated."
+          else
+            echo "writable=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run OpenWiki
+        id: openwiki
+        if: ${{ steps.able.outputs.writable == 'true' }}
+        # print mode: report to stdout instead of starting a chat, which is what
+        # a non-TTY CI run gets anyway.
+        run: openwiki code --update --print
+        env:
+          OPENWIKI_PROVIDER: openrouter
+          OPENWIKI_MODEL_ID: ${{ vars.OPENWIKI_MODEL_ID || 'thinkingmachines/inkling:free' }}
+          # Optional: trace the run. Drop the block to stop uploading prompts and
+          # completions to LangSmith.
+          LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+          LANGCHAIN_PROJECT: openwiki
+          LANGCHAIN_TRACING_V2: "true"
+
+      - name: Remove transient OpenWiki run state
+        if: ${{ !cancelled() && steps.able.outputs.writable == 'true' }}
+        run: rm -f -- openwiki/.run.json
+
+      - name: Commit and push the documentation
+        id: push
+        if: ${{ !cancelled() && steps.able.outputs.writable == 'true' }}
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          # Only the wiki and its managed agent-facing block. Nothing else the run
+          # touched is a documentation change, and neither path is in the workflow's
+          # own path filters, so this commit cannot trigger this workflow again.
+          git add -- openwiki AGENTS.md
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=OpenWiki::The wiki already matches this branch; nothing to commit."
+            exit 0
+          fi
+          git -c user.name='github-actions[bot]' \
+              -c user.email='41898282+github-actions[bot]@users.noreply.github.com' \
+              commit -m 'docs: update OpenWiki' \
+              -m "Regenerated by the OpenWiki workflow from this branch's source."
+          # One retry: the author may have pushed while the run was in flight, and
+          # a rebase of a generated commit onto their newer commits is harmless.
+          git push origin "HEAD:refs/heads/$BRANCH" \
+            || { git pull --rebase origin "$BRANCH" && git push origin "HEAD:refs/heads/$BRANCH"; }
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "url=$(git remote get-url origin)/commit/$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Annotate the documentation commit
+        if: ${{ !cancelled() && steps.push.outputs.changed == 'true' }}
+        run: echo "::notice title=OpenWiki updated::${{ steps.push.outputs.url }}"
+
+      - name: Propagate OpenWiki failure
+        if: ${{ steps.openwiki.outcome == 'failure' }}
+        run: exit 1
+
+  # After a merge: the guarantee that the wiki matches main.
+  update:
+    if: ${{ github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    permissions:
+      # Needed to push the documentation branch. It is the only write this
+      # workflow holds, and it is spent on a branch, never on main.
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+
+      - name: Install OpenWiki
+        run: npm install --global openwiki@0.7.0 mermaid@11.16.0 jsdom@29.1.1
+
+      - name: Check for a provider key
+        id: key
+        run: |
+          if [ -z "${OPENROUTER_API_KEY}" ]; then
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=OpenWiki::No OPENROUTER_API_KEY secret, so the wiki was not updated."
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run OpenWiki
+        id: openwiki
+        if: ${{ steps.key.outputs.present == 'true' }}
+        run: |
+          set -o pipefail
+          openwiki code --update --print 2>&1 | tee openwiki-report.txt
+        env:
+          OPENWIKI_PROVIDER: openrouter
+          OPENWIKI_MODEL_ID: ${{ vars.OPENWIKI_MODEL_ID || 'thinkingmachines/inkling:free' }}
+          LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+          LANGCHAIN_PROJECT: openwiki
+          LANGCHAIN_TRACING_V2: "true"
+
+      - name: Remove transient OpenWiki run state
+        if: ${{ !cancelled() && steps.key.outputs.present == 'true' }}
+        run: rm -f -- openwiki/.run.json
+
+      - name: List OpenWiki update paths
+        id: paths
+        if: ${{ !cancelled() && steps.key.outputs.present == 'true' }}
+        # CLAUDE.md is listed only when present: git add fails on a missing path
+        # and then stages nothing.
+        run: |
+          paths=openwiki,AGENTS.md
+          if [ -e CLAUDE.md ]; then paths="$paths,CLAUDE.md"; fi
+          echo "list=$paths" >> "$GITHUB_OUTPUT"
+
+      - name: Open the documentation pull request
+        id: create-pr
+        if: ${{ !cancelled() && steps.key.outputs.present == 'true' }}
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+        with:
+          add-paths: ${{ steps.paths.outputs.list }}
+          branch: openwiki/update
+          commit-message: "docs: update OpenWiki"
+          title: "docs: update OpenWiki"
+          body: |
+            Automated OpenWiki regeneration after a merge to `main`.
+
+            Model: `${{ vars.OPENWIKI_MODEL_ID || 'thinkingmachines/inkling:free' }}` via OpenRouter.
+            OpenWiki run: `${{ steps.openwiki.outcome }}`.
+
+            No action is needed if this pull request is empty — `create-pull-request`
+            skips it, and an unchanged wiki is the common case when the proposal on
+            the source pull request was already applied.
+
+            When the result is `failure`, this pull request intentionally preserves
+            only the pages completed before the failure. Merge it to make that
+            progress the baseline for the next run.
+
+      - name: Annotate the documentation pull request
+        if: ${{ !cancelled() && steps.create-pr.outputs.pull-request-url != '' }}
+        run: echo "::notice title=OpenWiki update::${{ steps.create-pr.outputs.pull-request-url }}"
+
+      - name: Propagate OpenWiki failure
+        if: ${{ steps.openwiki.outcome == 'failure' }}
+        run: exit 1

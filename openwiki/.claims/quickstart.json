@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:209baadbafc96813e6501603ccf1bc698bd38c5dd9195c9d084ccc52407c06c8",
+  "claims": [
+    {
+      "id": "claim_ab7ad1698e434c10b15ae209ed00d71d",
+      "statement": "The entry point for a user is make install followed by pi, optionally with a directory argument, --shell, --build or a -- separator for one-shot agent arguments.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L80-L88",
+          "version": "repo-lines-v1:sha256:bf2753891af76adb9a531f6547d54db9b96af1636450bb3cceaceb04e4071384:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzdkMTc4N2Y3YWY3N2E1OGYyMTk5NjY4YWNjNjFmM2MwM2NlNzRhZTRkNTc0NTRlZmU2ODkxMTFmMDgwNTg2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmVjYjM4MWFiNzkyZDgyM2YwMTNmODJjNzA2N2ZjZjA2MTQ1NmNjYjY4NTZlMmZhM2QzNmQ0MDY4NmJmOGViNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDE2MTQ0ZmRkNTJhNDgwYjVjMmY5YzZiODA2MDdjMmRiOWM5NDIxNThiZjNlOTEwYzE1MGZmNmJmM2RlZTUyNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmU3NTBjNGUxZWM5MWJlMDk1ZDA4YWVjYmE3OGY3NjJjMDU1NzIxMTU4OTRiMDE2NjEwNjFlMmM1YzE3YjFlMSJ9"
+        },
+        {
+          "resource": "repo://README.md#L13-L37",
+          "version": "repo-lines-v1:sha256:17d1f2b43276219c314a2853d4a3aac0cb6f7cfe6fe5ada2274ac23b75614787:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliN2E3MzZjMzQzN2ZhZmRjZDE0YWQ3NTEzZTYyOGQ1MWE1MDM0MjhhMGMxMmYwMTdjMjIzNTdhN2Q2YWFlZmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5MzMyZjZhNWQxODFkZDdlNjc0YTAwZWZiM2Y0MDRiMjg5ZGVhMTg3YjVhY2I4NDAzMTg4OGQwNGRjOTY0N2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE4ODFmOGRkZmRiNjg0M2M5NWQwYzU4OTYxMjc1NTgwZWNkODAyMTBjZTFmZGQ1YWQzNDU0ZmFlMWI2Y2JhMDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjcwZTU2ZDRmNDgyMmM3MDdhNDc1ZjFiYjhjY2FlZTQ1ZDkyMjYxYjZmM2RiNzM4Zjk4MjA3NWViNzgyY2YzNTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e77abcf7a3cc4323ae98dd32cb00a3e6",
+      "statement": "Authentication has two composable paths — a provider key exported in the host shell or in .env and forwarded only when set, or /login writing the gitignored agent/auth.json inside the container.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L119-L159",
+          "version": "repo-lines-v1:sha256:355c616627c7bf315036856fe334ccdec48443417727769666d5c9c65f084831:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI2MWQwZThjN2NjMGNlYjgyODdmZjM1NGZkZjQyZjY1MmZkZTU1NjQ2N2FkNDlmMWNmMDlkN2VkOGVjZjAxNjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4YTM2ZDFkZTY5YmU2ZGRhYTljNDI2NzhmMWY1OTdiZGNiMmM1ODRiZDZiMzM3MTQ5OGQ4Nzc5YWYwYmZkZWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFjNDJkZGI5YTAyZWE0MGQyMDRmZjk3ODAzM2E4MjI0NjViZGE0ZTY2ZDdiYWY0YzFlMTRmZDk4OTAzY2FhODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjJkYTJlNjMzZTVjZTQzZjVjODlmNzBiYTlhOTFjZDBlNDRlZGMyOWJmOWY4YmQ0MGRiY2M4NGFmY2I5NTg4NWUifQ"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L54-L79",
+          "version": "repo-lines-v1:sha256:5aca2f38c5a8d5724eb64d2f4b791e0b6a831521c066c6e5c5820b0469195c06:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxYTgxN2IzZjA0NjQwYmMwNjNjOTY2MzEzMzcwZjI5YThmNmI4MDY0MzVkYTk5ODgyODk3ZGU5MGQ3NmJjZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlMTI3YjAxZDg2ZDEwMTc5MWUzN2EzMWU3ODFkOWQ2OWUyNmY0YmQwZTdmOTAzYzZhMDI3NTNhNzBhYTM2MDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMzQ2MzZkMGEzY2JkMTM4OWYwY2UwOWYyMTQxNTNmMjIwODM2NzFkZjRlOTUyODdkNDQyMTkxYWIzZGQ0NDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwNzNhYWQxYTY0ZmUwMWI5Mjk1NTA3YTFiMDRhZTFkOGU0NDcyOTQ4Yzg1NTFkYTRiMGY3ZDM4NWM5YzdhZmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4303b2d6ad1d466a82526dbf18623195",
+      "statement": "Long-term memory is enabled by running the memory service once to print its API key and pasting it into .env as SUPERMEMORY_API_KEY; the endpoint is the compose service name rather than a configurable variable.",
+      "evidence": [
+        {
+          "resource": "repo://.env.example#L14-L26",
+          "version": "repo-lines-v1:sha256:e93887fabec907de9b9e6e2c237176ea6222e0b1d3aca01e00612b6705ab62e9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZDQyNTU5ODhlMWVkOTQwMDViNzI4Y2Y3Zjk5MWRmMzJkMDE1YmZjYjA1NjBiZDJmNzdmODQ5YzJmZjMwYWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2YTU2MjhhZGQwNDJiYjRlNzM5ZDhhYzVhZDI4MWY1NzJhOTAyZTE0NzA1MmFiOTVjMDlhNDk2ZTdiOTliMzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhlYjEyYmYzM2IxNDQ2MzUyNTBmNzY0NTY1M2IzYzU4MWY4MTc1YjlhMWM3YmVlZWZmNWNlMDZhNGMyM2QyMTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkNjJkNjE5NmExMTgyZTA3YWEyMzNkMzhmNjhlYzU4MGZkN2M0OTU2ODYzZDA2N2JiN2U0NDNlNzg4ZWZiZjYifQ"
+        },
+        {
+          "resource": "repo://agent/AGENTS.md#L22-L28",
+          "version": "repo-lines-v1:sha256:3b7d496ed5c9dc1eb45c2ba8d50c275b35cdd9ac82aa5e19b1f225b20b0bd9f6:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGRiOThiNzJiMjM2OWJmODBkODc4M2Y5NDQyOWRiNzIzZmY4OTZmODRiZDBmYmFiNWYwMDZkODY3YWRjMzY3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTQwNzY5Nzg4Zjk1ZGJhOWQ5ZmVlOWIyMDdkNjdhNjYxYjgzNWVhMGZjMDIyMTUyMWFhNGFiNDI4NDFhNGVhNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWVmNDY5MzEwYWJiMmM2ODUyMGQ2YWRjOTFiZTQ2MGYxMWJjNTg2YWY3N2Y3YWY3N2YwMTAxY2UwOTY3ODdjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmVkY2JmOGJhODQ1ZDI4ZmVmYTliMzg5NTk1NDYwYTZhYjZkMDc1ODY3ZWUzZTBjOTQyZDY3NTFhMjc0NmUwOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_81200e2a72974cb1ba676a6c976512e1",
+      "statement": "Both test suites are hermetic and reachable through make test and make test-memory with a shared substring filter, and neither proves the memory engine works.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L121-L130",
+          "version": "repo-lines-v1:sha256:b45a644c261a87725d19a6033562fecabed21df55978c75d5bba37ecc49bfe6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2IwZGYxOTlkMTQxMDFkNDQ3YzRmZTc1MThjNGZkYTJhZDc4NmYzZmJhMjEyNWJmNDAwYmU4MjU1ODBhMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljYjlkYmYwMTg5ZmY2YzFiM2E3N2IzNTNiNTNkODYxOGM1MWJlODY0ZTI2ZTIyNTZiNDNjMWI0ZjRmMWZhNGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViYzk3ZDM0YTliNjVkMTM5MTZmMjVmM2ZlMTFjY2QxMTUzMTM4NWExYTFjYjllNmI4OTQ5Y2ZjZmZlMWU0MmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0YmE5NzYwN2M1ZmNkMTIwNGU0Yzc3MTg0MWExYzQ3YTQ4NTdlZTMwZmMzYWVkZjQ3MTFiODhkOTY2ZWQ3ZTQifQ"
+        },
+        {
+          "resource": "repo://README.md#L295-L323",
+          "version": "repo-lines-v1:sha256:c353c2f66c8c66651bcaf6703a987dad9d5dd8a77062cc340b7b1776080ab3fb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlN2Y0YjM2YWM5Y2UwZDA2ZGNkNzJjY2MyNGViMjkwZWNjYTNkYWRjZWUzNmNkNjQxNjg5YTI4MDQ4Yzg1NDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwZjE5M2QzNzdkYTM4ZTg0YmU0ZTA4MTI2Mzc1Yzg2YzE2NzJhYjA4NjFjMzVkYWI5NTYwZWE5OTg0NmQ2YzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk3MDQ3Y2RjNjJiYjA3NGY1YzJiMTVmNGNmMTQ3YThjMDhiNmMxMDI5YjdlNmEzYTUzYWQ5YTYzYTM0NDNhYzUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_350b2675c102444cbce0e2674b468ccb",
+      "statement": "The repository's organizing idea is that agent/ is committed agent configuration mounted into every launch, so the setup travels with the repository rather than with any image.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L1-L11",
+          "version": "repo-lines-v1:sha256:cf07dd3fc2b1bacfd8b56b75d7f49ef64ca0021e9d7b6bb4062fe0361361384c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmMTM0M2ZhOTQ0ZGJhZDM4ODQxZDkzZWUzZWQ5YmM2MjBmMjY3NzZmYjA1MjEyMjk5MGFhMDVmYzBjODYxMzkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0MDk0MTAzOGVmOGU3ODdjOGI0YTcxNDVlOWQwYjc1NzM1YTlmZjIxMDJkNDI2MDNmNzAzZTZjMDFhNWQ3ODMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM3MGE2NzE3NWRkZTdhYWM0ZmJlYWM1YjU4NzE3ODJiMmZiNDkwMjRkYzlmOTBiMTAzOWZmNmY1NTY5NDU5ZDcifQ"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L46-L53",
+          "version": "repo-lines-v1:sha256:a25be6260f833c423f7736df5cd125e7941153ef689286a4f72ae67f7645aa3d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE4YTQwM2IwYTA0ZmU5NjA5ZTFkYTY2OTYzYWQ5NmZiNTA0YzY0NTU2ZGVkZDk1N2M1NWJiMWExMWQ0MjFjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODljYzA4YzExZjliMDA3NzljMTA1ZDg5NmY5M2MyZWRlMGFjMjA3ZGY5ZDJkZmNlN2MxOGNjYWZmMTUyN2YzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWM4NzJhMWZkZTMyODQ2Zjg5MGI4N2JmOGJhZmY0ZjQ3YWY1Yzk5MGQwODZhYjU1YzA1NGZhM2EwODJjMmJjMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTY1ZmQ0ZTM3ZmExOWJlMDdhZmIxMjllNWY3YWViNTRlZWM2ZDU2ZDVlZGE1OTQ0NTZiN2RiYWRmMDA1ZWQwOSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

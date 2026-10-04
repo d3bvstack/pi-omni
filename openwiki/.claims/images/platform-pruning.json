@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:95bfd990e267ebf5d5ba1b59852dc1a501a227c2105b2563f07cd1e75c0ab0c4",
+  "claims": [
+    {
+      "id": "claim_e11753bbf3054a72a2db438f851d702e",
+      "statement": "The Pi package ships an npm shrinkwrap that npm installs verbatim without filtering optional dependencies by os and cpu, so esbuild's binary for all twenty-six platforms lands in the tree — 285 MB of a 610 MB layer — with exactly one usable.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L5-L11",
+          "version": "repo-lines-v1:sha256:cefeeaedb2b797e18fd67ce30d0bdd161d25fd9823853f1b8bdf1a2ab51654f8:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZjZWI0YzBhZmFmZWRmN2YyYjRjMTFhZDkwMDE2Njk3ZTBjNTQ2NjNiODlhZWI3MTM1Y2YzMjIyYmQwMGUxMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTY2YzMwYWYxNDMzNGI3NTU5OTg5YTlhYjZkMjcyZWYwMzU5Y2E2NjlhYjdmYWVhMDgxNWRkZmRmZThmMmE2OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2IwMWIyOTIyMzIyODdkMWRmYjMxMTQ3NTdhNmU1NDU2YjY1NWU0MGU2OGZmNTQ0MzMwZjRlODlkNmNhNTE1YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTBlNjU2ZTMwODJiOGU3NDBiOTQwMGU5NTExY2U2ZThmYmM0NTFiZmQxM2ExYWZkNDFjOGU2MDY3MTQzYTk3YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_0e20f47140394a50b618d8f2eae9a7c2",
+      "statement": "The prune script keeps the shrinkwrap and prunes afterwards by npm's own rule, because deleting the shrinkwrap would re-resolve every transitive dependency to a fresh caret range on each build and trade reproducibility for size.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L9-L11",
+          "version": "repo-lines-v1:sha256:bdd1f8ed891e840206e7ef66cafc6c36aaa1b3281a394676c008b40109638024:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmNlNTZkMzlhM2Q2MGNiNWZiOWQ0MmZlZTYyZDE2ODUzMTI3NGIyNmVlMzZkZDY5NzYxNGIxYzMyZGJjNmIxZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTY2YzMwYWYxNDMzNGI3NTU5OTg5YTlhYjZkMjcyZWYwMzU5Y2E2NjlhYjdmYWVhMDgxNWRkZmRmZThmMmE2OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGQ2YTY4YjRhY2U0NWIwNmVhMjQyODJiOTY0OGZjYmM5ZDI2OWU1ZWQ4NTBiMjBmNGFkY2E0YmZkYjJkNDljMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTBlNjU2ZTMwODJiOGU3NDBiOTQwMGU5NTExY2U2ZThmYmM0NTFiZmQxM2ExYWZkNDFjOGU2MDY3MTQzYTk3YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_5effb48438ba4d23ac551a4a8658f90a",
+      "statement": "The script reimplements npm's os/cpu constraint rule: absent or empty means no constraint, entries may be negated with a leading !, and a package is removed when either field excludes the running platform or architecture.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L31-L44",
+          "version": "repo-lines-v1:sha256:89c12176a6a0466f4f56df53e2e6efbc09feaeae09987a0a076347f64ef9555e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJkNzY2M2E0YTM3MTBmMDQ4YmNhZjY3MjEwNTI0YWEzYTI5NzU1NDRkMDlhN2YwZDJhZTFhMmQ5NWRlOTI4MzQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM2YmIxOTBjNjFmNGFkMzBkNzkzNzlkMDk3MGZhNjk1ZWExZDAwNDA3ZDhlODJiODQxZmFmMDk1ZDFjMjViZDYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRiN2VjMDRhNTEwNTU5MmNiNDExMzAxMDI2YzA3ZjZmMjJlZDQ5ZmIxMWJhMTAyNWM3NGUzYTRkZTg3NjMyZmEifQ"
+        },
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L59-L66",
+          "version": "repo-lines-v1:sha256:0f8cf393613796cf48090fd374e34ef4eabbc5ffdabd419a6c89f98f27bec0e9:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWYwMDUxMzdhZGMxNTNiZTViODUxYWRlY2VhYmNjZGI5MDk5OTlhNWE0YjczNTI0YjA4NGZkNGVjMjg0NDM3ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjcyMWQ1Y2I0ZTA0NTY1ZTE4Mzc4OTQ5M2MwMjA5ZDkzNDcwNmQyNDJiMDlkYTI1NTllNjQ2OTdhNDg0MTY5ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzQyOWNiMzUyODkzZDUyNmRjODM1M2UxY2VkYjg2ZGVhMjRkM2Q4ZWU3ZjFiY2Y3MjE0MmVmMTk0ZDc0M2NmNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8cb3fe33a920458dba0c800383528afe",
+      "statement": "A package.json that cannot be parsed is left in place rather than deleted, because an unjudgeable manifest is not a package the script can act on.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L73-L76",
+          "version": "repo-lines-v1:sha256:7f50949598ba47138f032b65f3b245d62c98a8d224001c2b03f7fa26cd421302:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDJhYzc2N2Q0NDAxZjA4NmQ3NDBkN2MwZmIyNTQ3NDQzYzQyMzA0MDlhMjNhYjI4ZGRkZTU2MDY3YjQxM2JmNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTZiMDQ0OTE0Njk3MjJlODM2M2E5NGU0MDQ0NTM4ZTAxM2EyYTIxN2UzNmIxZTU2OGJhNjBhY2I3YjRjOGYyZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2M1YmZiM2U0OWQ3YzE0NTE2NTgwNWQ5YmI4ZjUzZjIwOWI4MTE4YTg4NWM2ZDNkYzlmZjg5YTRjNDg4NmRiMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTJmN2I4N2JhNmY1N2I3OGM0Y2FmY2JmOTQwY2VkYTUxZjQxZWMzYTE4MDQ2ZGIyNWNkZTYzNWQxNTRiYWY3ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_900f38a508d14acbbf98ef72a80bd50b",
+      "statement": "Traversal skips anything that is not a real directory, including dot-prefixed entries and symlinks, descends into @scope directories as scopes rather than as packages, and recurses into each package's own node_modules.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L89-L114",
+          "version": "repo-lines-v1:sha256:6dcadac9611fbab2d01ce5677395fd11b2032ffb8582c32d7c831cc792b5396e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxYzZjNGNmZDNmOTRhOWRlYzVlMGFiZjliZWNlMzk5ZjE3OWFlYThmYjExYTM1OTdjM2UwYmI1NjViNzYyNGYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjY4M2YwYmZjNWFlY2U3YjFjZDNmNDI2MGI3OTYzYjJlMjU2NDhmYzgyNGY2NGYwNmIyYjJkM2MyY2Q0NmViZWQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ2NTQ3NWVjYTFkYTE0NjIzMTcyNTkwNTI3OGM2OTI4ODU0NWNiOTdhYTAxYTAxMGY1MjdkZGQ5YzM4ZTg3NWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_43f91b0b29d1418d8b9295abe67e41e2",
+      "statement": "Freed space is measured by walking each removed directory before deleting it, and the script prints one line per removal plus a total for the platform it pruned.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L122-L122",
+          "version": "repo-lines-v1:sha256:678be4cf08b6131342ac5bd33f639d80ec4409ce1a8bdf78b379efdd70f91d6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjc4YmU0Y2YwOGI2MTMxMzQyYWM1YmQzM2Y2MzlkODBlYzQ0MDljZTFhOGJkZjc4YjM3OWVmZGQ3MGY5MWQ2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjc4YmU0Y2YwOGI2MTMxMzQyYWM1YmQzM2Y2MzlkODBlYzQ0MDljZTFhOGJkZjc4YjM3OWVmZGQ3MGY5MWQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDEwZmNlNjllYzIwOTRhMWExNDVlZWUzMTIzMzczMmY2OGE0NmMwODhhMjBjMDJiNGZhNTFhMWI3OTE0NDMzZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L46-L56",
+          "version": "repo-lines-v1:sha256:96769085d55566994d91c80f5605ca8bf96ce977348dcaf69e97ca3f26a2f27f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFjYTcyN2ViZTAwYmFmOGZjYmI3MTE1MmIwNWM1NGQwN2YwMjUzMDI0YTFmNmNiM2JiN2I0YjNmYjcxODM2NGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0Nzg1ZDdjNDRlMGM4MTU4MWNlNTE0YjhmZWVlYTgzNDljMWYyMzg2MzMyZmRiM2YyNDU1NWFhMGYxOTRhYTQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcwNTRmOTA5YjZjYTMxOTUwNTRmYTYyMmU4ZjFlZWQ0NTY0NDkwOGNlN2JmMzQ2NzA5ZDcwMmFhYjhlMzFlYjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImEzNDQzZDllYjJhNjE5ZmQxM2M5MTU1ZDQ5M2I0NzFmMzY0OTM5YjYzZjE5OTYxOWQzNTZkZTczY2RjMjRhYWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_afaef9d20b2b4124ad0b938d41ffa4ab",
+      "statement": "The script takes one optional directory argument and exits non-zero when it does not exist, so a wrong argument fails the image build instead of silently pruning nothing.",
+      "evidence": [
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L116-L119",
+          "version": "repo-lines-v1:sha256:2a64a620764447774d29d17f503bd65d3ec5404f1195040a62534fcdca1143a7:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzAyNDQ2YTY4MjA3NDNjYWIwODE2NzNkMGI5YzYxZDI4YWYyNTNiYmM1ZDIwNjAyMDdhMzg2MmUwNGNlYjM2MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTllNzYzNTVjZjExOTk0ODBjM2Y5OTgzNmIxNDg2Yzg0MWQ4OTFmYWFkOTA0YzYwOGUwOTMwMjJkMzc1N2FlZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODg5YzA2OTczYjk1YmU2MjYzMDUzZGRhODc1YWU0NjlmMmVjMTRmM2FlZWUwNDAzZTdiYTBhYmRhNTUxMzJlMSJ9"
+        },
+        {
+          "resource": "repo://scripts/prune-platform-packages.js#L13-L16",
+          "version": "repo-lines-v1:sha256:3912e4fce35af59a0fa644d1cbe4b6bedc9cd31c84b964d9a153cf3af6ddc8e5:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWQ4YjQ2ODdmYjE4YTA0OWM0YmE3NzExODEwYzFkZmVkNjQ2YzI4YWY0NWU1N2E3MzUyZWUzMWQxZWUyMjM5YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDJlNDY2YjMwODZjOTY0NzI2ZmI3MmY3MTQzZmRhNWQ0NTlmNDc5MjljNDNlZDRkOTc1YzRhMzJmNmE2MGI3ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzkyYWQ0YTMwNGE1MGFhMTRhZDVmNjIwZGE3NzliNzlmYzk1NGQxZDg5MGFiOTJhODZhYTE3OTU2Mzc4OTU0NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjhkMzUxZTQxMWQ4MTBhNjFkN2M1NWJjZTRkZDQxNTJkZjM1ZmRhMzYxMzdlYTMwMGZmODI0NTg1ZmJhNmYwZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4c1ce48cc9c74135a8788a5ce0d2d6ee",
+      "statement": "The README records the measured outcome of pruning plus dropping the npm cache as the whole difference between a 1373 MB and a 715 MB image.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L96-L102",
+          "version": "repo-lines-v1:sha256:a0ae630275dada9112e724187602a172558b286494e32aa9ffc73ed86f0c0d94:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDU1YjY2ZmEwYmY2OTI5MGQ0ZGM4MmVjODQ4YjUwNGU0MzAyN2U1ZmNjZjAxZDkzYzEyYWU3NmNiMDFkZjcxYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjZiYjQ5NzE5ZjUwYzQ2ZmVhMjQ0ZDk0MTQzNGRiMTE4YzQ5NjM5ZDE4ODFmZTYxMzM2MzJhZDNhNzczNWZiMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjEyOTE3YTZlMjgyYjFmZGM1YzJiNzYxNjNiMjg3Yjg0MTQ0MGQ1Mzg4MTBjN2M2MGZmZjU4Njk5M2Q0ODY0MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2RjOTU5YmM1ODM1MDNhNjI3NTJiNGJhZDIxNzJmMDU2MGE1OTQwOGI2OWYyODM2NjI1OTZiZmI1YTUyYWIxMSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

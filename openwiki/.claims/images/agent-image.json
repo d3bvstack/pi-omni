@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:9a41a06d0c8d932811e51ab682a6200a79879176b81e4bb0bb1d2d7221fc04a8",
+  "claims": [
+    {
+      "id": "claim_6831c56393604a3da36537a2789c76ae",
+      "statement": "The agent image carries the agent and a small tool set but not the agent's configuration, because agent/ is bind-mounted at run time and excluded from the build context.",
+      "evidence": [
+        {
+          "resource": "repo://.dockerignore#L1-L6",
+          "version": "repo-lines-v1:sha256:016be1331594a283fdbc54435a7a29810e005783e079e31237619225c7fb25d2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmVhMzU3YjA5Nzc4OTRlZDQ1Mjg1NzUxMDg1NGIxOGI3MTcxNjUxNTZlODRkMGMxZDMwMjU3MDVlNDBkYWM3OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzRkMDZmNWEyZjM5YjUwZDg0MTRjNjJlNmM2N2RlYjliYTllMTEwOTZiZWY3Y2NhMTU1YTU4NWY0MzNlNmE2MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWZjMWM5NzcyYzRhMTcwZjY4YWE1MDI1OGVjYmQ5NTgxMTFlNzkxMDk1NmZjMzRjMmI5ZDU3YWU5ZTczODViMCJ9"
+        },
+        {
+          "resource": "repo://Dockerfile#L1-L9",
+          "version": "repo-lines-v1:sha256:20afb89e401783f1910f02b5398e6c4d15243b72ba1b4cff77e7baf73f708fe6:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjFhMDZiOGE5NjU1ZDQ2ZWI2MGNlNTM1YWM4ZDU0MGRlNGU3YzlkMTFmN2FhZjQwYzk2NjM4ZjlhMGNhNDNiNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGI0NzBiYjdlNmQ4YTZmYzYyZjkwODcwMThkMzJkYWNiMDE2OGZjNDMzNDNlZmI1ODg1OWM5YjY0OWNiMjFhOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjcyNDU1NjRlZWY3NzljNGViYWY5ZjNlNTEwNWE4MDI5ZjAzY2I4MmRhZDU1NWViOTc0NDBmZmFmZDJlMTkzZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_40bd1cc29cd3444fbd4f7f9edb80f25a",
+      "statement": "The agent image is built in two node:24-bookworm-slim stages so that build-only work — the npm cache, the prune helper and the shrinkwrapped cross-platform binaries — never reaches the runtime layer.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L11-L29",
+          "version": "repo-lines-v1:sha256:52976157ce3a8ffca014e26fdb56cb61a21602a395010f62f603634660611285:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhYjJkNWNkMGVhYjYzMzhlNWM3YzZmYmVhOTJkYTEyZWJlNjdkMzg3NTI2Mjk1NTQyMmYzMjE1NWYzNDMwNjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0OWQ3MzVlNzllYTUxNmQxNjQ5ZGUxNmQ4ZjMyMTEzMDVhMmY0N2M3M2Y1NzVhYWU2NWJhYzZiZjA0YWRlMDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3YmVjMjQ0ZjhhMGQ3NDUwODNjN2Y2NDM5M2QxMGQ3ZjkxZTc0ZTk5NGY2MTE2YWI3ZDA1YjAzOTkzMmQ1NjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImFlNWU3ODFjN2E0NDllNjU3ZWVkZTM3MDBiNDA0MGI1ZjVlMzRiODhiMTM1ZWUzNjUyMDVmMGYyNWVlMTI0N2UifQ"
+        },
+        {
+          "resource": "repo://Dockerfile#L31-L52",
+          "version": "repo-lines-v1:sha256:9a39778cbd23f340b140fee342c99bfe2188006b7b4c19998d9c92f3299b65cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxMzYxM2Y5ZmNlMzhlOWQ1MzllNzE0MmJmNzQ3MGJjYmY1YzMyOTYyYzk3MzNlOTVkNzg4ZTJjNTRhNjAzMjQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM2OTQyMDc0Y2ZmZjc2YWFhM2ExN2FjNGUyZTRjNTQxNWRmODMxZTQ3MmJhODYyMDM2YWY1YjRhNjNmNzEzNjMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjliNWI3N2YzMTY2ZDUxZWFiMGQ5MTBlNDQ0OWNhMzYzNWU0ZGVkZDEwM2E3YWJjZjE3YjRlNWI3MjllZDhkZGIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4N2U4ZTkwNzhlNTcyMmEwMTYwMzE2OTc3Mjg1OWNiMzZkMjk0NjdiNGY1MTlkNjQ0YjQ5ZmNhOWFjZDIyZWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4377ca3758084ac1a8c459487ce44953",
+      "statement": "The Pi version is pinned once, as ARG PI_VERSION=1.0.2, and installed with npm install -g --ignore-scripts; no image name or other file carries a version, and no latest tag is used.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L15-L18",
+          "version": "repo-lines-v1:sha256:9caf0e8ded3abc58c6f2a9a2ac6f00f87ae3b16573848f80ebb3389275f52081:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWYwYjY2YWQ1MmYyZDdhNmNkOGY5YWYwNDI2MjY1ODgwMWZkZGNhOTYxMzQ2MTZlZmU2Yjc1ZTEwMDQ4YTBjNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzY5MmYyYzkwNWJkNDgzNDBkMzE0ODFjNjY2MjgyMDgyZTU4MDIwYTYzNjhlOGNkM2U1YWJiZDQ1OWI4MTNkZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTVjMDFkYzQ3NGI0YjY3MjAzYmRmN2VkZTc4MzVkYzNiMjlhY2QzOTY2MDkwMGQ1NTRlYjAzMDk1MDQ4YTYwNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDZjMTAwMWEzYmVkYzNlZTA4YTNmOTMxMTI0NmY4M2U2YjFiMDAzODY3NTRhZDE3NWI4MzlhZTllOTJhYmZlYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_25dd1e9a569d4016821045b8453099f2",
+      "statement": "The runtime tool set is installed in one apt-get layer — bash, ca-certificates, curl, fd-find, file, git, jq, less, make, openssh-client, procps, python3 and ripgrep — with the apt lists removed afterwards.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L37-L43",
+          "version": "repo-lines-v1:sha256:d02dd4448886b25b2de526dbd3cbfc89c916ea6e915ed358ce43e0836895616c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc1NGE5YTU5OWU5M2JmY2Y2M2ExNmNmYjA1NmI3MzQ5YTNiZGJjNGUwZDgxZTJmNmFhMGQyZWQyNWVkMzMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTI0OWJhNTM4MGExMDM2ZTE3MTVlMTc0MjI5ZWI4MzMwNGU4OTNkZGNiM2VlZmFhZjQxYmNlNzA4YTdkZmQ0ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDY0NDFlN2FlNGFjNjk3NzdiMzA3MDI3OTEwOTQwZjI3NzMxMTcxMTg4NGNmYjU1YjQzODkwYmQ4Yzg4ZGFiNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWJiMWVlNDlmZjUyNTNmZjYxNThmM2Y0ZDE3MjZmNTYyMDI1YjEyNzY0ODJmMDJkOGVmNzFlODRhODA4YjkxYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6eca8e16329a43a5b267b30e32694ad1",
+      "statement": "Because Debian installs the file finder as fdfind, the image symlinks /usr/local/bin/fd to it so the agent gets the name it expects.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L35-L43",
+          "version": "repo-lines-v1:sha256:2e114dcfb415367440cf04b44583968e98697dabbb92f7c76a239444d8dc34df:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjlkNTBhZTExNjVkOTZlMzYxODZjNjI0ZWYwM2Y2MDRmODFjOTcwMjdiMDRjOGQxMTAxNDZmZGFjNTk5OWE4ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTI0OWJhNTM4MGExMDM2ZTE3MTVlMTc0MjI5ZWI4MzMwNGU4OTNkZGNiM2VlZmFhZjQxYmNlNzA4YTdkZmQ0ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2YwNGRiNDk2ODEwZDgxMTQzZjc1N2Y1ODMwMWRjMDYzNTgzZTA1MTVkZGZlZjIxNGE4MmE1YzAwZjIzYjk4NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWJiMWVlNDlmZjUyNTNmZjYxNThmM2Y0ZDE3MjZmNTYyMDI1YjEyNzY0ODJmMDJkOGVmNzFlODRhODA4YjkxYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_03ff83757e08410086b1b1f4cf283bbb",
+      "statement": "The image deliberately ships no compiler toolchain while keeping make for driving build recipes, and agent/AGENTS.md states the absence so the agent does not assume a compiler exists.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L37-L43",
+          "version": "repo-lines-v1:sha256:d02dd4448886b25b2de526dbd3cbfc89c916ea6e915ed358ce43e0836895616c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc1NGE5YTU5OWU5M2JmY2Y2M2ExNmNmYjA1NmI3MzQ5YTNiZGJjNGUwZDgxZTJmNmFhMGQyZWQyNWVkMzMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTI0OWJhNTM4MGExMDM2ZTE3MTVlMTc0MjI5ZWI4MzMwNGU4OTNkZGNiM2VlZmFhZjQxYmNlNzA4YTdkZmQ0ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDY0NDFlN2FlNGFjNjk3NzdiMzA3MDI3OTEwOTQwZjI3NzMxMTcxMTg4NGNmYjU1YjQzODkwYmQ4Yzg4ZGFiNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWJiMWVlNDlmZjUyNTNmZjYxNThmM2Y0ZDE3MjZmNTYyMDI1YjEyNzY0ODJmMDJkOGVmNzFlODRhODA4YjkxYSJ9"
+        },
+        {
+          "resource": "repo://agent/AGENTS.md#L11-L16",
+          "version": "repo-lines-v1:sha256:225b89042ada784d39a1da4ec36f20b1042b0a9372f9ef076f4c639c2655f3ba:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjMxY2FkMjRiZjM4NzVhYTg3YzM1ZTFlZjc1NmZiZGY4ZTBhODJhMzc0ZDNkZTI1NDQ4NmQ5YWQ3OTdhMzNjYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjQ5NGYxZjdlYzM0NGU5NTg5MjA0YjFhNjNmM2UyNmNiMDhiM2IyZWY0M2RkY2EyOWRmYzdkN2YzYzc3MDA4MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjI0M2ZlZjUwZTBmOWQxNzM5MGFjNjU5ZDk5YzMwYTc4MGFmY2MwODNiOWNiYmM0YWYzMmZhOWI3OWVmNzQ5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDU5OGQwZWRmZjM2ODk4M2Y0Zjc5NDNiMTUyZmNmYzI5OGU4MTA5ZWY0MTliMDdlMTc2YjIyZTE1OWRjNmM0ZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_000254a725094ddc86f7f7300f9e9727",
+      "statement": "npm's pi entry is a symlink that COPY would resolve if given as its own source, so the build stage stages it into /out/bin and the runtime stage copies that directory, because cli.js locates the rest of the installation relative to its own path.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L22-L29",
+          "version": "repo-lines-v1:sha256:510080883c1b64f35ddd2276864603fc39ee3ac62683d90d70354e60744ba73c:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmIwZDU5YTFkZWM1NDQxNjdlNjQ4ZTJhNTc3NmMyYTZhZDhhMGM4MjEzMDRjNjQ1YjQ0NTY3ZjM1Yjg1NGI2OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTQ5ZDczNWU3OWVhNTE2ZDE2NDlkZTE2ZDhmMzIxMTMwNWEyZjQ3YzczZjU3NWFhZTY1YmFjNmJmMDRhZGUwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDZjMTAwMWEzYmVkYzNlZTA4YTNmOTMxMTI0NmY4M2U2YjFiMDAzODY3NTRhZDE3NWI4MzlhZTllOTJhYmZlYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWU1ZTc4MWM3YTQ0OWU2NTdlZWRlMzcwMGI0MDQwYjVmNWUzNGI4OGIxMzVlZTM2NTIwNWYwZjI1ZWUxMjQ3ZSJ9"
+        },
+        {
+          "resource": "repo://Dockerfile#L46-L51",
+          "version": "repo-lines-v1:sha256:60fb7bda09076afceab5fbe5acac65b211446b88e93e5438798e3edbd19c77a9:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWI1M2JjNTVmNmEyOWI1YmNiOGJkYzFhNmEzMWUyMGQyODY4ODY4NDA2ZGMwMzZjM2JmY2UyZGI0YjZmYTI2YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzllODBmNDE4YmM5YTliZmE0YjlhMzdjZGEyODg0YzIxMjBmNDdkYTFlZjIxMDllYmFhY2I2NWFlZjNhM2Y2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTc2NzQ2MDVkOWU0NjQ3N2JkNDYyZDY3ZWEyZjhlN2IwYTUwZDZiMzQ2MTU1MTJjNjZlZGE5MDNiMWVjMGY4MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWU3YWRmNTMzMGFlNDlkOGZkZGE3Y2IyODNjOTYyYzQ3OWRmN2Q2ZTM1NWUzNTI4NmNmNDU0NzViNTAyOGRjNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4dea9a61181a49129b59e1dda733015b",
+      "statement": "The runtime stage asserts test -x /usr/local/bin/pi immediately after copying, so a package that moves its entry point fails the build instead of the first run.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L45-L52",
+          "version": "repo-lines-v1:sha256:f9d477b0f38fb65e6ff042a8a0d47553ac63f0463ea5ac696a23e5e33b089d1f:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGJlNmM1NTJkNDM2YzhjN2Y4NjkwNDJmMWIyOTFmYjc3NDhiNWM2MGVlYjJiNTYyMmU3ZWU1NGUyMjBlYWIwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzY5NDIwNzRjZmZmNzZhYWEzYTE3YWM0ZTJlNGM1NDE1ZGY4MzFlNDcyYmE4NjIwMzZhZjViNGE2M2Y3MTM2MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTY1NWVmNzFkZjBhYjkwYmY4NWExNGI0MmQ4ZDI2ZDY1ODAxZWVhYjIzN2U5MDVlNTI1ZmYxYmFiYTJhOWQwMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDg3ZThlOTA3OGU1NzIyYTAxNjAzMTY5NzcyODU5Y2IzNmQyOTQ2N2I0ZjUxOWQ2NDRiNDlmY2E5YWNkMjJlZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a7982faf080d46d7adb9cfac0ba6c375",
+      "statement": "The image declares no USER directive because the uid depends on whether the Docker daemon is rootless, a per-run property that bin/pi decides.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L56-L58",
+          "version": "repo-lines-v1:sha256:4b9c9f77014ced9fa8f25812c6ff0edd39aaf70cd50d112c2a186d428f6d6378:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGM0NzU2MDEzMDcyNGYyZjg4NjBjYTJhOTcxNjkzNjI3YmIzZjNiNThkZjJiZmJjMzhhMDQ3YTI3NzUzYWMzNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmYzNDQzYWRiNzdiMzQ2ZDFiY2MxNzcyN2M4MzA5OThjOGNmMTg0MDA4NWMyY2U5MDJmNmZlNjg3MTJlYWJlOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDg3ZThlOTA3OGU1NzIyYTAxNjAzMTY5NzcyODU5Y2IzNmQyOTQ2N2I0ZjUxOWQ2NDRiNDlmY2E5YWNkMjJlZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGM5NTY4Y2U5NjkyZDhlNDcwODhjZjkwZjRhYmUwZmJlODhkN2M3OGU2YzcyMDMzMTc3OTQ5MDIxY2JhODY2NyJ9"
+        },
+        {
+          "resource": "repo://bin/pi#L89-L97",
+          "version": "repo-lines-v1:sha256:202c981e13cb758e24ea339ea5b48bbaea2218df5fe596f26e47a68ce272cdc1:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWMzMzdiMGU4NGE3MmU4MDVmN2VlNjUwNWI2YTY4MmY0MWYxYWRjN2NmZTcxZTcxNDcwZWQyM2RiNzg1OTZlYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzRhMmJlY2ZmOGFmYjM0ZGIyNjBkYWJjOTY5MTVmZmVjZmRlODQ4OTI5NTQxYzYxOTNkZTZkMTY0YzIxZThkYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDc1YWZkNWMzYTc5NjhjZGI1ZDNlY2ExMGNkNDVjMDE4MGY5NGUyNjFmNGZiZjM2MWUwNDRiMjgyZGMzMWM5YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjNiNDY4NmU5MTE0OTUxZWU1Y2M2YTVmNmIxMTY5MzQzNWM5NjJjODQ4YjhkNWI5ZWM2MzcyNjdjYzM4MTFhOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2b3e5b12b3de43efa18379836c840d48",
+      "statement": "The image sets PI_CODING_AGENT_DIR=/pi/agent and PI_WORKSPACE=/workspace with WORKDIR /workspace, matching the two Compose bind mount targets rather than configuring them.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L59-L64",
+          "version": "repo-lines-v1:sha256:0205135e1c857ab37dbb9a6e291fdade8fa017be70fc16fae5a13acd997a8020:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2MxZDVkMjdmZjY0OTg2YmY0Zjk0MGM5YmVhNWQxNjYzZTlkOGM1ZjU4ZmRlMThkNzhhZGU2MWMwZmFlZmYwYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzI1ZDQwMGJkZWQ5ODA2MDU0ZTVjN2ZkZGE2ODMzYWZkY2YzMWI3NjdkNDljZTBiNmYzOTI2ZTdiNTYzY2U3OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGI5YzlmNzcwMTRjZWQ5ZmE4ZjI1ODEyYzZmZjBlZGQzOWFhZjcwY2Q1MGQxMTJjMmExODZkNDI4ZjZkNjM3OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

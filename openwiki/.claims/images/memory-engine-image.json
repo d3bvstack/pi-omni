@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e5ccf0d660936b0585bc8b061a5209c2c0ad5c4fc8cd4a5fe8d4c3b54075a35a",
+  "claims": [
+    {
+      "id": "claim_33fc6adcc90a436cbe0834ee6334bed8",
+      "statement": "The Supermemory engine builds as a separate image from the agent's so its graph database and local embedding model stay out of the agent sandbox and a Supermemory version bump does not invalidate the agent image's layer cache.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L1-L8",
+          "version": "repo-lines-v1:sha256:9a39f37b315b496f26cc0779fc4ea5f125a73c5587f8eadd1ba380ce790ef535:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGI4MmJjNjYwOGY1NDZkYWUwNzEyODNiYWVjMjIxMGY4OGRkOGY1MDI3MjY3MWQ2YWJhODFhYjRjZjc4ZDlhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmI0NzE5MzRkM2Y1Nzg5OWVkNWVmOTU4NTc5ZTM1MWVjOTYzYzkwNGJkMTg5YzA5NTliMzk2OTdhMTY4NDVkNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzY0ZmYyM2EyZTNmNmM2OTU3YWYxYTExYmJkOTU0NmUyODc3MzcwYjAwMDA2YjlmMzA1NWEzYzQwNzVkZTJmMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_aa097f6da35f4134a481d8279691cd6a",
+      "statement": "The server release artefact is built from a non-public codebase, so the image pins ARG SUPERMEMORY_VERSION=0.0.8 and states that checksum verification catches a truncated, corrupted or CDN-swapped download but does not make an unreviewable binary reviewable.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L13-L18",
+          "version": "repo-lines-v1:sha256:e9abff53a6817ed56087c22f1a715a664506c64fe7a3f7dc6f7fed68e7351b87:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVkOTc0N2VlNWIwMTY3N2ZlNTRlYzg1OTE1OTJmMGVjNGFiYTRmNmJhZjliYTJlNWY0MjE4NDdlZGRmZmY2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMWYyNDEzZDRkMzFmOGRhNTRmZDBkZWZiMDk5ZGQ2NDIzODkwYzYwOWUzM2VkODQxZDU3N2RmYWViN2IzNjMzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmZhM2I4YWFlYzA3NzI2YWJlNDgyYWU5YjI3ZDY2Y2MxMThmNGFhNmE0NjY2ZGIwYmU5ODVkYWVlMjJkZGNiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjg0MDYzODgzNWExNDJlMDlmYjU1OGYyODBhZmUxZmJkYjdkOWFkYjczYjI3YTUwNzBmNGJlM2FmOTFiNmE3NiJ9"
+        },
+        {
+          "resource": "repo://Dockerfile.supermemory#L22-L27",
+          "version": "repo-lines-v1:sha256:5e040f4e7559e495dfc771241a2faca0f872fadab2f44230b9d026e5121622ae:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWYwYjY2YWQ1MmYyZDdhNmNkOGY5YWYwNDI2MjY1ODgwMWZkZGNhOTYxMzQ2MTZlZmU2Yjc1ZTEwMDQ4YTBjNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjY2Nzk3NzM4NmZlYjNiZDQ0NjY1NTQwZDQ5Mjg2MTFhNWFjOTI4MDIxYjUxNzNkNGIzMGVhMjMxODA1MzVlMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjg0MDYzODgzNWExNDJlMDlmYjU1OGYyODBhZmUxZmJkYjdkOWFkYjczYjI3YTUwNzBmNGJlM2FmOTFiNmE3NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjQwZDAzMWUzYTVlZGVlMTEwM2Y2YmE5YmNlYTdiYzNlMmY2OGJjNDMwYmE5OTBjNzNhNDRhMzg3Y2ZlYjhlMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_52b11c1cb3034f7d9c71b557b8e7b1b0",
+      "statement": "The memory image refuses the upstream curl-installer-piped-into-a-shell pattern and performs the same two downloads explicitly, stating what it fetched and checking it.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L34-L59",
+          "version": "repo-lines-v1:sha256:d7c0c636d9ed237762fcce5872bc73d8127220141bdec6e3f0ea8e85d44e29b9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjExODczZDk0NjRiNjU3M2I4ZGQ3MmFlZmZkMzgzZTQzOWU3ZTgzNDJjNjgzY2M5OWE4MzY4NTA2ZDQ4YmMwNWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRhNDZhOTRmZWRlOWYxNmZiZWRhYTJiMDE2OWM1ZjcwNGQ0MzM1NzFkOTVhMGFmYmY2OTZkZTY4NGEzOGRmNTciLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImU3M2Q0NzUyZWE1YTBkZWE3MWE5MjQxYTQ2MWJmMzJjMzczM2E3Yjk0ZDRlYzU4NjQ3ZjNkYTU0ZTQ4NmFkOTQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIxMDU3NzUxZmI3MTk0NmZmMjQwOTRjZWZhNDI1NDY5NDVhOTI0NDkyYjFjNDQ0MjEzZWEyNjYwZGQ5NTRiY2EifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c1d388da2bda4ed9ad4ff44a80a7b6e7",
+      "statement": "The release platform is derived from dpkg --print-architecture rather than buildx TARGETARCH, so a plain docker build without BuildKit resolves the platform the runtime will execute on, and an unsupported architecture fails the build.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L41-L50",
+          "version": "repo-lines-v1:sha256:af554e8b7193cb60f831507734659e4b7e5f9fdf88fbc5b9c61876dbf6da70e1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUxYjQwZDM2ODk4ZWM0ZmY4YTM2N2EzNTQxN2IwZmM1OTQyY2E1ODk2YzdlYTVhNjVjZjNjN2UwMGZjYTlkZjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE4OWM3MDcxY2M3YTc0ZjVlOTRmYmNhYWZmNGRmNGNlMTE2Yzk5NjgzMTI5MDU4OGM0MjZjNDc3OWI0NWRlMDAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZmNDg5YjZmZGY0MDk5YWFhNjZhYTZmNTA4Njg5M2ZlY2JhM2ExNmZhY2Y0N2I2NGVhZjUwNjk2ZTI1Mjg2OWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI2YTM5YmNjODUyZjY2ZDczNTEwZTY1OGE2OGEyMDUxMGNiYTU1MTg5YTY0ZGEyNDMyOGZmNWMyOTRhY2QzMTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_52689f4bf41c4df4aff12f6e3b7bb4d3",
+      "statement": "The build reads the platform sha256 out of the release manifest, requires it to be exactly 64 hex characters, and verifies the downloaded asset with sha256sum -c before chmod 0755 makes it executable.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L51-L59",
+          "version": "repo-lines-v1:sha256:24bb064945194c80bcccdf006b783b628411eec1e5d57185e32d6dbbe8219cd9:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWMxYzZkMDIxOGUyOGRiOGRhMTdlYTQxN2ZhYjUyZWNmMDAwYzZjMGZkNzcwMTE5MDExZDNjNmNlZDFmMWU1ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGE0NmE5NGZlZGU5ZjE2ZmJlZGFhMmIwMTY5YzVmNzA0ZDQzMzU3MWQ5NWEwYWZiZjY5NmRlNjg0YTM4ZGY1NyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzY5Mjk2YzM0NjU2MjE1ODNjY2FhZDUxY2IxMmJjODEwMDg4M2VkZDQ0OTIxNTE4M2I0MTAxMDU4OTI1NDUxOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjEwNTc3NTFmYjcxOTQ2ZmYyNDA5NGNlZmE0MjU0Njk0NWE5MjQ0OTJiMWM0NDQyMTNlYTI2NjBkZDk1NGJjYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e8bdd8519baa4e8ab3e0c9738c29c010",
+      "statement": "After the checksum passes, the image asserts test -x on the server binary, repeating the agent image's entry-point check so a bad download fails the build rather than the first run.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L61-L64",
+          "version": "repo-lines-v1:sha256:4cf93d585d5e6e1802bc33fae9cfd987b7d12edc3a23611358ea65e1e16dab2a:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGU4MDFlN2YzYzY2YmM0NGRjMWMzNzEzNWI0Mzc1ZGQ4ZGFiMWJiYjI0ZTQyNmNiNDUwYWRhNGQ5MGVhNDJlZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjQ2NDJiMmU2MTkxNmRjMzI5ZTQyN2I0ZjJmZGM5MjBkZWRlZTJmYTE5YmU1MDU5MGY3ZDE1MTlmMjVlYWMwNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDNmMWM4ZDMxMjQwZmUzY2Q0MzRkYjAyZmIzMzgwNjBmNjExNzAyZmFiNGRmOGYwMGU3NzYyY2ExNTBjNWViMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTNiZmIxYThjOWViNWQ2MGQ2M2VkODk1YjQ5YTIxNjRiYTg0YmE4ZTE2N2NiZDdhNDM0ZGMxMmIwOWI4NjVjYSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_33fdfbec9a764f66acb77c2f13bcbae3",
+      "statement": "curl and jq are kept in the memory image's runtime layer because the Compose healthcheck uses curl and nothing else needs to reach the engine.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L66-L67",
+          "version": "repo-lines-v1:sha256:1ea493b5f4a2e9366916e6145ac01055a01ca99e56344d78e38dd15c9dc1eb39:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTRhNjY2NTlhMGE2YjgwODNkMGFlZDhkZTIxMWEyYWFkMjJkOThmMjAxYzNmYTJjYzljNjE5NzAwMzVjOTNiYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjIyOGRmOTFkZGZlMzRhNGE3ZTU2MjExMGFhMDM5NWQ2ZmRkNmU4YTdiZDc1NzkwNDAxY2UxMGZkYWUwZTI2NSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTBjYWMzMjc4MzlmMTE2N2QxNTMxMDEyMjA0MzljM2RiMGNkMzUzMWEwNTczZWQwMTM5YzA1ZmRiZTAwZjFmOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWRiNDc0NTQ0YjBhYTYxNzJiYjA4ODg2MTM4NzA0YTJjNzBhYjdlYTIwZDg3YjkyNWI2ZGQ0NDk1MDgwOTNkNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b2f4ce65f11449be9af4a7a255de918b",
+      "statement": "The memory image sets the data directory, disables telemetry, fixes PORT=6767, and creates the data directory during the build so the named volume mounts onto an existing directory rather than one Docker creates root-owned over nothing.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L69-L77",
+          "version": "repo-lines-v1:sha256:0f227c0c0a1e57e21429f1d0995500ee8b6d3885ffc699399d1423a765de3877:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWQ0NmYzZGU1M2MzN2IwNTdlZTRjMmJlMTcwZTU0MGVkYThiNTA4MjM4YTM5OThiMzQ2ZDViNzM2MTBmMzZiZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDZhZWJkYWYzMGE3YTJkZmM1YWFlZDdlNTkxZTk4NTkyNjUxNzgwMGZlMzNhNjJmMTNjNDIwOWVlNTI3MmVlMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjIxMmUzM2Q0NTJiZWIxN2Q5YWUwZmU1M2NhMmM0ZDc0MTZkMDJmMTAyZWUwNDJhYzE3NmQ4Yjc4NjEyY2ZkYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTQ2YjE1NDliNjRhMTE3MzkzNTJiM2I4NGFiNTc0NTg5NWE1N2JmZGY0MDVhNTc2NTVlNjk0NDg4MjEyZDU2NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8dd8e4e5d04a4b4b931c93d536cd2b20",
+      "statement": "The memory image declares neither USER nor EXPOSE: it runs as root against a root-owned named volume while isolated by the compose network, and keeps the port named only in the healthcheck and the compose service name.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L79-L87",
+          "version": "repo-lines-v1:sha256:e3ca390bb7aefd33010d21a0f2900d18d1a4af97a3ec4dac0300127e05040aae:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzgzMTllNTMwMTgzNWNjZGEzNTVmOGNiNzBhZDNhYzlhNzM5Yzc1YTRmMWYxMmY2YzUzMzU1YjJhMTg4MzA3MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTVhMzUyM2QxM2RjMzdkOTViNmUzMjBlNGJmY2E1ODc1OGY4MjJjNTY5Zjk5MTJkY2UyMGIwZTEyM2Y5ZjdjNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDkxMDA2YjI1ZDlkYTU4Yjk4OTZmMGE2NjA0ZmZhOTI2OTZhZGU5NGMxYjFkM2Y0YzM1MWQwNTY5MzdhMWMzNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjg5ZDJmMmYzOTdhMzc0YmE0OWExNWRjMWMxZTZhZjlhZjZhNzk0OTgyY2IyMGZiMmU5MjkwOWM3ZmE1NjA2OSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

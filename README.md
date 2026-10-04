@@ -108,13 +108,33 @@ Committed, because it is the setup worth sharing: `agent/settings.json`,
 `agent/skills/`, `agent/prompts/` and `agent/extensions/` directories.
 Gitignored, because it is machine-specific or generated: `agent/auth.json`,
 `agent/mcp-auth.json`, `agent/sessions/`, `agent/bin/`, `agent/tools/`,
-`agent/models-store.json` and `agent/mcp.log`. `.env` is gitignored and
-`.env.example` is committed, which is the same split for the credentials Compose
-resolves.
+`agent/npm/`, `agent/models-store.json` and `agent/mcp.log`. `.env` is
+gitignored and `.env.example` is committed, which is the same split for the
+credentials Compose resolves.
 
 Pi re-reads the committed files on every start. After editing them by hand, run
 `/reload` inside the agent. `agent/` is excluded from the Docker build context,
 so no credential can reach an image layer.
+
+## Packages
+
+`agent/settings.json` declares the Pi packages to load:
+
+```json
+"packages": ["npm:openwiki"]
+```
+
+[openwiki](https://pi.dev/packages/openwiki) loads an extension and a skill that
+maintain a Markdown wiki of a repository. The spec is floating, so the gallery
+page's `pi update` picks up new versions; pin it as `npm:openwiki@0.7.0` if you
+would rather it did not move.
+
+Only the declaration is committed. Installing runs `npm install` into the
+package directory, which is `agent/npm/` here because Pi derives it from the
+agent directory, and that is 300 MB of dependencies, so it is gitignored and
+recreated per machine. A fresh checkout therefore declares the package without
+having installed it; the first run in a new clone installs it, and `pi list`
+reports what is present.
 
 ## Authentication
 

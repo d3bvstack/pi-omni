@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:5d469c9077738e156f9a7bc5a1a4b5b6c8c6e3744f130eef84f35306564a0743",
+  "claims": [
+    {
+      "id": "claim_1b7540a552394afca22c5768adc5ce60",
+      "statement": "docker-compose.yml is the only definition of a run: the pi service names the image from ${PI_IMAGE:-pi-agent:latest} and builds it from Dockerfile, and the supermemory service names ${SUPERMEMORY_IMAGE:-supermemory-server:local} and builds it from Dockerfile.supermemory, so no image name in this file carries a version.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L29-L44",
+          "version": "repo-lines-v1:sha256:9c0cf3593de1061dcc48e1a40f023bbcef895fad5b20e6cdd923f03cdc55b7bf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZmYTY0NjlhNDg1YTlmNjZkMzM0NjZhNDM4YTQzYzRkMGI5Mzc3NGY2ZGIzMGQzZGJjMWIyYThiYWM0NTg1N2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjEwODJjMzM4YzUxY2Q0YTdhMzQ5ZTM3ZjU4NDZmMmViNjMwMDEzMDQ4OTJlMzlmNzg1OTBlNGIwYzNiNDViY2EiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjIwOTI5N2JkMThmNjU3NGUzYzNmZGFmMzkxZjNiZmNkNzBjMjg5OWM1ZTllMTU1YzQyOTUwY2UwYjNkZmUwZDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjljYTM1NGYxZjgxNmFhODhlZDExZjllZjU1MTJlNTJlOGUyMTE1MjAyMmIzMzRmNTI2ZDEzM2I0OWZjZjNkZTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fd9cc9bda9b149a085f89c78331db929",
+      "statement": "The pi service deliberately declares no tty/stdin_open and no USER: the launcher, which can see the host's terminals and Docker security options, passes -T and --user per run instead.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L108-L124",
+          "version": "repo-lines-v1:sha256:5b114e66e0f5d4c07def532a6792cae35e51c4983e00542d156627e8ebed1b3a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlOTJjNGIwMDYyZjZjNGQ0MmM3ZjUwZjlmYmZmNjMxZDI4ZDIxZDcyOGQ2M2I0NTk5OTE2ZDk5MWQyMGFiMTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjczOTM5NGRlMjI5YTAwNjg3ZDkyNzEzYjlkMjRkY2QyZDFlNzlhNTVjODMxZTk3ZjUzZGU1YzI2YTM5MWIzOGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L34-L36",
+          "version": "repo-lines-v1:sha256:e717d543e28f8c8bd56f80e9a6a832737a2e22ffcdfeede57656921b3d613847:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGMxMmVjY2UwMGViZDczOTI1OTMzY2EzMWVlYTk5ZWQxODJiZDVlZmFlZDYyNTZiNzdhNjc4NDQzZGU1YmVmOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZhNWVhZjlkMzZhOTkwZDgwNGQyY2Y2YzI5ODI4ZDYwNzk3NDA2ZDc1M2M4ZTNmOTYyMDUwODFjMjVlYmFiMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmVjMDA3ZjFmNGJlODA2YzFhMjc1MDBhNTA5N2QzMmJhMmM0MjUyMGYzM2JmYzlmZDczOGVmOTVlOWJhYWMwZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2Y0MTNjZjQxMjNiMmYzMDA2NTczY2M4NTZkNjRlNzIxZjRhZDExOWRhZjNkZTdiZGFjZTVlMTUxOGZhNjM5YyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2377b58f28944e64a6a40b06283b390a",
+      "statement": "The pi service depends on the memory service with condition: service_started rather than service_healthy, so a cold embedding-model download never blocks a session.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L37-L44",
+          "version": "repo-lines-v1:sha256:4f7b64833cadba5656921505fb30a82a5aec86051b6c5423780706f502f81ec9:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U0NGVhNzcxZTc5Yzg4ZTQxNWQ2ZGVkZWFhZWQ0NWExMjQ4ZGFhYzU5OTU4ZTZlMjkxYTA1M2JiYjgzZmE2OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTA4MmMzMzhjNTFjZDRhN2EzNDllMzdmNTg0NmYyZWI2MzAwMTMwNDg5MmUzOWY3ODU5MGU0YjBjM2I0NWJjYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTcxN2Q1NDNlMjhmOGM4YmQ1NmY4MGU5YTZhODMyNzM3YTJlMjJmZmNkZmVlZGU1NzY1NjkyMWIzZDYxMzg0NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWNhMzU0ZjFmODE2YWE4OGVkMTFmOWVmNTUxMmU1MmU4ZTIxMTUyMDIyYjMzNGY1MjZkMTMzYjQ5ZmNmM2RlOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_94b1a53e2b584d89925f69b663265817",
+      "statement": "The run mounts exactly two read-write bind mounts: ${PROJECT_DIR:-.} at /workspace and ${AGENT_DIR:-./agent} at /pi/agent, which is how committed agent configuration travels with the repository instead of being baked into an image.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L46-L53",
+          "version": "repo-lines-v1:sha256:a25be6260f833c423f7736df5cd125e7941153ef689286a4f72ae67f7645aa3d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE4YTQwM2IwYTA0ZmU5NjA5ZTFkYTY2OTYzYWQ5NmZiNTA0YzY0NTU2ZGVkZDk1N2M1NWJiMWExMWQ0MjFjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODljYzA4YzExZjliMDA3NzljMTA1ZDg5NmY5M2MyZWRlMGFjMjA3ZGY5ZDJkZmNlN2MxOGNjYWZmMTUyN2YzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWM4NzJhMWZkZTMyODQ2Zjg5MGI4N2JmOGJhZmY0ZjQ3YWY1Yzk5MGQwODZhYjU1YzA1NGZhM2EwODJjMmJjMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTY1ZmQ0ZTM3ZmExOWJlMDdhZmIxMjllNWY3YWViNTRlZWM2ZDU2ZDVlZGE1OTQ0NTZiN2RiYWRmMDA1ZWQwOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_20b1800ccc4a4b65966a999319cc8388",
+      "statement": "Credentials are forwarded to the agent as a list of bare variable names rather than assignments, so Compose passes each one only when it is set in the launching shell and no provider key is ever stored in the repository.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L54-L79",
+          "version": "repo-lines-v1:sha256:5aca2f38c5a8d5724eb64d2f4b791e0b6a831521c066c6e5c5820b0469195c06:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxYTgxN2IzZjA0NjQwYmMwNjNjOTY2MzEzMzcwZjI5YThmNmI4MDY0MzVkYTk5ODgyODk3ZGU5MGQ3NmJjZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlMTI3YjAxZDg2ZDEwMTc5MWUzN2EzMWU3ODFkOWQ2OWUyNmY0YmQwZTdmOTAzYzZhMDI3NTNhNzBhYTM2MDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMzQ2MzZkMGEzY2JkMTM4OWYwY2UwOWYyMTQxNTNmMjIwODM2NzFkZjRlOTUyODdkNDQyMTkxYWIzZGQ0NDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwNzNhYWQxYTY0ZmUwMWI5Mjk1NTA3YTFiMDRhZTFkOGU0NDcyOTQ4Yzg1NTFkYTRiMGY3ZDM4NWM5YzdhZmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6e3f0952406f44ed82e1e51a15b6caa5",
+      "statement": "The memory endpoint is not an environment variable: it is the compose service name http://supermemory:6767 and is written down in agent/AGENTS.md, while only SUPERMEMORY_API_KEY is forwarded to the agent container.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L75-L79",
+          "version": "repo-lines-v1:sha256:9b76fc9d015644326b1c9f4a48eb090ad619d2efc69a34aea259d1a65d18bec7:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTljYjU1ODcwMmNiYmQ4N2JmYzI2YmQ5OGI3NDRkNjcwZDdmYzU2Yzg0NTUxMTM4MzkwNTk3ZWZjOWY5MTcxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGUxMjdiMDFkODZkMTAxNzkxZTM3YTMxZTc4MWQ5ZDY5ZTI2ZjRiZDBlN2Y5MDNjNmEwMjc1M2E3MGFhMzYwNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTc0Njc3ZWY0NWE5NTQyMDFkOTRjYmU0YTI2N2ZiNDE1MjQ5ZGMyMDFjMDIzOGNmNjNhYzk2MTBlOTZiYjNiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTA3M2FhZDFhNjRmZTAxYjkyOTU1MDdhMWIwNGFlMWQ4ZTQ0NzI5NDhjODU1MWRhNGIwZjdkMzg1YzljN2FmZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_842e1b6c77a743d7ba1c1775584bf1c5",
+      "statement": "The supermemory service has no profiles: entry and no ports: publication, because a profiled service would be dropped from compose run pi and fail the agent's lookup outright, and because the compose network is the only isolation the pinned release has.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L91-L101",
+          "version": "repo-lines-v1:sha256:f8db80d19a2e3d66f93b967ca86ab41ab091ebd7aa5504fb0651758f0580355b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ3ZTQ2N2Y2OWM5NDBmMDk2YWRlMThhZDIwOWU4NGU3NWVkMDU0ZDQ1MTk2ZTE3Mjg3YzllMjE0MGE0NzA0OTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM0NmVmNTc4YzljMGM5OWNiMjBjODFmNzdkMmNjZjc3YTYzYjI3NGFiYmViZGM0NDhkNzAzNjExNzI0M2ViZmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk0YThkNzI0Yjc5MDUwZjYzNzY4ZTRjNzk1ZTgyNWI3NGVhNjMyMGY3ZGZmNzc2MGVlYzUzODJhOGJiNTI5NDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjY5NTQ4OWRjNDI0NDc4NGVkOWE0NzU1NjczYzI4OTY5ODg0ZGM4OTNjYjhiYmFhZjlkNTJlMDFiMTA3OWY1ZmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f99bada56f9945ebb0c822925f185093",
+      "statement": "Memory engine state lives in a named volume mounted at /var/lib/supermemory, so the graph, auth secret and embedding model cache survive docker compose down and make clean and nothing machine-specific lands in the checkout.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L117-L117",
+          "version": "repo-lines-v1:sha256:88e4d4f7d986a33fdb16777100c66b6e6c8e697a4758899490fe2cc08f0607a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODhlNGQ0ZjdkOTg2YTMzZmRiMTY3NzcxMDBjNjZiNmU2YzhlNjk3YTQ3NTg4OTk0OTBmZTJjYzA4ZjA2MDdhMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODhlNGQ0ZjdkOTg2YTMzZmRiMTY3NzcxMDBjNjZiNmU2YzhlNjk3YTQ3NTg4OTk0OTBmZTJjYzA4ZjA2MDdhMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDAzMTg4YmJlOTkyNzU0OGU0MDJlNzVhNGJjMmVjOTM4OGE5MGQyNTkyMmQ3NzMzZDczOWVhMGY2ZjE2M2YwOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODQ3OTA2NzVjYzE0N2E5NDRmMDllYmYzZTNiODkzZjA4NTMwNWIxMDMzNDNhMDIxZjdjZjM3ODhjMzM4MDdjZiJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L133-L136",
+          "version": "repo-lines-v1:sha256:290cef0a835f1cb8fc3be7ec98441d4d37296c240e57ac926c62fc085cc5604c:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDVlNTEwMDMxYjNkNWNmZjg2OGI5OWEyNzVkZDI0ZDcyZTQ1Y2I1MDZiM2M0ZjU4OWNkMDhkZDgwZTlmYjJlYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzEzOWQ1NjNmYzBiMWE3NjVhZTdjN2Y4OWNjY2UzMjBhMzc1MmY4Y2FhN2E4NTA1OTBmZThhMWRmMGM2MmQzYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWFmYmZhZTYwNjNmYzE0ZDc2NTQ2NmNhOGU2ZDFiNTExMjU0MjUyZThkMTllN2E2ZTg0Mjg4NDBmOWVkM2Q0YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_cf90d1a7270a4a6aa2630e42021b45e7",
+      "statement": "The memory service healthchecks the server's browser welcome page because no health endpoint is published, with a 180s start_period for a fresh volume's embedding download, and restart: unless-stopped keeps the engine holding the only copy of the memory graph.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L118-L131",
+          "version": "repo-lines-v1:sha256:c7e33f26ec78b1d2940579a83f0bf32c2439677e9060dcb626630e1ec1489035:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3MWRiNGU4NzVlYjlhNmFmMTQ1NTYzMDU4NjE5NmY3NDIyMjMxMjhiMzYyNTgwMDk4NDlhNjhmODAyY2NmOWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1MzFlMjYwMzk4YWQ2MTA5MTRkZmMyOGYwNDhkMzkyNjRiYTdkNTAzMjc4ZGQyZjhiYjFjNGMxNGI0OTlkOTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU1ZjA2NmQwYWRhNWEyNWQ5OGIyNzc1ZGJlNzVhYjJhYWJmMmQ3MmQ3ZTljMDJhNTY3MDc4MWMyYTc4ODYyNWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4Y2QzNWFmODNjNTc5YjExZmZkMzMzM2I0MGUyMjg0YjAzZTJjOTIyODIxMmZmZGMxNzIxMjMwMjBiNGJmNjQifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

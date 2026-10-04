@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:f7f712c622c68452636e8a95a5417ae5406f1bd8fe5d34120578eb68ee555e4c",
+  "claims": [
+    {
+      "id": "claim_f9dff6bb34be4d5db80a5befe5ddf697",
+      "statement": "CI runs exactly one job, make test on ubuntu-latest, with no services and no caching, because the Makefile suite stubs docker and npm and needs neither a daemon nor the network.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml#L18-L25",
+          "version": "repo-lines-v1:sha256:946998f3dec0adddc795b4fc17df45b3aa7531b049af130265b23754de5a694b:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTlkODAxNTRlZDQyZmM1Yzc3OWIxMzMxNTc4YjU4Yjg5YzgwMWVhY2U3NGYyNGNkNDhlYjRhMjM1Nzk0MGE5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjQ1ZGQ4MjMzNWM3ZjZiNGNkMDZkYTIzMDhjODU5ZGE2ZDNmOWViMzhjYThkZTc1NGE0NTlmYmRiOTc0NmZmOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjE2N2Q0MWJjYjI5NDUyYTRkZTA4Mjk1NmE2NjJkZDVkMzJlZWM3NjA4NGZkMDBmMTcyMTQwODlkOTVhNTM0NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://.github/workflows/ci.yml#L3-L5",
+          "version": "repo-lines-v1:sha256:3cd6ea2ff0130c026ad5283845d35ece1ab6efff5aa821a4de93f7f69dafac60:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjk2MzRiNWYyZmE2YzU0MTA3NjAzMTJmODkyNjhlOGExZmRlNjIxNzFiMjQ3NGJkNzU2MmRmNmE1NWRhOGUyMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmMyMmNhZmVlZTU3MjI1ZmU0ODQxNTVkZDNhZTM4Yjg4MjhhYzYwYmJjMjBmMDcyZmVjMzNhZTBhYzk0NmI0YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMGFkNDc5NjAxYjg0ODE0ZDJkMTM1YWYyY2Y3NDlhZDdmN2UwMjI3NzYwOTk4NzU3OTQ2MzBlZDYxMGViMzExMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTQwOWU1NTQ5ODk2MDA0MWIzMTkxNjZlNDllYWIzOGQ1YjgwYjFiOGExYzQwZDNjYTI1OWUzZTg1OTllYWQ4MyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6cbd7f7b9a264e298a474d23275ea16e",
+      "statement": "Both CI triggers are path-filtered to Makefile on main and master, and concurrency cancels an in-flight run when a newer push arrives for the same ref.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml#L6-L16",
+          "version": "repo-lines-v1:sha256:1a15764d183a632e73ad8be502ce88d4da079dae1edcebecdadf165bba0cfa4d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5NmRjNDgxNDlmNWE4M2QxZWQ2ZGJiMzliYmM3ZTJiOTAyYWEzZDM0ZDZiZDVhZTRiMjkxYjY4ZGYwY2E3OWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0YTc5NmEwMWY4NDU4Yzg5OWQ1YjIyODkwZTVkZjQ0ODAzY2E0ZDgwMTdjMzg3OGQ3Zjg3OTQ0NDkxMjBjOGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNjZDZlYTJmZjAxMzBjMDI2YWQ1MjgzODQ1ZDM1ZWNlMWFiNmVmZmY1YWE4MjFhNGRlOTNmN2Y2OWRhZmFjNjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmYzhiOTBlNGYyZDMyNmYxZGJjYWNhNjQ5YjI5NjM3OGQ3ODNkYTI3ZjUyY2NkNjE3ZjgzZDE0YmU5MTI1NmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd78f119cb774b62a25ba352a7fc2a82",
+      "statement": "The OpenWiki update workflow runs on manual dispatch and on a daily 08:00 UTC schedule.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-update.yml#L3-L6",
+          "version": "repo-lines-v1:sha256:ae3cfd11fbd2aec9ba8022f9055a23900230776141f0fd80f6908edd097fed23:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTk2ZGM0ODE0OWY1YTgzZDFlZDZkYmIzOWJiYzdlMmI5MDJhYTNkMzRkNmJkNWFlNGIyOTFiNjhkZjBjYTc5YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTNhZWQ1MDJhNWFkZWU3YmIwY2FkZDQ2Y2Q3NDYzYjUzMjBjNmNjZWU0NDgwZDY2ODU0ODg0MzEwNjM3NjExOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzViMWYyNGU2MTgwNWVlMWE5YmM3ODA0N2UxZTRiM2Q4NjE1N2Q2ZTM3ZDhhYzBiY2JlYmQ1ZTY1ZTVlZjFhYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzk0NjJkNWYyYzIwN2U2YjRmODI4NDNkOTE1NGZmMGJiYWQwMzQzOTI0YjJjM2M0YmFiZDk5Yjg3Y2NkNGI4MiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_dca58fa892d5495990ddc35fca262fa0",
+      "statement": "The scheduled update checks out with fetch-depth 0 because it diffs HEAD against the commit the wiki last documented, and a shallow clone would leave it with an empty change summary.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-update.yml#L17-L22",
+          "version": "repo-lines-v1:sha256:47e4b59df2bf8c677d6af7b6583c0aff37f9e279893f86dc640690a111404205:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTZjOGNhMmJlMDNiNDE4ODVkZDQxZTBkYWQ0NDA2ZjQyMjdhOTY4ODE2ZGQxZjk1NDIxOWMyYzVlYTIxNmMxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTMwOTc1YzdlMjBlYmE4ODU3ZWZkMzFlNjJiNjY1Zjc4N2U1MTY0MTk1MWE2NjA3ODlmYmE5MzNhNjM0NzIxNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjY0MDRiMDhmZTYzMmQ2MjFiYjg5YWY1MjFkMmE0MGU5MDU3YzRmZWUxYmI3MDkyMjI2MzhjNDM4Yzc4M2VkMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2VmMTZlM2M4YjU0ZTJiMjA0ODE5NmFiYjRjZDgwZDIyYTUwOGVjZDYwNzQ2MTI0YTJlYTJkY2MzNDE3OTlkMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_761d86ef77a94144a15aedc1190d9740",
+      "statement": "The scheduled workflow installs a pinned openwiki version on Node 22 with optional mermaid and jsdom for diagram validation, keeping a recurring run reproducible.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-update.yml#L24-L31",
+          "version": "repo-lines-v1:sha256:5318656d09ff2a79cd9977748a2dcc5cb55d770cd04922125a7b247f01fc2096:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzZkNzEwYTE3NjI4OTVjZDRjOTNjNmEyYTI5ZTYyOTI0ZDZmNzMwZDk1ZTJhZDE3N2NhNTA0OGViNTY5YzlhYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzU0NWJkMDJhOWI2M2UyMDExNzY3MmY5ZDEwNWNhNDRiMGFkYTQ5OGUwZWM2YzI1Y2YzY2Q1YTRjOTMzZmNkNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWFkNWVjYjk0MjUwZmU2MWNhYmFhMmJlNDMwZjIyNzZhODE5YzU5ZTAwMWY3M2YwYjc1MWVmYzVlOTIwZmNhMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTM3NjlkMjkyYWFhMDBjMmQzZDAyNzBkZmM5MjIzODZhMGRlNGRhMzhjOTA3MDA1NThlYjIzMmI4ZGIyYjdiNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_776088f3e909480ab21bb157d6302f26",
+      "statement": "The wiki regeneration step runs with continue-on-error, so a failed update does not fail the workflow and its own outcome plus the printed report is what a maintainer reads.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-update.yml#L33-L36",
+          "version": "repo-lines-v1:sha256:d58ef5f498c02b45776d67452c92ddb307313815a56beddaf62b0c62e897fa58:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzBlOGY5ZmE0MGU3YmQwNDk5ZDFjMGQ4M2ZkNzU4YWE4NWIzMDg0MmRiZDYxZjBlYTZiN2FlMTBlZmVjNzZkMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTQxYzYwZDgzNTk3Yzc2Y2NhNjk2YWFjNzRkZmI3YWM1ZGMzMzYyZmU2NTFmOGNhYjVhMzA0OTk2MzAxN2Q0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTViMzM2YmI0MDk2ZjYxMDEyY2NkMGQxOGRmNjExODMzMmU3NWNlOTg4OGQ2ZWNiOWZiNmQyOWZhMmM2N2FiMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzkyNDc3MjE0NGE2Y2E1MWEyOWM2OWNiODQ5NThlZjUyZmM4ZDRhOGYzN2Y4YTE1OTllNWQ3NGY5OTk0ZjYwNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_fa4e945f6a554677b4e5502f654cfdd9",
+      "statement": "File ownership adapts to the daemon: rootless Docker runs the container as root without a uid, rootful Docker runs it as the host uid:gid and therefore needs the entrypoint's scratch HOME fallback, and either way files written into the workspace belong to the user.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L269-L281",
+          "version": "repo-lines-v1:sha256:5b61adf48e978c2d616930cfcbea3308873f3b00d6f5f4b11f32a108f29af8ab:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFhNDZkNjYxYTc2ZjBiMWFlNThkMmZjNGFjNmQ5MDg2MDNjNTg1NGU3MmE0YmNmZGU0YjMyMTgzNzg1NDEyMTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE5N2JkNDJkY2Q4MTY5ZTJjZmQ2MjFlZjJmYjllYjNiYTllZGQxODA5NDEzNGU5ZDgzM2M1YTFlNTNmNDQyNGEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUzNGQ1Mzk1NmRiMjE0YTEwY2Q1MmZiNDgyYWNmYjgyOTM1YzdiZmRhMjYzZmI1MTk4YzZjNDk0ZGI3ZDUxNDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImU5OGQ5YmQ1MGJkMjZmZDk5ZTBmNWRiNzY5OTlkMzA1ZmZiZTUzM2I2YjAzZmE0ZDMxNjRkMzMzMjQ1ZmQ1ZjYifQ"
+        },
+        {
+          "resource": "repo://bin/pi#L89-L97",
+          "version": "repo-lines-v1:sha256:202c981e13cb758e24ea339ea5b48bbaea2218df5fe596f26e47a68ce272cdc1:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMWMzMzdiMGU4NGE3MmU4MDVmN2VlNjUwNWI2YTY4MmY0MWYxYWRjN2NmZTcxZTcxNDcwZWQyM2RiNzg1OTZlYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzRhMmJlY2ZmOGFmYjM0ZGIyNjBkYWJjOTY5MTVmZmVjZmRlODQ4OTI5NTQxYzYxOTNkZTZkMTY0YzIxZThkYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDc1YWZkNWMzYTc5NjhjZGI1ZDNlY2ExMGNkNDVjMDE4MGY5NGUyNjFmNGZiZjM2MWUwNDRiMjgyZGMzMWM5YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjNiNDY4NmU5MTE0OTUxZWU1Y2M2YTVmNmIxMTY5MzQzNWM5NjJjODQ4YjhkNWI5ZWM2MzcyNjdjYzM4MTFhOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a0d53142f4654d1985d92105f55b3ee3",
+      "statement": "A native global pi install shadows this repository's launcher because it lands earlier on PATH in scripts, ssh sessions and make recipes, and pi --version distinguishes the two by what it prints.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L326-L331",
+          "version": "repo-lines-v1:sha256:a72974df758b0c893105f645c146d765ac00fbc489465c747b8e3fca4b739419:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmUxYTZiNjBhZmJkZjFmYTk2M2Y5NmRhYjU1ODAzOTE0NGUzNGRlZWVjYzE0NWYxZjkwNTEwZTI3NTM2M2NiMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODRhZGJkNGEyMDg2ZDczM2U5NmMwMjAyMmM4NGNhNzRiNjBkZmI4NjQzZDM2YjUyYTY2YTYyNjY3ZTVkZjA3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzQ5NDZiNDE2ZmUxNGZiM2NmYzAyZGE1NjhjZDg4YWFiMjBiNDk4Y2ZjYzQxZmM1MDgxOGE0Y2JjMzc5NzY5ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTI0ODc0ODg4ZDUyYTFhODY3OTM4Y2RiNDJiZGE1NWVkNzczMzA0YzQ2YWY4YmZjMzk0ZmI0OGQ5NDNlNDYzNiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d687a5089a814f8baa549f088a676703",
+      "statement": "The documented launcher failures map to distinct causes: an unreachable daemon is a Docker or group membership problem, a per-launch rebuild points at PI_IMAGE, an ignored agent/ change needs /reload, and a permission-denied mount means the host directory is unreadable by the container's uid.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L333-L343",
+          "version": "repo-lines-v1:sha256:31818f7fbb8fc809d99c0a8f8c4186c9c494cec5aa32cea948d3222237b47cf1:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlNDE0MDJmZGI1YTZhNTlhNGE3MzgwNzRhMTY4ZjM5NTRhOGM0ZGM3MjI4OGQ1YTE3ZTc4N2Q4M2VjN2I2NDciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwNzE4M2M2ZjRkMTQ4YTkwNjcxOGVjNzMzODM1YjVmZGE5ZDFlMDQ3MjhiNGRkZDI3OWRmMTcwOTNlMzc3NzEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ0YTNkNTAwMWE3MWIxZTE3MDI2NWM2OTRiYjlmN2RlMjUxZGUyMGUzYjBhM2M0NjRiYzgwOTc1MzJhOGZmMGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI5MTEyYjY1Y2E0YjUxNmY3YjhiZDgwOThmNzkyYzk1ZGYzMGM1ZGRhNTUwNDc4ZGRiM2U1MTQyZTE3N2NlN2MifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_063fb3a71a614197b4944b19343cd771",
+      "statement": "Memory failures are distinguished by signature, including the two different 401 shapes where a bare Unauthorized means a missing or wrong key and an Either userId or orgId not found means the engine is still loading.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L344-L359",
+          "version": "repo-lines-v1:sha256:fcce22e4ec4f119527298c811f3f2aef1df4163c9cb2e7c5c8f82de50265161c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliOTI3N2Q4MThiYjJkNTZhOTNlM2Q5YWY4YjM4MmQyOTU5Mjg3NDc1ZmIwNmU4ODdhYjVmYjQwYmU4ZjIxMWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlkMGYzOTMxOTczNzBmZDBkYTMyZDI0YWIyMzUyZjIyNWVhOTA5ZmI0MTQzMGZlZmEyMjIyNWRmNTg2YmFkNzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ2NGMzMzFhMjM3ZGM4ODE1MWIzOTMxOTc0MTJiZTA3MTExM2VjYWQyMmIxZmJiYTMxZDNkYmQ5OGZkOWNiNTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI4NzA1YzRjMDMxNDgwMGZmZTgzN2MwYWVjNTY3ZWI5YjRmMWIyZjM4Y2M5NWI1ZGJiMzZkNWI1MDQzZWViZTkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b1a9c5c85580463681c6c84d885173af",
+      "statement": "A Supermemory version bump must be preceded by reading the release notes, because 0.0.8's bind-every-interface behaviour and optional generated key are what the compose service's no-ports decision rests on.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile.supermemory#L22-L27",
+          "version": "repo-lines-v1:sha256:5e040f4e7559e495dfc771241a2faca0f872fadab2f44230b9d026e5121622ae:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWYwYjY2YWQ1MmYyZDdhNmNkOGY5YWYwNDI2MjY1ODgwMWZkZGNhOTYxMzQ2MTZlZmU2Yjc1ZTEwMDQ4YTBjNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMjY2Nzk3NzM4NmZlYjNiZDQ0NjY1NTQwZDQ5Mjg2MTFhNWFjOTI4MDIxYjUxNzNkNGIzMGVhMjMxODA1MzVlMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjg0MDYzODgzNWExNDJlMDlmYjU1OGYyODBhZmUxZmJkYjdkOWFkYjczYjI3YTUwNzBmNGJlM2FmOTFiNmE3NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjQwZDAzMWUzYTVlZGVlMTEwM2Y2YmE5YmNlYTdiYzNlMmY2OGJjNDMwYmE5OTBjNzNhNDRhMzg3Y2ZlYjhlMyJ9"
+        },
+        {
+          "resource": "repo://README.md#L355-L359",
+          "version": "repo-lines-v1:sha256:01b411db10d2986be26979a4ee081ddc266d487cf641acad3200887cadffe3e7:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzRlYWJlN2RmYjRlNzgwMzI5NWRiOWZiNzAxMWM5Y2ZlYWQzZGE4OGFjZjJmMWQ4MzY4NzgwNTFhMTZkZTM1ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWQwZjM5MzE5NzM3MGZkMGRhMzJkMjRhYjIzNTJmMjI1ZWE5MDlmYjQxNDMwZmVmYTIyMjI1ZGY1ODZiYWQ3OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmZlNjIyZThiMDNhMjkxNWUyZTA5NGFlZWQ1MGUwNjU4NWRkNGM5ZTUxMWVkYTRhYjc1ZjhhNjIwMTNlZGRlZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjg3MDVjNGMwMzE0ODAwZmZlODM3YzBhZWM1NjdlYjliNGYxYjJmMzhjYzk1YjVkYmIzNmQ1YjUwNDNlZWJlOSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

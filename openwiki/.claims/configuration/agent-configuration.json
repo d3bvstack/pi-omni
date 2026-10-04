@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:c0a8bacc588ff3d786168fab0b9e6f496a700ec8238afa722b7bb5b6d74e7728",
+  "claims": [
+    {
+      "id": "claim_2019996009dc40429fad2218ca3f5d3a",
+      "statement": "The agent/ directory is bind-mounted at /pi/agent on every launch and named by PI_CODING_AGENT_DIR, which is why the agent behaves identically in every project without per-project setup.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L59-L59",
+          "version": "repo-lines-v1:sha256:7c1d5d27ff64986bf4f940c9bea5d1663e9d8c5f58fde18d78ade61c0faeff0b:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2MxZDVkMjdmZjY0OTg2YmY0Zjk0MGM5YmVhNWQxNjYzZTlkOGM1ZjU4ZmRlMThkNzhhZGU2MWMwZmFlZmYwYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiN2MxZDVkMjdmZjY0OTg2YmY0Zjk0MGM5YmVhNWQxNjYzZTlkOGM1ZjU4ZmRlMThkNzhhZGU2MWMwZmFlZmYwYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGI5YzlmNzcwMTRjZWQ5ZmE4ZjI1ODEyYzZmZjBlZGQzOWFhZjcwY2Q1MGQxMTJjMmExODZkNDI4ZjZkNjM3OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjI2NjdhNGJkODFmZjMxN2JhNTZlMmRhNjAwYjZiODE1ZmM2YjI3Yzg5NGJlZDBlYmQ3ZDA1MThkNDViNmFkOCJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L46-L53",
+          "version": "repo-lines-v1:sha256:a25be6260f833c423f7736df5cd125e7941153ef689286a4f72ae67f7645aa3d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE4YTQwM2IwYTA0ZmU5NjA5ZTFkYTY2OTYzYWQ5NmZiNTA0YzY0NTU2ZGVkZDk1N2M1NWJiMWExMWQ0MjFjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODljYzA4YzExZjliMDA3NzljMTA1ZDg5NmY5M2MyZWRlMGFjMjA3ZGY5ZDJkZmNlN2MxOGNjYWZmMTUyN2YzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWM4NzJhMWZkZTMyODQ2Zjg5MGI4N2JmOGJhZmY0ZjQ3YWY1Yzk5MGQwODZhYjU1YzA1NGZhM2EwODJjMmJjMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTY1ZmQ0ZTM3ZmExOWJlMDdhZmIxMjllNWY3YWViNTRlZWM2ZDU2ZDVlZGE1OTQ0NTZiN2RiYWRmMDA1ZWQwOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e94b6f1ad262484fba23c2f687c9db39",
+      "statement": "Committed agent configuration is settings.json, AGENTS.md, models.json, mcp.json, keybindings.json and the extensions/, skills/, prompts/ and themes/ directories, because it is setup worth sharing; everything Pi generates from the agent directory is gitignored instead.",
+      "evidence": [
+        {
+          "resource": "repo://.gitignore#L12-L14",
+          "version": "repo-lines-v1:sha256:11d5cab063b061a7df7d56041d574f885e6f98309987a123152edc4df9f2cb1f:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzdiMmNjMWEwMDgxNWI1NjllN2I1ZTFmY2IxYzEwZDE3YWY1YjQwYWQ4NWY1ODIzZGNmNjQ1MDI4YzE0ODk0ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzQ3NGQwNzYxZjliNWFhNDU3ZTZkMDQ1M2FmMjVlM2RkYmIzMDhlYTVjMjljZDY3MDk2OWQ5MDc0NzI4NzAzZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDQ1N2VkNTA0ZGJkNmMwNGQ2OTQyN2I2ZGY5NWU1OGYwOThlNWNjOWIzOTY0NDRmMzRjYmM2YTdhNzNlY2JkMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmJmMjg2MWI4YzMxZDQ2NTlmNDI0MjUyNjY4MGMwNzZjMDI1MDg2Y2JmZGViNjNlZTRkODM0NDQxOTliOThiMiJ9"
+        },
+        {
+          "resource": "repo://README.md#L106-L108",
+          "version": "repo-lines-v1:sha256:0c7a54a349f3eda436d5973ca16ea7385c20831b29e5644f0a1e6793d9be9cbc:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNjg3MDY2YTVmZjdkMjUwNjVkZGRiYzFmZTc3ZTIxYjdjOWIyNzdjNjE2NDVmNzkzOGIwZGNmZmE1NWU1ZTg2NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTkyNTg1MWUwM2QwNTNmMWMxOTg5MTkwMjc2YTRhYjIzOGJmNDQ4MThkYTg4NWNhNjY3ZmFjNGU2MDVjMGEzMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2RjOTU5YmM1ODM1MDNhNjI3NTJiNGJhZDIxNzJmMDU2MGE1OTQwOGI2OWYyODM2NjI1OTZiZmI1YTUyYWIxMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWY0MGRhNWU4ZmVhNzliMjdiZGQyNGU5ZjA5NDE5NjIwMWYwYTU5MWY1MjAzOWRlNzk4OGFjNjIxNjVjZjk3YSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_fcff178a7c044a638c67a48fe0c5c38a",
+      "statement": "Gitignored agent state is grouped by kind: credentials, session history, binaries including tools/ which Pi migrates into bin/ on startup, the models-store cache, the npm package install tree and mcp.log.",
+      "evidence": [
+        {
+          "resource": "repo://.gitignore#L1-L24",
+          "version": "repo-lines-v1:sha256:a971fb70617078a7162d746bb051301939d1c5175f7b5a100c671340291f1963:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI2ZDNkYzYzZTFmMzcwNjZhNzJhNDIxMmI2NTczYTJjMmI3NjlhZWMwZWYwYTJmOGRkYjJhYzNiY2NmYzVmN2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUzZTlkNTZkNTNiM2Q5YjI3YWJkMzNkMjE3ZWJkY2NiOGQxMGMxN2RjYjEyN2MwMGNjMTQxYzlkYTJhMDFiMTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijg3MWZlNDZkY2MwNGI1ODYzM2EyMDdmNTgzZWMyNDNjMTc0N2Y0MTk1NjBkYTkwODk2NjQzMzQ0ODljMTU5MmQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_88e4c6466edf43b8983a056a4bbadc26",
+      "statement": "agent/settings.json declares the npm:openwiki package while its install tree under agent/npm/ is gitignored, so a fresh clone carries the declaration and the first run installs it.",
+      "evidence": [
+        {
+          "resource": "repo://.gitignore#L23-L23",
+          "version": "repo-lines-v1:sha256:497b298ba92c7afe43eb4feb16d57bcc4d91986a78a23f474b56e6828bf2d15f:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk3YjI5OGJhOTJjN2FmZTQzZWI0ZmViMTZkNTdiY2M0ZDkxOTg2YTc4YTIzZjQ3NGI1NmU2ODI4YmYyZDE1ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDk3YjI5OGJhOTJjN2FmZTQzZWI0ZmViMTZkNTdiY2M0ZDkxOTg2YTc4YTIzZjQ3NGI1NmU2ODI4YmYyZDE1ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTY0NjI2NzE3NmRkMWEzODBlMmIyZTM2NTliOTdlNWI3NzdkYTI3ZjA0OWJmMzRhYTRiNWJlOGU5ZTg2NzdmNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiY2U3ZTVkMjBmMTQ0OTNjOTBmZDAwOWNlZjQxNWNjM2VkMmM3NzY3ZmM5NGI4ZDNiNThjNjMzODRjNDhlNmY5MyJ9"
+        },
+        {
+          "resource": "repo://.gitignore#L8-L9",
+          "version": "repo-lines-v1:sha256:4ce975cc59f44986afef248118d941b1e57564c6472ac8df2d68a001f3b2ebe0:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmM2ZWE2YTQyN2E2MDE1YzJlYTVmYWZiMTU0ZWQwNTJiMmQ2ZWIxMGY2OWEzZThhMTgzOWE2ODQ5MTJkZDZhNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWFmY2U1NzNiYjFmMDY0OTdiZTY2MDA3MzA2Njk5MGFhOWIwNGUzZTViMmE5OTYyZTQ1NDcxODM2MWRiMTAzOSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDhlODc5ZWIwOTNjZWI5ODI3MDU0MzQxN2IxNWRkYjM1OWNlMjAwYzI0YmFmOWRjZmVjYTZkNGZkMTdjOGVmNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjlmZjgxMzJhNmNkMGE4MDZmMjVlZTUxZTdmYjRlZTkzMGJjNDZjZjNhNWRlMDIzMTI3Nzc2NzdjZjUyOTQ1MSJ9"
+        },
+        {
+          "resource": "repo://agent/settings.json#L14-L16",
+          "version": "repo-lines-v1:sha256:543faa0c3b15e956e79cf7ef0877c0f7538ed9b54c8f3f426f7df7aaf4c78abc:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2Y3ZDJmOWY3MTUzMjdhMTczMGIwYjYzYTA4YjA3YjI3NjZlNGI5MWVjYmE4ZDcxNDg5YThlN2M3ZTNiYTllOCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzA2NDhmNzdmZDVhOWM2M2IzY2RkMGFmNDlkYWExMjk5MjIwYjc1NDFlODhjYTE3ZWZlMWE2YTExNGI5ZmYyYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODRhMjNjNzNiZTcwZDYxYWUxNzcxNjE1ZGQxZjA1NzlkOTYwMjg0ODA5MjE5MDgzYmU5OTIzYTBjZDg3Zjk5OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_a406bd8d4dd641e59444ad376be9cd47",
+      "statement": "This repository's settings.json configures the built-in read, bash, edit, write, grep, find and ls tools plus codemode, the last seen changelog version, the system theme, and the package list.",
+      "evidence": [
+        {
+          "resource": "repo://agent/settings.json#L1-L17",
+          "version": "repo-lines-v1:sha256:c21457c969a8596b079cfc480cea5919ae8b2ca03fb0d3d1edfe3727dddb64b5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2ZmIwOGZkYTFhY2I5NTdiNjExNmJkMzc4MTFhMWZlNDFhMDE2MTFjMDYzMWVkYmY3ODZkNjg4OWEyN2E1NWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQxMmNhMzQ1Y2NmNzViZjljMDgwNmJjZTY5NWJlOGRlODA4Yjc5OTg0MjUxYTdhNTRkMjAyY2Y2MTAxZGQ0NTEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c34f38d91ec0429cb1c882993b744f08",
+      "statement": "Pi re-reads committed agent files on every start, so no rebuild is needed for a configuration change, but a hand edit inside a live session requires /reload.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L115-L117",
+          "version": "repo-lines-v1:sha256:97638b133ec0cfe32dce52e54c26b844423bc8197074fe00103ca0d103fe85dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODVmNzIzMzUwM2Y3MzY3YTcxNTI3ODBmZWEzNTE5MTJiMzJkMGQxOWJlZWQ3ZWU1MGJhYmMxMWU1YWEwNTJjNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTA3NmFjMTUwMWIwNzZlM2I4ODZjMjA0MWRjNTBjMWVhOGRkMTVmMzQ2NWEwMDViNjQ5YTVjYTU4YzVlMDU3OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGQ4ZjJiOTU1MmJkNWJhM2RkMmNjMDEwMzY3YzQzOTc5MDhkZDJkYzEzMjhkMmZmZjM5MDE5MDI5OWIyNjA0NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWI1OWRiMTM0Yzk1NzE2ZmU4NTU4NTQ5ZDhkMTMwMmNkNGRiOGVlMTRhMzYyYzRmYzMxNzRmMGZmNDg3ODUyNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_167ef5f6d80d410092a7d0918c267cf9",
+      "statement": "agent/models.json is the extension point for providers Pi does not know about; it ships empty here, and the documented local-provider example must use host.docker.internal rather than localhost because localhost inside the container is the container.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L161-L177",
+          "version": "repo-lines-v1:sha256:64b2db9b1181d1eb78e80f396b7e50ba993de7ada09d2b8cfefa1feb986979b3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE1NTJjMDA1OTBlMDM1YmQ2ZDZlNmRkZDU4MjZjMzMwYzBkOTg2OTljMTRjYjBhMTI3ZDRiMjNhMGQzYTVjOTciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgzNDYxMDNhZGI4ZTM1N2JjOGVjZTgwODdkOGYwODllNzYwZTM2NmY2MjdhZWQ2NmE0ODc0ZmFjMjYzYTEyN2IiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkYWRmOTM1MmMxMGY2N2IzNzk1ODUwM2Q4YTYwZDljNGQwZDk5OTAxMDY1OWI5OTM3MmFmN2Q2MDA5MGZjMGMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJmOGI2YWI3NjM3NDAzZmJiODRkMWJkYmY3ZWMzN2NjMjk3OTNhMDkxYWExNDFlOTM2NWU4NDQ4ZjY0YzkwZGUifQ"
+        },
+        {
+          "resource": "repo://agent/models.json#L1-L3",
+          "version": "repo-lines-v1:sha256:f6a60ffe718b445a923e5d870ff3b23ced2a8e42ef7322a0494c48c788e66e10:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTZmYjA4ZmRhMWFjYjk1N2I2MTE2YmQzNzgxMWExZmU0MWEwMTYxMWMwNjMxZWRiZjc4NmQ2ODg5YTI3YTU1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_7fb7ec25ef48401eb265032571bc9a25",
+      "statement": "agent/ is excluded from the Docker build context, so no agent configuration or credential under it can reach an image layer.",
+      "evidence": [
+        {
+          "resource": "repo://.dockerignore#L1-L6",
+          "version": "repo-lines-v1:sha256:016be1331594a283fdbc54435a7a29810e005783e079e31237619225c7fb25d2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmVhMzU3YjA5Nzc4OTRlZDQ1Mjg1NzUxMDg1NGIxOGI3MTcxNjUxNTZlODRkMGMxZDMwMjU3MDVlNDBkYWM3OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzRkMDZmNWEyZjM5YjUwZDg0MTRjNjJlNmM2N2RlYjliYTllMTEwOTZiZWY3Y2NhMTU1YTU4NWY0MzNlNmE2MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWZjMWM5NzcyYzRhMTcwZjY4YWE1MDI1OGVjYmQ5NTgxMTFlNzkxMDk1NmZjMzRjMmI5ZDU3YWU5ZTczODViMCJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:bcc89e5f76fba0f6a6e0784f659df63d116c04e3de355d995bda996f94733775",
+  "claims": [
+    {
+      "id": "claim_195de2647bb343499c2cad0eaba1e03d",
+      "statement": "The memory engine is reachable only at http://supermemory:6767 on the project network, with no published port, so a curl from the host failing is expected rather than a symptom.",
+      "evidence": [
+        {
+          "resource": "repo://agent/AGENTS.md#L20-L28",
+          "version": "repo-lines-v1:sha256:8b4bdc223f0753c668e68a8788d94818e268c90f60d5bb2b2c8dbbbab26a15ce:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjgxYjY1MmE2MGUxMjFkZmM2ZmJhNGE4M2RlZmRjNWNmOWRmYTRhYWZhNmNlN2IwYTJlZDgzNDdhYjc2Mzk1YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTQwNzY5Nzg4Zjk1ZGJhOWQ5ZmVlOWIyMDdkNjdhNjYxYjgzNWVhMGZjMDIyMTUyMWFhNGFiNDI4NDFhNGVhNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDU5OGQwZWRmZjM2ODk4M2Y0Zjc5NDNiMTUyZmNmYzI5OGU4MTA5ZWY0MTliMDdlMTc2YjIyZTE1OWRjNmM0ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmVkY2JmOGJhODQ1ZDI4ZmVmYTliMzg5NTk1NDYwYTZhYjZkMDc1ODY3ZWUzZTBjOTQyZDY3NTFhMjc0NmUwOSJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L95-L101",
+          "version": "repo-lines-v1:sha256:a916805fa2970d04ec155acac1178fed58ebd55d59418c952b5da79865a08c3c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjQwNzdlOTczYjNkOGZiYjViNmUxMDcxZmNkODkxNTExODBjZGViNDcxZDkzM2RhODFmOGFkYmQ2MWQ5MzQ1MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzQ2ZWY1NzhjOWMwYzk5Y2IyMGM4MWY3N2QyY2NmNzdhNjNiMjc0YWJiZWJkYzQ0OGQ3MDM2MTE3MjQzZWJmYiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiYzFkYjE2ZTg3MGY1NzVjOGU0Y2ZkOTA4NGU0MDczYjY1MGFlMjM4Mzg3YWZjMTBjODBhODhiOGEyNGI2NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjk1NDg5ZGM0MjQ0Nzg0ZWQ5YTQ3NTU2NzNjMjg5Njk4ODRkYzg5M2NiOGJiYWFmOWQ1MmUwMWIxMDc5ZjVmZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d318c343b59142aaa4d999ae4bff2c09",
+      "statement": "Self-hosted Supermemory ships no MCP server, so agent/AGENTS.md plus curl and jq in the image constitute the entire integration interface: ingest through POST /v3/documents, semantic recall through POST /v4/search, and stable facts through POST /v4/profile.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L37-L43",
+          "version": "repo-lines-v1:sha256:d02dd4448886b25b2de526dbd3cbfc89c916ea6e915ed358ce43e0836895616c:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc1NGE5YTU5OWU5M2JmY2Y2M2ExNmNmYjA1NmI3MzQ5YTNiZGJjNGUwZDgxZTJmNmFhMGQyZWQyNWVkMzMyYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTI0OWJhNTM4MGExMDM2ZTE3MTVlMTc0MjI5ZWI4MzMwNGU4OTNkZGNiM2VlZmFhZjQxYmNlNzA4YTdkZmQ0ZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDY0NDFlN2FlNGFjNjk3NzdiMzA3MDI3OTEwOTQwZjI3NzMxMTcxMTg4NGNmYjU1YjQzODkwYmQ4Yzg4ZGFiNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWJiMWVlNDlmZjUyNTNmZjYxNThmM2Y0ZDE3MjZmNTYyMDI1YjEyNzY0ODJmMDJkOGVmNzFlODRhODA4YjkxYSJ9"
+        },
+        {
+          "resource": "repo://agent/AGENTS.md#L22-L24",
+          "version": "repo-lines-v1:sha256:c80de20d0bba35a6153c9b3da6b94342340b76a55901d627520a21925be2cfb3:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGRiOThiNzJiMjM2OWJmODBkODc4M2Y5NDQyOWRiNzIzZmY4OTZmODRiZDBmYmFiNWYwMDZkODY3YWRjMzY3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzI2NzJiOTJiNzg0ZDRhMzNhNjIxYjc1MDRhNjJmMzA1ZTJjMjljZjMyODQ1Yzc0NzkzZDJhOWMwNjgyYmZkNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOWVmNDY5MzEwYWJiMmM2ODUyMGQ2YWRjOTFiZTQ2MGYxMWJjNTg2YWY3N2Y3YWY3N2YwMTAxY2UwOTY3ODdjMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNGNlNmFkYmQ3MDE2ZGQwNGZjNWU4ZTEzZjNhMmEzMmM1NWZkOGU2MGZjYTUxZGVkM2I5OWFjNTFlZjVmOTU5NyJ9"
+        },
+        {
+          "resource": "repo://agent/AGENTS.md#L38-L42",
+          "version": "repo-lines-v1:sha256:a02d67e5bc7cffa6646b49145edb25163279d7509f1db8470f5b464e4a2faced:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTA1MGU3Yjc4MzA0ZTMwNGI3YzZjNzA4NTU0NzhlZWQxOWIxZDIyNTU3MTYyNGI4ZmZhZjc0NzIyYjA2ZmJmMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmY1ODdmODVmYmVjYzY3MzJkNzk2OGJjYjY3NjA5MGZjZjdjMDI2YzE0YzFhYmJiODg1Y2NjNGQwNGU4NDllNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzVjNWE5ZDA5NDFjZDBkNDg4YjE5MDQ2ZDA1MGM0NzU2Mjk4MjQwN2M4NWY3OGYxZDIyYmM3YWJjNmVjMThlZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZGM0ZjM2NTk0ZDlhZDZkNTc4MjQzOWZlOWIxOGY5Yjg5NjdlNjhlYjQ5OTMzNTllOThhZGE1ODE0NjI1NWUyNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_41afdc95a7c04ded8e4ec36770d5a0bd",
+      "statement": "Every memory request needs Authorization: Bearer $SUPERMEMORY_API_KEY, and an empty value means memory is not configured on this machine, which the agent must treat as a condition to carry on rather than report as an error.",
+      "evidence": [
+        {
+          "resource": "repo://agent/AGENTS.md#L29-L31",
+          "version": "repo-lines-v1:sha256:bedcbf8ba845d28fefa9b389595460a6ab6d075867ee3e0c942d6751a2746e09:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzI4MmVlNjE4N2FjMGFhM2NkY2UyMDMzMzRiMzhhYjM0OWVmOTQ3NGE5NmY4YzY1NzRlMDg0OTg5YWIwMjI5YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZTkyZTE4MTU3NTZkYWE0ZjQ0Nzg1MDQ2ZTU3Mzc0N2ZiYzVmN2I2MDQxOTE0OTMxNTQ0YzYzOWE3ZTg0OTk1YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmMzMDU3NGYwYTc3MzI5YzFlMWVhOGM5YzNjNWI2MDgzNzljZmUwYzAwM2ZlNDgyMDBiM2E0MGU0MDA1NzU1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMzAyNWQyYzFiNjNhMDVjNjgxNDY0MTUyZWM1YTQ3YTdlMDQ3NzFkMTAzODAyZWQ2MTllMTBiM2RlNDUyNzM4ZCJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L75-L79",
+          "version": "repo-lines-v1:sha256:9b76fc9d015644326b1c9f4a48eb090ad619d2efc69a34aea259d1a65d18bec7:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTljYjU1ODcwMmNiYmQ4N2JmYzI2YmQ5OGI3NDRkNjcwZDdmYzU2Yzg0NTUxMTM4MzkwNTk3ZWZjOWY5MTcxZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGUxMjdiMDFkODZkMTAxNzkxZTM3YTMxZTc4MWQ5ZDY5ZTI2ZjRiZDBlN2Y5MDNjNmEwMjc1M2E3MGFhMzYwNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTc0Njc3ZWY0NWE5NTQyMDFkOTRjYmU0YTI2N2ZiNDE1MjQ5ZGMyMDFjMDIzOGNmNjNhYzk2MTBlOTZiYjNiZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTA3M2FhZDFhNjRmZTAxYjkyOTU1MDdhMWIwNGFlMWQ4ZTQ0NzI5NDhjODU1MWRhNGIwZjdkMzg1YzljN2FmZiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_83c830916a864b8fa31f02bd7205b68b",
+      "statement": "Every write and read is scoped by containerTag set to the name of the directory under /workspace, sanitized to match ^[a-zA-Z0-9_:-]+$, and never crossed, because that tag is the only boundary preventing one repository's context from leaking into another.",
+      "evidence": [
+        {
+          "resource": "repo://agent/AGENTS.md#L32-L36",
+          "version": "repo-lines-v1:sha256:29b179e33d01bb67217d3d0b296edcad3d7d13f8baaf2be61dd8bfc88a80b42c:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWVjYjIwYmZkNGM4ODMwNjY4YmEwMGU4NDkzNDk2NzNiYjNjMWY4NjkwMDQ5ZDU5MmJlZGE4ZTk2MGRjN2U1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjMwOGM1Yjk1Yzk0OGEwM2I2NzE1NGMzMjdlZGM0ZmRkOTcxMzk1ZTY1MzIzOTIzNmY5ZjYxZGEzNzVmN2M2NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYmVkY2JmOGJhODQ1ZDI4ZmVmYTliMzg5NTk1NDYwYTZhYjZkMDc1ODY3ZWUzZTBjOTQyZDY3NTFhMjc0NmUwOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGVlOGZkMmMzMjQwY2RiMTM5MzZkZTQyMjdhYzE2YTFjZjNhNmM4OWE5NDQ2NTk2OWNmMGU0MTQzMzU3MDYwNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_727359e3a8e5487a84b867dbaa7cd877",
+      "statement": "Ingestion is asynchronous: a write returns a status rather than a result and search returns nothing for it until extraction finishes, so a recall missing a fresh write is the queue and must not be retried in a loop; dreaming: instant is used when a memory must be searchable immediately.",
+      "evidence": [
+        {
+          "resource": "repo://agent/AGENTS.md#L43-L47",
+          "version": "repo-lines-v1:sha256:0098f6428f9a5d57adf34b429d51ba0ab4608d0e24f2ae413a7a60ecd6042410:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDM0MTYzN2U3N2QyZDQxMDY3ZDQzNTAzMjFkNmQwNWE5MjNmOWVlYzBlN2ZlMmYzOGUzNzZkMDllNDkyOTcwMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDZjY2Q2YmI1ZjY1YTVjYmNkOTMwZTJmM2ZiZmQ2OTNmYzU2YjFjZTRjYjM0YWY3NjFhNjVmNDU3M2M3YTMxOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTE1MzZmYjc3NjY4NjlmMTNjNTEyMGI2MmE1NGEyYTA4YzgxZjBkNGYzNDAxYzA3ZTM5NWUxZGZlMmFmNWY1MCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDRhZDZhMjlhYzljYzAxNzgyNDlmZjk0NTA1OWExYmViZWVkN2UxNzI0YzA2NThjZjc5ZjZlNzc2ODIyOGM2ZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_63d990924a5a45d6ad00361c54594249",
+      "statement": "A queued write can end as status: failed and then be invisible to search, usually because of the engine's own LLM provider rather than the request, so status must be checked before claiming something was remembered and retrying does not help.",
+      "evidence": [
+        {
+          "resource": "repo://agent/AGENTS.md#L48-L51",
+          "version": "repo-lines-v1:sha256:2545dbc6ee70c7614e5001013b1803b9533c2889cf8d8e1ed8ac7dfa45c6282c:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMThiNmViOGUyMWViZGQ4MDY5MmI1MWNiNjU1ZWFmMzZmMWZmZTI5ZjUxNmVhMGJhYTRmMjMzZWFjZTI4NWE2YSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODA1MDA5MDBjM2RiODcyODlhMmZiYjIyZmVhMTA0ZjcxZWM1ZjljM2EzZmE1NTJiNmQ2Y2QxOGQwMzc0MjhkNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDMwYmFmZWU5ZDQ2NmUxZDc3OGU5NWQ3NTI5ODE3ZDBlMGFjMzllYmFmYzlkMTE2YWM0ZWRlZWYyZTY1MmExNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjVmMWE0YzA2ZThiYmUzYTViYTZkYzc1ZDU3MTM2NDhlMDUwN2E4ZTI2Yjc5MGEzMDNmODliYTFhNGMyNjRmZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_87366cba55fb42adb506bd636255ff66",
+      "statement": "customId makes a memory write idempotent, so it should be a stable value derived from what is stored rather than a timestamp.",
+      "evidence": [
+        {
+          "resource": "repo://agent/AGENTS.md#L52-L54",
+          "version": "repo-lines-v1:sha256:f5f1a4c06e8bbe3a5ba6dc75d5713648e0507a8e26b790a303f89ba1a4c264fd:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTMwZjA1MTUxMTk0YzIwZDBiMjEwZDc1ZWQ4M2Q3YjE0MjhhMjcxODUzY2E4ZGNkMTRmY2M1YTQ5MzUwNjgzMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjY3NDZkMzUxODM0MzMyM2ZjNWFlZjU2OWM1MDNmMjllNDFjMzJiMTYzOTJhNDdhMGI1MTU3ZjRjMGJjMWE4YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYTVjZTc4NjE1NWZkMzVkYjE0NjE4MzRhYjVlMzY0NjdiMjJhNDMwODZmYTc2NmZkNmQyMGFhNDAxY2RmMTExMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWJkZmE2Nzc2ODYxNGRhMDA4Y2EzODQ4MjBmYjhiMTA5OWVlZDZhZDJjMTk4NGRlZTUxNDFkZmI2ZmFmMzllMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_edaceeee782d4be0932cb537ffb66e51",
+      "statement": "The agent waits only for the memory service to start and never for its healthcheck, because a fresh volume downloads a local embedding model first; during that window the API can return Unauthorized even though the welcome page answers and a valid key is configured, and the agent must treat memory as unavailable and continue.",
+      "evidence": [
+        {
+          "resource": "repo://agent/AGENTS.md#L55-L60",
+          "version": "repo-lines-v1:sha256:01e423cada5e0cd59ccb9d55b2fa180b5abf0af7c646534559f5fda072a6123f:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWVkNjY3ZjMwMjFiZjI5NTljZTc4OWM0Yzg2ZTJkZGZhYmYxYzI2NGY5OTdiODg4OWVkYTU1YjZlYmE1YzI2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzYxMDdlYzVkNjRhMTIwODNiZjM3NTFiMjBiZjEwMjhiNTE2NzVlYzRjYmI0ZGJmMGYwNWQ0MzVhYjQ4NWYxZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjVmMWE0YzA2ZThiYmUzYTViYTZkYzc1ZDU3MTM2NDhlMDUwN2E4ZTI2Yjc5MGEzMDNmODliYTFhNGMyNjRmZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2MzMmIzMDk0OGZjZmFjYmIwY2M2YmFjMTNkNWVhZGRjNDI5MGYwYWEzMjZlZjNmYWY1ZTdkOWRiYTViNzgwOSJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L118-L127",
+          "version": "repo-lines-v1:sha256:14e72869dd4ff1822f685eb7a554bfb33dd94747648a0d76af4176cfb7c76aad:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3MWRiNGU4NzVlYjlhNmFmMTQ1NTYzMDU4NjE5NmY3NDIyMjMxMjhiMzYyNTgwMDk4NDlhNjhmODAyY2NmOWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkMTk5ODIwNTlhNWEwZTYyMzlkYjI4MGI3MmQxOTQwZTE1YTY2OTlkODZkNzc2ZjVlNzdiYzE0NTUyNGU2ODYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU1ZjA2NmQwYWRhNWEyNWQ5OGIyNzc1ZGJlNzVhYjJhYWJmMmQ3MmQ3ZTljMDJhNTY3MDc4MWMyYTc4ODYyNWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc4MmEzOTdmMzkyNjc1OTQyMDQwMzYwNGY0YTYyNDBjMGQ0ZmY4NGJjNTljYTE0Mjk5ODljNzdkMGM2ZTQyOWQifQ"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L37-L44",
+          "version": "repo-lines-v1:sha256:4f7b64833cadba5656921505fb30a82a5aec86051b6c5423780706f502f81ec9:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2U0NGVhNzcxZTc5Yzg4ZTQxNWQ2ZGVkZWFhZWQ0NWExMjQ4ZGFhYzU5OTU4ZTZlMjkxYTA1M2JiYjgzZmE2OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMTA4MmMzMzhjNTFjZDRhN2EzNDllMzdmNTg0NmYyZWI2MzAwMTMwNDg5MmUzOWY3ODU5MGU0YjBjM2I0NWJjYSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTcxN2Q1NDNlMjhmOGM4YmQ1NmY4MGU5YTZhODMyNzM3YTJlMjJmZmNkZmVlZGU1NzY1NjkyMWIzZDYxMzg0NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWNhMzU0ZjFmODE2YWE4OGVkMTFmOWVmNTUxMmU1MmU4ZTIxMTUyMDIyYjMzNGY1MjZkMTMzYjQ5ZmNmM2RlOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b4a8d46c947c45e49a54d0528a5dcc73",
+      "statement": "The engine's LLM provider is configured entirely from the environment through the OpenAI-compatible OPENAI_BASE_URL and OPENAI_API_KEY pair because it has no wizard without a TTY, and its embedding provider defaults to a local 768d model whose dimension is locked to the stored vectors.",
+      "evidence": [
+        {
+          "resource": "repo://.env.example#L38-L53",
+          "version": "repo-lines-v1:sha256:d4ce7e67b182b6a29353c0032d046fc4736d2a63e5a6c17006de54367f1a887d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEwYWNkNGQ4ZGYzZWQ4ODk2OTk0OTQwMWU0NDc1Y2UyZTExODZlNWQ4NTQ4MjBkMjljODJhOTgwNDYwOTIzYjIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYxNDEwMzQ0YWM5NDkyOTliNTNlYTg2NmJmNjQ5MjRlNTczZWQ4NzJmZmMzNjJlM2Y0MDJiMGNkMTQyOTVlZDkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU0Nzg5YmUzMjg1MGRhMjUwMzJjZmU4MDVkZTExZjkxMzNmM2UxZjQxYmE3ZTVkZmVhOGExOGM4NGE0NDAyYjYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L102-L115",
+          "version": "repo-lines-v1:sha256:91b16b426d119962e566f441dd92ea53fb8073932f7add36d376348781f70a5a:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyNzQ2MzM0ZmRiZDY1MTMyMzlmMTMyNmRiOGI2MTI3NTdiNWIzMmMwODA4YjUwODFhOTkzN2Y2NTMzYjhkYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhYWRjYjM4MzllZjRkYjU5ODg1M2QyN2E1M2FhMzE3M2RlMGQ1NzJiY2E2MjNlODA3YzMyZWY3ZGU4ZWFjMjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhhNmYxNjUwNjFkNTg1Nzc5ZDExYzI2NTEyN2Q0ZGM2MTRkZmZhNmI0NWQ3ZjJjOWNjNTY4ZGFjZTg0ZTBkNWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjMxMDI1MzNmMzcyMmFjZTk4Y2E3NTYyZDQ0ZGZmMzlkOGJkMzhlODJkYTgyMGIwZjAyMTI5YjU5MGUxODZkZTEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3cd569649a9240378326c4034aa39ec1",
+      "statement": "The engine's API key is printed once by its first boot via docker compose run --rm supermemory, is pasted into .env as SUPERMEMORY_API_KEY, and survives restarts because the auth secret lives in the supermemory named volume.",
+      "evidence": [
+        {
+          "resource": "repo://.env.example#L14-L26",
+          "version": "repo-lines-v1:sha256:e93887fabec907de9b9e6e2c237176ea6222e0b1d3aca01e00612b6705ab62e9:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY2ZDQyNTU5ODhlMWVkOTQwMDViNzI4Y2Y3Zjk5MWRmMzJkMDE1YmZjYjA1NjBiZDJmNzdmODQ5YzJmZjMwYWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE2YTU2MjhhZGQwNDJiYjRlNzM5ZDhhYzVhZDI4MWY1NzJhOTAyZTE0NzA1MmFiOTVjMDlhNDk2ZTdiOTliMzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhlYjEyYmYzM2IxNDQ2MzUyNTBmNzY0NTY1M2IzYzU4MWY4MTc1YjlhMWM3YmVlZWZmNWNlMDZhNGMyM2QyMTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjdkNjJkNjE5NmExMTgyZTA3YWEyMzNkMzhmNjhlYzU4MGZkN2M0OTU2ODYzZDA2N2JiN2U0NDNlNzg4ZWZiZjYifQ"
+        },
+        {
+          "resource": "repo://README.md#L190-L197",
+          "version": "repo-lines-v1:sha256:eb28edca029690b91e179205e7d9f590fcae968feb330964fae21adce362eec8:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWRlMmY1MzI4ZWU2ZTgwNTBlOGFhZmQ4ZGM4NjlhMDY5Y2Q5NTg0ZWRhYWY1NGZlNTg5ZDczYzNiN2RjZDc5OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWIzMjJkMTNjZDNkMDIxZDE1ZWRlM2MxNGQ2ZmY3ZjY5YWE3NzU2NTM3ZmE1ZWUwMzYyN2QxNGZmY2U1MTgxZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTA1ZWY0M2EzYzY3ZjZkZjllMWJmNGZhNjRkNDA2YTk5ODBjYjRiMjRiZWFlYjcxZTZkOWNiYzkzMmE0MGIzZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzBlZTk3NmUzMjkyOWZlZWU5NTQ1YzMxNmRlMmIzZjcyNTk1MGQ0Y2YxZDc5ZTU3NzliYWExYzFjZWU2ZmU2NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_fcf60c1f38b14780938a6a50039d4388",
+      "statement": "Memory state outlives docker compose down and make clean because it lives in a named volume, and discarding it deliberately requires docker compose down --volumes.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L212-L215",
+          "version": "repo-lines-v1:sha256:ca732e9225e732a33b23a09e24d86562c740f1155deb3b1378548b4efa6e913b:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmI0YzBkOWMzODcwMTI0ZTFlODcxYzQwMWIzNDQ5ZGZlMjgzN2NhMGZkMGJmMmQxNTEyOGQzNTBlNjViNTJjOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjcxMTVmNTk1ODZkM2ZkYzkzMmY5Yzc2ZDU5NzYwNzMzMjM3NWQxNzY3NmRhZmFmMDBmNzk3Y2ViODg4MTE4MCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzQ0Zjg1NGI1MmFmMzg2ZTc3MmRkZGE5Zjk1MjVlYmVlOGZhNTIyZTlhNTlmOWQ0ODdkMDMxYTc2ZTc2YTI3ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMjhmNTk2MzI3NTRiZmM4ZWVmMTI4OWU5MzMyZGU3YmY4M2VmZjdkMmFiYzlmMjIyNWJhZjdkOGVlNWI2ZWE1MSJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L117-L117",
+          "version": "repo-lines-v1:sha256:88e4d4f7d986a33fdb16777100c66b6e6c8e697a4758899490fe2cc08f0607a2:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODhlNGQ0ZjdkOTg2YTMzZmRiMTY3NzcxMDBjNjZiNmU2YzhlNjk3YTQ3NTg4OTk0OTBmZTJjYzA4ZjA2MDdhMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODhlNGQ0ZjdkOTg2YTMzZmRiMTY3NzcxMDBjNjZiNmU2YzhlNjk3YTQ3NTg4OTk0OTBmZTJjYzA4ZjA2MDdhMiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDAzMTg4YmJlOTkyNzU0OGU0MDJlNzVhNGJjMmVjOTM4OGE5MGQyNTkyMmQ3NzMzZDczOWVhMGY2ZjE2M2YwOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODQ3OTA2NzVjYzE0N2E5NDRmMDllYmYzZTNiODkzZjA4NTMwNWIxMDMzNDNhMDIxZjdjZjM3ODhjMzM4MDdjZiJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

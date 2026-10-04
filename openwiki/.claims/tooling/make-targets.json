@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:91574c86d5891b3036e8b4809c231295c1ea7ad5c4d9dc3dc9a40d679e360c09",
+  "claims": [
+    {
+      "id": "claim_00c95470a3f3434991e1bc17d6a3ffef",
+      "statement": "Every Makefile target is phoretic because none writes a file worth declaring, so none can go stale, and recipes run under bash with -eu -o pipefail while the shipped launcher script stays POSIX sh.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L1-L13",
+          "version": "repo-lines-v1:sha256:90bd10fc0f7e4944e7fb0bca4d39064a5976ca869236ef00e100bbebbe78e40d:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyMjhjYzFlZTQ5NWJmOTlmOWI4ZDhkNDg0YzM4OGE3NjFlOWQzYTQzZjI1NTdkY2IxMzFmNDkyYWVhNTc0ZmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYyMDJlMzZlMTc0ODUzYzI4NjA0YzY3YTM4ZWY4MmI0NGU2Y2U2ZGZhYTk5YWQ5YjY3MTg4NjBiZDgyYzdmY2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU2ODM5YWJhMjI2ODY2ZDIxOGMyNzc1OWIyMDY5MWQ5ZDUwOGQwNjBmZTE2NTQyNmUyZmQ0NmRkYjY5NjQ3ZDEifQ"
+        },
+        {
+          "resource": "repo://Makefile#L57-L59",
+          "version": "repo-lines-v1:sha256:dc17853f9abe0b1dce110acc468790505775ce9bf20dea06237d8ca7e9071ca0:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGFiMDQ3MjYyZTBkNTZmMTE5YjVlM2JkMWM0Y2RhOTAwZjMwYzc4MzMxZjFiZGQyNWNhZDQ4ZDhiNjQ4MjgyMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWNiMzVmOTI3ZDM2MDk2NTg3MTQ1ODFjMjU3MjgxODY5YzAxN2VkOGM3MGNkMWQ3ZjIwYjFkZTU5Y2VjMjdlYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjY4NWYyOWJhNWUwNjY1YWI2NTk3YmNjZGVmZTdlNTBlZjZkZDFkZjMyZDI5YTExMDJkMTRlOWZkMjdjY2I5NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWYyOGQyZTdiY2Y2MzM3OTUxYzEwZWIzNGYyMGEwZWRiODI2NTBhNmI4MjdmMDEzZjI2NGY4NmIwMWEwZjMzMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_495e0cf2a602429eb6bbcfa4d46d95e6",
+      "statement": "Make arguments have two meanings: words in TARGETS are goals and anything else is a Compose service word, resolved by filtering the target words out of MAKECMDGOALS and falling back to the first entry of SERVICES.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L36-L55",
+          "version": "repo-lines-v1:sha256:6b229869049fa539ded3873dbf7b189acbe744c3ba1d29e75419d6fb6c6326d7:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJmZTUxOTRkNGYzY2YxNWYyNzJmZjcxMGFjMzkyYzhkOWFkYjhlMjMzZTQzOTc1NDM1MGY1N2NmZGQ2OWNkODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiODhiYWIzNGEyOGQzMDczOTE4NzJiNmRiZmY4OGIyZDM5YTQyZTg2MWE2ZTg1MzJjMDVjMDZiNDc3MGI2ZGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjUyN2E0ZTJhZjEwNmQ3MTg4MmI4MzU5NzhmMTczNTA1MTY4OGI2MmI4ZGZlODU0YTc4MDBkZDIwMzJmMWQ4ZWIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3MTFhYjU3YTc5ZTczNzA4YzAyOWZjM2U0MGMxY2EyN2ZkNDQ5NGM3OWJjMmFjYzNmY2NkNDcxOWZlNTI4OTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_59e64d410a0343d094bab46155f2cefa",
+      "statement": "SERVICES is deliberately excluded from the service-word filter, because filtering it too would silently redirect a named second service to the default service, and a word that is neither a target nor a known service fails on the placeholder rule rather than reaching Compose.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L46-L55",
+          "version": "repo-lines-v1:sha256:65c181d0dbb777a2c668a27e1ce1bec214b017838db6b035e53c02e44c030fbf:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjliOWM5MTYwYmI0NTVlNzA5NGQ4M2QxNTlmODc5MTI2ZWFjMWM2NjFhNWE4YWVmMTg2YWEyMmUyZmIzMzBjN2IiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBiODhiYWIzNGEyOGQzMDczOTE4NzJiNmRiZmY4OGIyZDM5YTQyZTg2MWE2ZTg1MzJjMDVjMDZiNDc3MGI2ZGIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiOTM3ZmYzNGZmZGIyMTE1MTU2MTAzNThkZmI1OWJkZGVmYzliYjY5NzNkYjRmZjI2MGNmY2RmZGU2MzYwNzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjU3MTFhYjU3YTc5ZTczNzA4YzAyOWZjM2U0MGMxY2EyN2ZkNDQ5NGM3OWJjMmFjYzNmY2NkNDcxOWZlNTI4OTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_178eca89ecfa4968a9498e62adeecc59",
+      "statement": "All Makefile variables are overridable on the command line and carry inline double-hash comments that feed the generated help, which is why recipes read every variable through $(strip) to drop make's alignment padding; image is additionally exported once as PI_IMAGE for bin/pi and Compose.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L15-L29",
+          "version": "repo-lines-v1:sha256:dc8c6a0affbc7c3e8e714c1bbd4fd65f7a586ea71ed7663df20d3914010bd021:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5ZjMxNWNiZjc5ZGNiMTEwMWJlYjNiYTdkOGFhZWU5OGIzNDY0NjVhZGRlYzYzZTI3YjMyYWVmYjUxNDVkNWIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFjY2MzNTQ3N2Q4NGU5MWNmNDRhMDc4ZTM0ZTJjZjllZGUzNGVhNTRmMDAzMjk1OGQ2ZDUxN2NiNmU2NDE3YmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY3YzJjMmM3YjVjZGYyYzRiNDkzOGE1OGUwM2ZlMTFmY2U5NmE3NGFiNmUzYWQzYjQyOWFkNDY3ZjEzMTE0YmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyMDE1YTc2NWE5MTk5ZThmYTIwYTNmZWNmMmQ4ZjAwZDA5ZmQ4NGZmOGJmNmEwZjQ2NjhmYmNlODU0OTk4ZjkifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_136f3ad1aca44a2f992cb3c075e18268",
+      "statement": "make help is the default goal and is generated from the Makefile itself by two awk passes over the inline comments, listing each target and each variable with its current value or an empty marker.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L61-L72",
+          "version": "repo-lines-v1:sha256:07e59746d8167ec0f575b9e53610c66cb30ab1539abaf34f191b1c89d7f39404:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVmNmQ4NmVjNTlmMDczYjg5MmQ0ZWQwYjI2N2RmZWEzOWNhNDUxNjJkNGU2YzI3YTY2MjhhZTMzYzE5ZTQ3ZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI1M2IyNjFiMTk4YzZhODVmODhjMjk2ZDFmZGQzY2Y1ZTI5ODhhYTEzODJiOWYxZjdkMDIyOWIzMDU3MmJkMmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ5OGQ2YmMxOTRkMjcxMmI5MDlkMTg4MWVkNWExODc3ZDAyYjk0ZjA2YTIyODViNWU0N2U2M2RlMjYxZjE4ZjEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4NDRhM2EzZjBhMjNlMjA1Zjg3OTYxYzYwZGIyNjIyZDIyYjEwZjZkMTIwYzhmZTUyZWIyNWM4NjgwN2JlYmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eed5f1e1ac3c4ea681ee650988545cc7",
+      "statement": "make install symlinks the repository launcher into install_dir and is idempotent, reporting an already-correct link instead of relinking.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L80-L88",
+          "version": "repo-lines-v1:sha256:bf2753891af76adb9a531f6547d54db9b96af1636450bb3cceaceb04e4071384:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzdkMTc4N2Y3YWY3N2E1OGYyMTk5NjY4YWNjNjFmM2MwM2NlNzRhZTRkNTc0NTRlZmU2ODkxMTFmMDgwNTg2YiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYmVjYjM4MWFiNzkyZDgyM2YwMTNmODJjNzA2N2ZjZjA2MTQ1NmNjYjY4NTZlMmZhM2QzNmQ0MDY4NmJmOGViNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDE2MTQ0ZmRkNTJhNDgwYjVjMmY5YzZiODA2MDdjMmRiOWM5NDIxNThiZjNlOTEwYzE1MGZmNmJmM2RlZTUyNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMmU3NTBjNGUxZWM5MWJlMDk1ZDA4YWVjYmE3OGY3NjJjMDU1NzIxMTU4OTRiMDE2NjEwNjFlMmM1YzE3YjFlMSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d2b3a04d72814fc5b7b84d15dd28b8fe",
+      "statement": "make uninstall refuses to delete anything that is not a symlink pointing at this repository's bin/pi, distinguishing an absent path, a regular file and a foreign symlink with separate messages.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L90-L100",
+          "version": "repo-lines-v1:sha256:43bf76f9cdef1092bc5e5627c877022a744e4d7cdde23c7d5588ecae0248fedc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZiZTYzZTA0NTI4NTUwODk2NmNmMWNlZmVmMzk0NzA0MmE0MWEzMzAwMWY5ZDc0YjVlYmNjOTkyZjhhYmQ4ZWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJlY2IzODFhYjc5MmQ4MjNmMDEzZjgyYzcwNjdmY2YwNjE0NTZjY2I2ODU2ZTJmYTNkMzZkNDA2ODZiZjhlYjYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM5ZDcwYTMyZTk2ZjYwMTg0MzNjZDg5YTIxN2ZjMmExYjAwN2Y2NTlmN2FmYTliYzI2ZjFiZjUwNmU0YWM4ZmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjRjMTYyNTc2YWI4YWIzYTZiYTcxZDU4ZmY0NWM4Nzc2MTVjNmNmMDFkNTU0YmVlOTBiZDEwOTBhM2FiNTFmNTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_05c1a769f17c46b68035876370e416b7",
+      "statement": "make pin rewrites only the ARG PI_VERSION line after checking that a version was given and that the line exists, and make update discovers the latest published version with npm view and then delegates to pin, keeping the agent version in exactly one place.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L102-L119",
+          "version": "repo-lines-v1:sha256:4952377eb360838014e188f4ef2670a3c16d06f5ab54c55a02e4c672a86f9f84:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY1ZGM3MTZjMDQ2M2QxZmVjMzhiMjVjZjVjOWRiMjZkYzllNGZhOWZkZDk3OGM4MDQxZWE5MzAzYWQ1Y2VlM2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiNWRlZjQ0MDU4NjZlZmU2OGM1NjdkZjM1NmQ4Y2I2MzZkMDRhOWVjNTE0M2ZmNjZmNWRkOGZiYWExNmM1Y2MiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM2NWM4M2QzYTlmZjNiMjE2YjVlZmJhNzYxOTE5NDdkMTM2OTY4ODFkYTk5ZDM4NzA4ZjE3OWM1MmZjZmU0NDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjljZDc0MTJjMjYzMDE0YzlhYmY0MzI5MTFhZjg4NTFiZmY0OGNmZWUzYTlhMWYyNzg1NmMxYjUyNTY2YTU4MzYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_95d2ca9cf6d8492292375bde9111b0a5",
+      "statement": "make clean tolerates a missing image by prefixing both compose down and docker image rm with a dash, and keeps agent/ and the memory volume.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L132-L134",
+          "version": "repo-lines-v1:sha256:32fa2f6de1dc6005a01493b50789fa7476ca1feb0de69ab8edfcdbde3ec89f4e:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzIxYzU4MDMzYTFhMzI2ZTk2YTU2MmI1YjU1YzIxYjNjZTBiYjU1OGE4OWZkNzY0NDY1ZTFjYzIzNDI4OWU3ZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGVjMzI1NTExNWQ4NmRiY2Y1YjllN2QwZmExMWFjZDZhNzg5NzIyNDM3YzdiNDgwZWUyNzQwZTVmMmVlOTc5OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmViMzhiZTAzYmZhNTEwNzAwNTQ1NTZlODhlNmI5YjIyNThjZGIwYjExNmRiYzRhMGJhNzNkNDQ5YjZhMGNhYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_43092dd6f53c4efabde58aafc5176ec4",
+      "statement": "The two test targets pass the same filter= variable to their suites under different environment variable names, and both can be requested in one make invocation because only build and shell need a service word.",
+      "evidence": [
+        {
+          "resource": "repo://Makefile#L121-L130",
+          "version": "repo-lines-v1:sha256:b45a644c261a87725d19a6033562fecabed21df55978c75d5bba37ecc49bfe6b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM3N2IwZGYxOTlkMTQxMDFkNDQ3YzRmZTc1MThjNGZkYTJhZDc4NmYzZmJhMjEyNWJmNDAwYmU4MjU1ODBhMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljYjlkYmYwMTg5ZmY2YzFiM2E3N2IzNTNiNTNkODYxOGM1MWJlODY0ZTI2ZTIyNTZiNDNjMWI0ZjRmMWZhNGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjViYzk3ZDM0YTliNjVkMTM5MTZmMjVmM2ZlMTFjY2QxMTUzMTM4NWExYTFjYjllNmI4OTQ5Y2ZjZmZlMWU0MmMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ0YmE5NzYwN2M1ZmNkMTIwNGU0Yzc3MTg0MWExYzQ3YTQ4NTdlZTMwZmMzYWVkZjQ3MTFiODhkOTY2ZWQ3ZTQifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

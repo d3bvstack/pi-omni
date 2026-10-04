@@ -5,6 +5,8 @@
 #   history      sessions/
 #   binaries     bin/, plus tools/ which Pi migrates into bin/ on startup
 #   caches       models-store.json
+#   packages     npm/ -- PI_PACKAGE_DIR, where `pi install` puts the packages
+#                 declared in settings.json; the declaration is what travels
 #   logs         mcp.log
 #
 # Committed instead, because it is setup worth sharing: settings.json,
@@ -18,6 +20,7 @@ agent/tools/
 agent/memory/
 agent/MEMORY.md
 agent/models-store.json
+agent/npm/
 agent/mcp.log
 
 # Local environment. Nothing here should ever be committed.

@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:ad379c9934d1219313588ba28c34eb02d4abefc8a62390abf671357f419e7c33",
+  "claims": [
+    {
+      "id": "claim_130a2f5fc40c46d3ab112bd5ee787812",
+      "statement": "docker-entrypoint.sh is installed as /usr/local/bin/pi-entrypoint and is the agent image's ENTRYPOINT, with CMD pi, so the mode and agent arguments that bin/pi passes after the service name reach the script as \"$@\".",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L54-L54",
+          "version": "repo-lines-v1:sha256:b43991edb6431325108e8fb89a976d6f1f6f6864eccec470b2c245c450692a2d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjQzOTkxZWRiNjQzMTMyNTEwOGU4ZmI4OWE5NzZkNmYxZjZmNjg2NGVjY2VjNDcwYjJjMjQ1YzQ1MDY5MmEyZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjQzOTkxZWRiNjQzMTMyNTEwOGU4ZmI4OWE5NzZkNmYxZjZmNjg2NGVjY2VjNDcwYjJjMjQ1YzQ1MDY5MmEyZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzk2MmZkZWFmYmNkMTk3MDVmMDRkNjY0N2NkN2I0Zjk1ZTdhZGJjNjkwNWZjNmQ0MDU5NjczZDMzMzc3NzQ1ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmM0NzFmYTk4MTZjMTVhY2VkMzYyZDY3ODJhM2NiYWEzZDU0OTQ5ZjcxZjFhYmQxYTg4ZGM5YmZlYmUyNDg3NSJ9"
+        },
+        {
+          "resource": "repo://Dockerfile#L63-L64",
+          "version": "repo-lines-v1:sha256:2431dab8f8157b1d44a2a89bb6c081c5aae1cfd7255034505827b7d096de190a:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2MxYTk2OTA1Y2FjMDk1NDhhM2JkOGUzNGVhNmQ4NTc0MzkyNDMxZmE5ZjE0MDRkYjdlZTZkMjY3ZDgxNGU3MyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzI1ZDQwMGJkZWQ5ODA2MDU0ZTVjN2ZkZGE2ODMzYWZkY2YzMWI3NjdkNDljZTBiNmYzOTI2ZTdiNTYzY2U3OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZjI2NjdhNGJkODFmZjMxN2JhNTZlMmRhNjAwYjZiODE1ZmM2YjI3Yzg5NGJlZDBlYmQ3ZDA1MThkNDViNmFkOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ab68e81e3bfb4317b10a494db75a785e",
+      "statement": "The entrypoint probes HOME by mkdir -p plus a -w test and falls back to a scratch /tmp/pi-home when the uid has no writable home, because git, npm and Pi all need somewhere to put state.",
+      "evidence": [
+        {
+          "resource": "repo://docker-entrypoint.sh#L5-L12",
+          "version": "repo-lines-v1:sha256:2aeae3ad4346ad4782feb227a0342fe05b665f966fe0d8a9179ea242304a28df:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTBmMzg4OWQwYjExZWQ3MDhhMTQ5ZGJiMmNjMDVhYjM2OGJmNzUwM2ViNTFmZjEyY2Y3ZTM3OWQwYzJlNmE2NyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzIzYjJiNGEwNTE2M2M5ZjYxM2IzYTRlMmY5NGFmNjNmMzViM2EzYTAwOTczYzQ0MTZlMDkzZTg3NjYwZTA1ZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGQ5NTVjMTE5NzhkMzIyZTI3ODVlN2E0MjgxYzA3M2JiMTQxMDhmMzcwMzI4NWE5NmM5ZDUwOTUzZGQ2MTliYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_adc828b820484978ac9218fbd734bba5",
+      "statement": "Failure handling in the entrypoint is deliberate and split: the HOME probe and the git config call are tolerant, while the fallback mkdir is not and set -eu aborts the container if anything else fails.",
+      "evidence": [
+        {
+          "resource": "repo://docker-entrypoint.sh#L10-L10",
+          "version": "repo-lines-v1:sha256:b0c1fc87cbc4dffe1871a0caf6f4b73392e969ec109ea23d49c9b49d9c9bd8d5:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjBjMWZjODdjYmM0ZGZmZTE4NzFhMGNhZjZmNGI3MzM5MmU5NjllYzEwOWVhMjNkNDljOWI0OWQ5YzliZDhkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYjBjMWZjODdjYmM0ZGZmZTE4NzFhMGNhZjZmNGI3MzM5MmU5NjllYzEwOWVhMjNkNDljOWI0OWQ5YzliZDhkNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODQ1NWY3NzllMDM0MTJhNDY4ZjM1ODc1ODAzMzNiNjIxOTc2M2JhOTc1OTZlYTViMTIyNzAyMzZjNzkzYWVmYyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDM2NTA5YTdhMWFiN2M0M2VhZjU0YzA0MmY5MWYyYjUzZGE4NDI0N2Y0MWYyMzhjZWY3OGJjMzRjOGM4NDdhNyJ9"
+        },
+        {
+          "resource": "repo://docker-entrypoint.sh#L3-L3",
+          "version": "repo-lines-v1:sha256:3c73e8c0f87e4aee575a60cce78b2a0a680af1ba985faac6f5e9e70ea2fa482c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiM2M3M2U4YzBmODdlNGFlZTU3NWE2MGNjZTc4YjJhMGE2ODBhZjFiYTk4NWZhYWM2ZjVlOWU3MGVhMmZhNDgyYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2M3M2U4YzBmODdlNGFlZTU3NWE2MGNjZTc4YjJhMGE2ODBhZjFiYTk4NWZhYWM2ZjVlOWU3MGVhMmZhNDgyYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjIsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMzYxMmU5M2MxYzU4NWIzYTgzMWU2MThkOTE1MjQxYjFmNGM2YTkxMzhjMGMyOGRhZmE3NjU3NmRmYTZiMGY1ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTEyOTdkYjFjMDgxZWI3NjY4NzJiYTM1MzFkN2ZjMDUzZmFmMDlmNjk4NGZlZWM0MzY1YTI5ODFlYTk3YTllYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_2262fe85e51c46e8ae47cac6290152a6",
+      "statement": "When the mounted project has a .git, the entrypoint adds it to git's global safe.directory list and ignores any git config failure, because the mounted project is normally owned by a different user than the agent process.",
+      "evidence": [
+        {
+          "resource": "repo://docker-entrypoint.sh#L14-L18",
+          "version": "repo-lines-v1:sha256:f50eee24e949414d93694c39b90915be8504c5ad9171f854a0da1919caaa7235:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOGI3MjY2OTEzMjVhM2I4MGE3MzU5ZjE5Yjc1YTI4NDU3ZWUyMDJjMzg0YTY5Y2EzMmIxOGE5ODIwZWE3MDNlOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDM2NTA5YTdhMWFiN2M0M2VhZjU0YzA0MmY5MWYyYjUzZGE4NDI0N2Y0MWYyMzhjZWY3OGJjMzRjOGM4NDdhNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYWQ3OTljYTU2MTcyYzI1OWE0ZDI3ZGEyNTk5NDI0YjdmZmY0MmI1ZTlmNDM4ZTFjNDc1NjZiZDhlM2I0MWI4NCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b7c4927c0c23481f8964a0ec758e0989",
+      "statement": "The entrypoint prints workspace, agent dir, effective HOME and a /login reminder to stderr before starting the agent, because those are the values that vary per run and per host.",
+      "evidence": [
+        {
+          "resource": "repo://docker-entrypoint.sh#L20-L25",
+          "version": "repo-lines-v1:sha256:d9c9e2865de88b714cdcbc646110e203831922e985a30db3c8968b783f99d162:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDk0NDliMjZlNzdlM2NjNDJiYWIyMzM5NjYzY2M5NjIwYWEzMjAzZjAwY2YzMzA5OTc1YmE3MWQ5YzUxM2E3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmEyMWM1YjNiZmYwMjk5YzAxNjE0NzA0NjhmMzU1ZTViNGFmY2YxN2E1ZjU5M2FiNjgzOTRlZjdhZjMxOWNkYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGE5MmE3ZjI5YjIzNTM4MjhkNzhmNmI2ZmZmYzk2ZmY1NTc0MjliMjZkOTk0MzVkMDBkNTIwNmZjOGEwMWYyMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjIsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWYxOTFkNzkyZDdjMTgwMjRmNzM5YjNlYzk0YTUzMWFkZmM1ODhjYzUxZjJjN2FhMzM3YzFmOWY2OWFmMzk1YiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_691f9fcc6ce54b838980dff093ad31cc",
+      "statement": "The entrypoint finishes with exec \"$@\" so the requested program replaces it, and Compose's init: true supplies the init process one level below.",
+      "evidence": [
+        {
+          "resource": "repo://docker-compose.yml#L36-L36",
+          "version": "repo-lines-v1:sha256:4fa5eaf9d36a990d804d2cf6c29828d60797406d753c8e3f96205081c25ebab3:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZhNWVhZjlkMzZhOTkwZDgwNGQyY2Y2YzI5ODI4ZDYwNzk3NDA2ZDc1M2M4ZTNmOTYyMDUwODFjMjVlYmFiMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGZhNWVhZjlkMzZhOTkwZDgwNGQyY2Y2YzI5ODI4ZDYwNzk3NDA2ZDc1M2M4ZTNmOTYyMDUwODFjMjVlYmFiMyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWVkMWEyMDQ3ZmQwZjBjYmQyMGM1ZWRiN2VmNWM4NmNhYWQwNmJkMTk0YjQxNjUwZTkzMTYzNmU3YTZlYzM2MyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2Y0MTNjZjQxMjNiMmYzMDA2NTczY2M4NTZkNjRlNzIxZjRhZDExOWRhZjNkZTdiZGFjZTVlMTUxOGZhNjM5YyJ9"
+        },
+        {
+          "resource": "repo://docker-entrypoint.sh#L27-L27",
+          "version": "repo-lines-v1:sha256:2e124b30113dd2abbe684d922c097aa498ce5a8a5f2255a941ff2c1e05d4e196:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmUxMjRiMzAxMTNkZDJhYmJlNjg0ZDkyMmMwOTdhYTQ5OGNlNWE4YTVmMjI1NWE5NDFmZjJjMWUwNWQ0ZTE5NiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMmUxMjRiMzAxMTNkZDJhYmJlNjg0ZDkyMmMwOTdhYTQ5OGNlNWE4YTVmMjI1NWE5NDFmZjJjMWUwNWQ0ZTE5NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNTgxZDRmNjFhOTY2NzliN2NjYTAwMzI4ZTJmNWVkNTg3MTA2NzQ3MjYwMGRkZTY3OGYxMGNjMDg3ZDA4YmZlMiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6213661c125649aea579bbff64277c9d",
+      "statement": "PI_WORKSPACE and PI_CODING_AGENT_DIR come from the agent image's ENV rather than from Compose, and agree with the two bind mount targets /workspace and /pi/agent.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L59-L61",
+          "version": "repo-lines-v1:sha256:0c9568ce9692d8e47088cf90f4abe0fbe88d7c78e6c72033177949021cba8667:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2MxZDVkMjdmZjY0OTg2YmY0Zjk0MGM5YmVhNWQxNjYzZTlkOGM1ZjU4ZmRlMThkNzhhZGU2MWMwZmFlZmYwYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOGI0NTI3NDU3ODA4OGMxNjZiMTM0YjE5YzA0ZGUzNjI3MTBjZDM0ODM2ZTM5ODg5YzY2NTY2YTE0MmQwMDYxZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGI5YzlmNzcwMTRjZWQ5ZmE4ZjI1ODEyYzZmZjBlZGQzOWFhZjcwY2Q1MGQxMTJjMmExODZkNDI4ZjZkNjM3OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODk4ODhjNzEyNThjMjg0NjNkYjU1OTA5ZmM4Mjc0MzdjOTg0MTQwMzk3N2Q3YjZmMDk5ODZhYTlmNzY5M2NhZCJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L46-L53",
+          "version": "repo-lines-v1:sha256:a25be6260f833c423f7736df5cd125e7941153ef689286a4f72ae67f7645aa3d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE4YTQwM2IwYTA0ZmU5NjA5ZTFkYTY2OTYzYWQ5NmZiNTA0YzY0NTU2ZGVkZDk1N2M1NWJiMWExMWQ0MjFjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODljYzA4YzExZjliMDA3NzljMTA1ZDg5NmY5M2MyZWRlMGFjMjA3ZGY5ZDJkZmNlN2MxOGNjYWZmMTUyN2YzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWM4NzJhMWZkZTMyODQ2Zjg5MGI4N2JmOGJhZmY0ZjQ3YWY1Yzk5MGQwODZhYjU1YzA1NGZhM2EwODJjMmJjMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTY1ZmQ0ZTM3ZmExOWJlMDdhZmIxMjllNWY3YWViNTRlZWM2ZDU2ZDVlZGE1OTQ0NTZiN2RiYWRmMDA1ZWQwOSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}

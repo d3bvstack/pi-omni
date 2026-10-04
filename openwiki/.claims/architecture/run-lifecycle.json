@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:fcd33c424cea5e4f1e55fc2f30d89cd18acd8926e12aae90e1dbcd12e3341905",
+  "claims": [
+    {
+      "id": "claim_813837658fbf4a5a8afcb461926ed889",
+      "statement": "A run is four staged handoffs — host launcher decides, image supplies the runtime, Compose wires mounts and environment, entrypoint prepares — in which the launcher exports only PROJECT_DIR, AGENT_DIR, PI_IMAGE and SUPERMEMORY_IMAGE before execing docker compose run --rm with the mode and the agent's arguments.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L116-L124",
+          "version": "repo-lines-v1:sha256:d99ff30cb0ee5bf685908728a7e42cb8092994377acd359b99338aa0ac9ecce4:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzgwM2JjNDU5NGQ0NTAwODRiNTNkNDYyMjhjZGY3YmExZTc3ZjFkM2IxNWMyOTc5NzAxYjczNmZjOTdjMjlkYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU5MmM0YjAwNjJmNmM0ZDQyYzdmNTBmOWZiZmY2MzFkMjhkMjFkNzI4ZDYzYjQ1OTk5MTZkOTkxZDIwYWIxMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZGM1OTk5YjJhZWY0YjIyYzE5OThkNjQ3Njk2ZDU2MjE1NWU2NGNhNDlkMWFjZGYzZTk5ZDk5NDkxOGVmM2NiOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L59-L79",
+          "version": "repo-lines-v1:sha256:3c035bb3250b2a3de022b2befca9453338a757809e8c6c7035b4613b200fdf87:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJiOGIyMDMyZjAwYmU2NDYwNzI4NzgzZWU0MThlMTk3NDkxNzIzNWY1N2M1YTAyNzZmNzYyOWQzZTIzYzI4MmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlMTI3YjAxZDg2ZDEwMTc5MWUzN2EzMWU3ODFkOWQ2OWUyNmY0YmQwZTdmOTAzYzZhMDI3NTNhNzBhYTM2MDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjkxZmJhODllZThkMmNhNzI4YjNiNWU0MzA5MWUzZmYzNTg2N2Y4ZTQ2YTJhYWMxMDJlOTY5MWE1NTIyNDgxNDkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwNzNhYWQxYTY0ZmUwMWI5Mjk1NTA3YTFiMDRhZTFkOGU0NDcyOTQ4Yzg1NTFkYTRiMGY3ZDM4NWM5YzdhZmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_701b00bc3aad4224808b4071ec73174c",
+      "statement": "The launcher builds the images only when --build was passed or either image is missing, and builds both services together in that case so a fresh clone cannot fail on depends_on before the agent gets a session.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L100-L107",
+          "version": "repo-lines-v1:sha256:9eb23303d47a8b590fcb4dbe5acf64d1e00333ee8aa666790b3a2a7df6978194:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzU1YTFlYTYyMDM1MGNlOWJlZThjZjdiYWRmNDQ3ZWM5ZTYzNjJjODU1MjZkYWFkMTAxZWU2MDQ5ZDJlZmVjMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzc2OWQyMzdjZDQyMGI5ZDM4Yjk4MWEwYTRmNjc3MDE5MGE0YTgzZGNhMWZlNTZjNGY1YmExZTJjYmMwZWY3NiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTBhNzlmZjc5NDgyYmU1NDlkMTZmOTllNmM2YmE4OGU4ODkyZjE5NTZjZjE5MTlkNWE5ZTUwNDhlNTNmYzU1OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDg4YjQwNDU2ZTNkOWE3OWYwMTU3OGZhNTAyNjUxZjU5NDg5MjJkNDAyMDczZjFmMjRkMGFiNzEzMTAyNzQ3ZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_958f9e969760457fa8b561832163d787",
+      "statement": "The agent image contributes the runtime rather than the setup: the pinned Pi package, a small tool set, the entrypoint, and PI_CODING_AGENT_DIR=/pi/agent with PI_WORKSPACE=/workspace, and no USER directive because the uid is negotiated per run.",
+      "evidence": [
+        {
+          "resource": "repo://Dockerfile#L59-L64",
+          "version": "repo-lines-v1:sha256:0205135e1c857ab37dbb9a6e291fdade8fa017be70fc16fae5a13acd997a8020:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2MxZDVkMjdmZjY0OTg2YmY0Zjk0MGM5YmVhNWQxNjYzZTlkOGM1ZjU4ZmRlMThkNzhhZGU2MWMwZmFlZmYwYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzI1ZDQwMGJkZWQ5ODA2MDU0ZTVjN2ZkZGE2ODMzYWZkY2YzMWI3NjdkNDljZTBiNmYzOTI2ZTdiNTYzY2U3OSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNGI5YzlmNzcwMTRjZWQ5ZmE4ZjI1ODEyYzZmZjBlZGQzOWFhZjcwY2Q1MGQxMTJjMmExODZkNDI4ZjZkNjM3OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_26a9c7971a0e405bb6ce22d56feca9d3",
+      "statement": "The entrypoint runs the same preparation for both modes and then execs what it was given, so --shell sessions get the writable HOME and git safe.directory fix that agent sessions get.",
+      "evidence": [
+        {
+          "resource": "repo://bin/pi#L52-L55",
+          "version": "repo-lines-v1:sha256:61b03ed98c45907b597d380cc2449cfce7e2bd424afb6bf391cc26cd14b596f9:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiZmY4MWNjNzIyYzIwODZlYjg0MDdmZGNjMzhiOTQzNmViOTdkNmQ2ZTRkYWY2Yjk2NGIyMzMyOWE4ZGJkOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmRjNDMzYmM3ODNmMmUzYWJjYmI0NzI3NWUwZGFmN2U0ZTcyY2ZhNzk4ZjgwZDAyMjJhMzlkMzc1NTg1NTlkNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzJlYmUzMWIwNDRhYTdmYzk4YmNjMGEyYTFhMGZlODk0OGM4ZDY1MTY2ZDZlYmEwZjIyZDNkNThkNDcyYmJiZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDM5ZDUzMjQ5ZWUyNTk4Zjc3MDQ5ZmI5MWFmMGJlMTVmN2JhYTM0NGRiZmRhOTI3Njk2ZGM2MmE0Y2NhNTJhZCJ9"
+        },
+        {
+          "resource": "repo://docker-entrypoint.sh#L5-L27",
+          "version": "repo-lines-v1:sha256:7c2dab2c0b9a6013d5175ff1ba66621540080b097d9a3f2cd78aaaace9f665dd:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImUwZjM4ODlkMGIxMWVkNzA4YTE0OWRiYjJjYzA1YWIzNjhiZjc1MDNlYjUxZmYxMmNmN2UzNzlkMGMyZTZhNjciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJlMTI0YjMwMTEzZGQyYWJiZTY4NGQ5MjJjMDk3YWE0OThjZTVhOGE1ZjIyNTVhOTQxZmYyYzFlMDVkNGUxOTYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcyM2IyYjRhMDUxNjNjOWY2MTNiM2E0ZTJmOTRhZjYzZjM1YjNhM2EwMDk3M2M0NDE2ZTA5M2U4NzY2MGUwNWUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4216a29f083f4d8f9b3a3bab4f7ad217",
+      "statement": "Everything a session knows about its configuration arrives through two read-write bind mounts — the project at /workspace and the repository's agent/ directory at /pi/agent — so committed agent setup travels with the repository rather than being baked into an image.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L108-L117",
+          "version": "repo-lines-v1:sha256:ffbbbcb6bbf86f03a41d0346e914acecb9e9c15170b1347f50f899665b9b84dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5MjU4NTFlMDNkMDUzZjFjMTk4OTE5MDI3NmE0YWIyMzhiZjQ0ODE4ZGE4ODVjYTY2N2ZhYzRlNjA1YzBhMzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjUwNzZhYzE1MDFiMDc2ZTNiODg2YzIwNDFkYzUwYzFlYThkZDE1ZjM0NjVhMDA1YjY0OWE1Y2E1OGM1ZTA1NzkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjVjNDcwYmEzODRlMDEwNjY1ZWI1ZjYyMDdhNzUyZWQ4N2Y1MGQxZjg3N2Q2NDcyNjg0NTk0OGJlMTkyYWNhMmYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjliNTlkYjEzNGM5NTcxNmZlODU1ODU0OWQ4ZDEzMDJjZDRkYjhlZTE0YTM2MmM0ZmMzMTc0ZjBmZjQ4Nzg1MjcifQ"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L46-L53",
+          "version": "repo-lines-v1:sha256:a25be6260f833c423f7736df5cd125e7941153ef689286a4f72ae67f7645aa3d:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzE4YTQwM2IwYTA0ZmU5NjA5ZTFkYTY2OTYzYWQ5NmZiNTA0YzY0NTU2ZGVkZDk1N2M1NWJiMWExMWQ0MjFjMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODljYzA4YzExZjliMDA3NzljMTA1ZDg5NmY5M2MyZWRlMGFjMjA3ZGY5ZDJkZmNlN2MxOGNjYWZmMTUyN2YzNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWM4NzJhMWZkZTMyODQ2Zjg5MGI4N2JmOGJhZmY0ZjQ3YWY1Yzk5MGQwODZhYjU1YzA1NGZhM2EwODJjMmJjMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTY1ZmQ0ZTM3ZmExOWJlMDdhZmIxMjllNWY3YWViNTRlZWM2ZDU2ZDVlZGE1OTQ0NTZiN2RiYWRmMDA1ZWQwOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e03f53ebbdc442baa50e214fef800864",
+      "statement": "Credentials reach a session either as provider variables forwarded only when set in the launching shell or through /login writing the gitignored agent/auth.json, and agent/ is excluded from the Docker build context so no credential or session state can reach an image layer.",
+      "evidence": [
+        {
+          "resource": "repo://.dockerignore#L1-L6",
+          "version": "repo-lines-v1:sha256:016be1331594a283fdbc54435a7a29810e005783e079e31237619225c7fb25d2:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmVhMzU3YjA5Nzc4OTRlZDQ1Mjg1NzUxMDg1NGIxOGI3MTcxNjUxNTZlODRkMGMxZDMwMjU3MDVlNDBkYWM3OCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNzRkMDZmNWEyZjM5YjUwZDg0MTRjNjJlNmM2N2RlYjliYTllMTEwOTZiZWY3Y2NhMTU1YTU4NWY0MzNlNmE2MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOWZjMWM5NzcyYzRhMTcwZjY4YWE1MDI1OGVjYmQ5NTgxMTFlNzkxMDk1NmZjMzRjMmI5ZDU3YWU5ZTczODViMCJ9"
+        },
+        {
+          "resource": "repo://docker-compose.yml#L54-L79",
+          "version": "repo-lines-v1:sha256:5aca2f38c5a8d5724eb64d2f4b791e0b6a831521c066c6e5c5820b0469195c06:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIxYTgxN2IzZjA0NjQwYmMwNjNjOTY2MzEzMzcwZjI5YThmNmI4MDY0MzVkYTk5ODgyODk3ZGU5MGQ3NmJjZjEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImRlMTI3YjAxZDg2ZDEwMTc5MWUzN2EzMWU3ODFkOWQ2OWUyNmY0YmQwZTdmOTAzYzZhMDI3NTNhNzBhYTM2MDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAwMzQ2MzZkMGEzY2JkMTM4OWYwY2UwOWYyMTQxNTNmMjIwODM2NzFkZjRlOTUyODdkNDQyMTkxYWIzZGQ0NDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwNzNhYWQxYTY0ZmUwMWI5Mjk1NTA3YTFiMDRhZTFkOGU0NDcyOTQ4Yzg1NTFkYTRiMGY3ZDM4NWM5YzdhZmYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-04T21:48:02.281Z"
+  }
+}
