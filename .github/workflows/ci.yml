@@ -1,0 +1,19 @@
+name: ci
+
+# The Makefile suite is hermetic: it stubs `docker` and `npm`, needs no
+# daemon and no network, and never writes to the checkout. So one job, no
+# services and no caching -- if it passes here it passes anywhere.
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  make-targets:
+    name: Make Targets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: make test
+        run: make test

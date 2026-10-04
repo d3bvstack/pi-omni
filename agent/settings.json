@@ -8,5 +8,6 @@
     "find",
     "ls"
   ],
-  "lastChangelogVersion": "1.0.0"
+  "lastChangelogVersion": "1.0.0",
+  "theme": "system"
 }
