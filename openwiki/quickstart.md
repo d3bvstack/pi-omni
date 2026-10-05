@@ -3,9 +3,6 @@ type: overview
 title: Quickstart
 description: Task-routing map for the Pi agent container hub — install the launcher, start a session, configure a provider, reach long-term memory, run the tests, and jump to the page that owns each question.
 tags: [quickstart, overview, orientation, launcher, testing, memory]
-verified:
-  - by: openwiki/0.7.0
-    at: 2026-10-04T21:48:02.281Z
 sources:
   - id: openwiki-source-5f5b95b3d6a215fa02ceb945
     resource: repo://.env.example
@@ -17,7 +14,10 @@ sources:
     resource: repo://Makefile
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
-generated: { by: "pi", at: "2026-10-04T21:48:02.281Z" }
+generated: { by: "pi", at: "2026-10-05T18:30:00.638Z" }
+verified:
+  - by: openwiki/0.7.0
+    at: 2026-10-05T18:30:00.638Z
 ---
 
 This repository is a container image that runs the Pi coding agent with a small
@@ -134,6 +134,4 @@ engine works — that needs a boot and a real round trip.
   help, symlink-safe install, `pin` and `update`.
 - [Hermetic test suites](testing/hermetic-suites.md) — how each suite is fake, and
   what neither one proves.
-- [CI and troubleshooting](operations/ci-and-troubleshooting.md) — what CI runs,
-  the scheduled wiki update, file ownership, and the failure modes as
-  symptom-to-cause pairs.
+- CI uses `.github/workflows/ci.yml`; the previous `openwiki-update.yml` workflow has been removed.

@@ -5,7 +5,7 @@ description: The end-to-end path from a host `pi` invocation to a live agent ses
 tags: [workflow, run-lifecycle, launcher, compose, mounts, session]
 verified:
   - by: openwiki/0.7.0
-    at: 2026-10-04T21:48:02.281Z
+    at: 2026-10-05T18:30:00.638Z
 sources:
   - id: openwiki-source-715dace563ef484b6e8bd1e2
     resource: repo://.dockerignore
