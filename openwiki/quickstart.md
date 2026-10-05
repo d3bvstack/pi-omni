@@ -14,10 +14,10 @@ sources:
     resource: repo://Makefile
   - id: openwiki-source-23775c3de52f3ab95a13cb8b
     resource: repo://README.md
-generated: { by: "pi", at: "2026-10-05T18:30:00.638Z" }
+generated: { by: "pi", at: "2026-10-05T20:23:24.626Z" }
 verified:
   - by: openwiki/0.7.0
-    at: 2026-10-05T18:30:00.638Z
+    at: 2026-10-05T20:23:24.626Z
 ---
 
 This repository is a container image that runs the Pi coding agent with a small
@@ -134,4 +134,5 @@ engine works — that needs a boot and a real round trip.
   help, symlink-safe install, `pin` and `update`.
 - [Hermetic test suites](testing/hermetic-suites.md) — how each suite is fake, and
   what neither one proves.
+- [OpenWiki Pages workflow](operations/openwiki-pages.md) — the static export and GitHub Pages deploy workflow (`openwiki visualize --export`) that runs on PR and push.
 - CI uses `.github/workflows/ci.yml`; the previous `openwiki-update.yml` workflow has been removed.

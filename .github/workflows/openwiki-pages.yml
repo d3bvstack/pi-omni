@@ -1,0 +1,85 @@
+name: OpenWiki Pages
+
+# The committed openwiki/ tree is the source of truth; this workflow only renders
+# it. `openwiki visualize --export` reads the pages and writes a static graph and
+# reader, so there is no model call and no provider key here.
+#
+# A pull request builds and uploads the artifact but never deploys: only a push to
+# main or a manual run reaches the live site, so unreviewed content cannot
+# publish itself. The build still runs on pull requests, so a broken export fails
+# on the change that caused it.
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "openwiki/**"
+      - ".github/workflows/openwiki-pages.yml"
+  pull_request:
+    branches: [main, master]
+    paths:
+      - "openwiki/**"
+      - ".github/workflows/openwiki-pages.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Export OpenWiki
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          # The pinned major, not a minor: openwiki declares node >=22.22.0.
+          node-version: "22"
+
+      - name: Install OpenWiki
+        # Pinned to the version vendored in agent/npm so the export matches the
+        # one the documentation was generated with.
+        run: npm install --global openwiki@0.7.0
+
+      - name: Export the static visualizer
+        # Everything the export references is relative, so the site works from a
+        # project Pages URL (/<repo>/) and not just a user root domain.
+        run: openwiki visualize openwiki --export site
+
+      - name: Check the export
+        run: |
+          # upload-pages-artifact would otherwise publish an empty site, and the
+          # failure would only surface as a 404 after the deployment.
+          test -s site/index.html
+          test -s site/graph.json
+          test -s site/client.js
+          # Pages would otherwise hand the tree to Jekyll, which drops paths it
+          # considers special. Nothing here needs that processing.
+          : > site/.nojekyll
+
+      - name: Upload the Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        with:
+          path: site
+          # .nojekyll is hidden, and the action skips dotfiles by default.
+          include-hidden-files: true
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: ${{ github.event_name != 'pull_request' }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5

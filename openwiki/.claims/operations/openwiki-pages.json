@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:0594647284de9ec7b2500cb1fffbca09e6550af8580da1b4e53249422c3e0fda",
+  "claims": [
+    {
+      "id": "claim_6538cfd0f94b49ff9e174ed398a35f28",
+      "statement": "The workflow triggers on push to main/master for openwiki/** or the workflow file, on matching pull requests, and via workflow_dispatch, with concurrency cancellation enabled.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-pages.yml#L1-L37",
+          "version": "repo-lines-v1:sha256:f44dd99cea3aafa2a56cf62cd7c33a8965d08729d85620bfb1267103be716e1d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjlhNGVlNDlkNTFjM2Q4MThlZWI4ZGRhYzI4M2EwM2ZjNjE4NDEyNGI1OWIyY2U3ODU0YTE2MjVjNDkwN2Y0YTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM4OTk5MTEwM2Y2YmE4ODhlM2RlNzY1MWM1YTMwNWM3N2U1NTQ3Njc3M2FiYTgzOTU5MWVjYzViZDBmMmFiMWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImJhNmFlZjIwZjEwYjIwMWMwNjE3YzI0Njc0ZTQzNWYzYWM5MjI4NjBkOTZiNmMxZjlhMTg1M2RhMjJlMmViY2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a6371440b5444a97bd9c71b2d66daac6",
+      "statement": "The build installs openwiki@0.7.0, exports a static site with openwiki visualize openwiki --export site, verifies site/index.html, site/graph.json, and site/client.js are non-empty, writes site/.nojekyll, and uploads the artifact with hidden files included.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-pages.yml#L51-L65",
+          "version": "repo-lines-v1:sha256:264f62ec7956db680f6da98fc0a838acb4c1af0186ccf85f0047ff267d0f44fa:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE0YWIyYWZjZGJmMmZlODZiZDI1MWEyYjA2NmEzZjZjYTgzNmIzNGM3NjUyZTZlNzczYTliNWI4YmQ2YWU2ZTIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5OTk1ZmI5OTQ3MWMxNTY4YzhjYWUxZjdjYzJlODA0NDgxMGQzNmE2YWY3NDVjOTUwZWEyMzgzYmJkNTkxYTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNkYjNlOGIzZDFkZTQwMDc4ZGMyNjI3YTkwMDI1YmYyMGQ1MjI2NzI4ZTQzY2RlNDFhMGY1MmFlZDg0ZmJjNTEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQxNmU2NmY1ZjVkYjNlYzcyZmZjODFhMDE1ZjdkZjBmOGQ2NjA5YjAzOGNiZGY4NjIyYTBhNGQ5ZDU1MGVhYzcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_11e88a8dd38649c7ae9e411f5af26581",
+      "statement": "Deployment only occurs when github.event_name is not pull_request; it uses actions/deploy-pages in the github-pages environment after the build succeeds.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-pages.yml#L68-L79",
+          "version": "repo-lines-v1:sha256:593dc5f7fb898610e5503288d2e68db1784938b7464631618a9a1c7f8d9a8473:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY4MWYwMGFkOWNjZDk3ZTg3NzU3NzQ3NDlkN2M4YzI4YTE3OTAzMmY1MjNlNDA1Njc5ODYyZmY2YzRiYzEzYTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyNzQ2MzM0ZmRiZDY1MTMyMzlmMTMyNmRiOGI2MTI3NTdiNWIzMmMwODA4YjUwODFhOTkzN2Y2NTMzYjhkYjkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNhZjlhN2IxNGQ0ZWFkOWVmYzM2MTY2YjU3NjgyODA2OTM5NzM0ODNmNGE4NmRjMjYzY2NhYzE4OWI4ODAzY2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjNkN2MzOGFhM2NjNWZlZWFmMWEyNDNhMGVkNjQ2ODEyY2I0NWQxZGRmZGFhOWQ2MDQ1ZDA5MGVmZmE3MzRjMzMifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-05T20:23:24.626Z"
+  }
+}

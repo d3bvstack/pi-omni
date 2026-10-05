@@ -23,11 +23,11 @@
       "completedRunId": "ed401dd7-3142-4188-995c-df57ee9edbde"
     },
     "/openwiki/architecture/run-lifecycle.md": {
+      "gitHead": "f2fa1bf84c6da14549c5b2ac55f99b500b067278",
+      "sourceFingerprint": "sha256:6c317e00fb860f14aed9c4f6ac8ec53c7c755afbdad00c8a4e2512b2f93d9fe3",
       "pageVersion": "sha256:89558c7598bc8d15aa964441b1c44d94c2364aca8391043ceabdf5ae5bfcbf3b",
       "completedBy": "pi",
-      "completedRunId": "653b85f8-c18c-400b-bc22-1daf033fdb0b",
-      "gitHead": "f2fa1bf84c6da14549c5b2ac55f99b500b067278",
-      "sourceFingerprint": "sha256:6c317e00fb860f14aed9c4f6ac8ec53c7c755afbdad00c8a4e2512b2f93d9fe3"
+      "completedRunId": "653b85f8-c18c-400b-bc22-1daf033fdb0b"
     },
     "/openwiki/configuration/agent-configuration.md": {
       "gitHead": "91e76b73e134d00ecc23ad7aeea745b86e8a19bd",
@@ -71,12 +71,26 @@
       "completedBy": "pi",
       "completedRunId": "ed401dd7-3142-4188-995c-df57ee9edbde"
     },
-    "/openwiki/quickstart.md": {
-      "pageVersion": "sha256:d5a69df607e79bcac6f986fe93e31fd2c53481b0fc4475c68bd20c2cf5fd14b9",
+    "/openwiki/operations/ci-workflow.md": {
+      "pageVersion": "sha256:40cf2ddf2cb4dd4d7eb5b4c39bcaffd0cb9a1318eef44cd614ae8048ab200d19",
       "completedBy": "pi",
-      "completedRunId": "653b85f8-c18c-400b-bc22-1daf033fdb0b",
-      "gitHead": "f2fa1bf84c6da14549c5b2ac55f99b500b067278",
-      "sourceFingerprint": "sha256:6c317e00fb860f14aed9c4f6ac8ec53c7c755afbdad00c8a4e2512b2f93d9fe3"
+      "completedRunId": "b0ce35e4-a26d-438e-b48a-1ec399c88124",
+      "gitHead": "0a3c13fdd57a806ac24d5281b0aa5f31380950fb",
+      "sourceFingerprint": "sha256:c0ae40358393f38a9f7492faf92f5f80f198cc275f44480ff58b661b6eb0515c"
+    },
+    "/openwiki/operations/openwiki-pages.md": {
+      "gitHead": "0a3c13fdd57a806ac24d5281b0aa5f31380950fb",
+      "sourceFingerprint": "sha256:c0ae40358393f38a9f7492faf92f5f80f198cc275f44480ff58b661b6eb0515c",
+      "pageVersion": "sha256:0594647284de9ec7b2500cb1fffbca09e6550af8580da1b4e53249422c3e0fda",
+      "completedBy": "pi",
+      "completedRunId": "c920cc5c-92cf-4319-a6cc-75a3b21f3e09"
+    },
+    "/openwiki/quickstart.md": {
+      "gitHead": "0a3c13fdd57a806ac24d5281b0aa5f31380950fb",
+      "sourceFingerprint": "sha256:c0ae40358393f38a9f7492faf92f5f80f198cc275f44480ff58b661b6eb0515c",
+      "pageVersion": "sha256:4d838e55716d2f7c396639906393c51d97d44020b52f3ad3b454d209b31f9a8b",
+      "completedBy": "pi",
+      "completedRunId": "c920cc5c-92cf-4319-a6cc-75a3b21f3e09"
     },
     "/openwiki/testing/hermetic-suites.md": {
       "gitHead": "91e76b73e134d00ecc23ad7aeea745b86e8a19bd",

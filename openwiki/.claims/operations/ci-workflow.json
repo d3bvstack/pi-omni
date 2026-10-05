@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:40cf2ddf2cb4dd4d7eb5b4c39bcaffd0cb9a1318eef44cd614ae8048ab200d19",
+  "claims": [
+    {
+      "id": "claim_9477b38b65f74a54a64a51effe72d0c1",
+      "statement": "The ci workflow triggers on Makefile changes for push and pull_request to main/master, with concurrency cancellation.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml#L1-L15",
+          "version": "repo-lines-v1:sha256:1f0f09b0e620128e23d0d805d8fd06b0cef80b30779f404f1436f3962840b4a5:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU1OWUzYjlmMmNlZTBjMDgwOWJmNDA2NjFmZmYzZTJmZWQyNjQ0ZTFkMGUwN2NlMjIwNGVkMmJhMzllYTExYjMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzZWFiZWZhNjQwZTQxODdiZTJhODI2ZDdlZmE0YTE3NDBlZGE0Mjk4MzRlNDI4ODA3ZGVlNWZiN2FlZDAzNDEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ5YzFiNDdlNTc0MmE4Y2MwNjEwZmVlY2JlZjkwYzFmNjBiN2YzYmM4NzQ4YWZiMzNkNjI0ODlkNDEzYzI4ZWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1ab0e5199a0c4d98a387f740dd5bece0",
+      "statement": "The job uses actions/checkout@v4 and runs make test with no services, no caching, and no additional steps, matching the hermetic test contract.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/ci.yml#L18-L25",
+          "version": "repo-lines-v1:sha256:946998f3dec0adddc795b4fc17df45b3aa7531b049af130265b23754de5a694b:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZTlkODAxNTRlZDQyZmM1Yzc3OWIxMzMxNTc4YjU4Yjg5YzgwMWVhY2U3NGYyNGNkNDhlYjRhMjM1Nzk0MGE5NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNjQ1ZGQ4MjMzNWM3ZjZiNGNkMDZkYTIzMDhjODU5ZGE2ZDNmOWViMzhjYThkZTc1NGE0NTlmYmRiOTc0NmZmOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjE2N2Q0MWJjYjI5NDUyYTRkZTA4Mjk1NmE2NjJkZDVkMzJlZWM3NjA4NGZkMDBmMTcyMTQwODlkOTVhNTM0NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.7.0",
+    "at": "2026-10-05T20:24:28.661Z"
+  }
+}
